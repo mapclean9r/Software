@@ -1,6 +1,7 @@
+import os
 import sqlite3
-
-con =sqlite3.connect("src/backend/database/database.db")
+pathing = os.path.dirname(__file__) + "/database.db"
+con = sqlite3.connect(pathing)
 cur = con.cursor()
 
 def create_user(Username,Password):
@@ -19,7 +20,7 @@ def password_get(Username):
 
 
 
-create_user("TEST","TSET")
+#create_user("TEST","TSET")
 print(username_get("TEST"))
 print(password_get("TEST"))
 
