@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from frontend.routes import user_views
 
 # kjør i terminalen:
-# pip -r requirements.txt
+# pip install -r requirements.txt
 # poetry install
 # npm install
 # mvn install
