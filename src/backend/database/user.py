@@ -7,7 +7,7 @@ cur = con.cursor()
 
 def create_user(Username,Password):
         try:
-            cur.execute("SELECT Username FROM Uer")
+            cur.execute("SELECT Username FROM User")
             user = cur.fetchall()
             cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
             user2 = cur.fetchone()
@@ -15,8 +15,8 @@ def create_user(Username,Password):
             for i in user:
                 if i == user2:
                     return print("Brukernavn allerede i bruk")
-                else:
-                    con.commit()
+            con.commit()
+            return print("Bruker opprettet")
         except:
              print("FEIL I CREATE_USER")
 
@@ -36,7 +36,5 @@ def password_get(Username):
 
 
 
-create_user("LAST","TSET")
-print(username_get("TEST"))
-print(password_get("TEST"))
+create_user("LALALdAL","TSET")
 
