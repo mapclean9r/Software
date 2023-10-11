@@ -25,19 +25,30 @@ def create_user(Username,Password,Admin):
     
 
 def username_get(Username):
-    cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
-    user = cur.fetchone()
-    return user
+    try:
+        cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
+        user = cur.fetchone()
+        return user
+    except:
+         print("FEIL I USERNAME_GET")
+    
 def password_get(Username):
-    cur.execute("SELECT Password FROM User WHERE Username = ?",(Username,))
-    passs = cur.fetchone()
-    return passs
+    try:
+        cur.execute("SELECT Password FROM User WHERE Username = ?",(Username,))
+        passs = cur.fetchone()
+        return passs
+    except:
+         print("FEIL I PASSWORD_GET")
 def admin_get(Username):
-    cur.execute("SELECT Admin FROM User WHERE Username = ?",(Username,))
-    admin = cur.fetchone()
-    return admin
+    try:
+        cur.execute("SELECT Admin FROM User WHERE Username = ?",(Username,))
+        admin = cur.fetchone()
+        return admin
+    except:
+         print("FEIL I ADMIN_GET")
+    
 
 
 
-create_user("LALALdAL","TSET")
+
 

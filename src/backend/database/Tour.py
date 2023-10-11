@@ -6,9 +6,16 @@ cur = con.cursor()
 
 
 def Tour_create(Title,Description,Country,Location,Date):
-    con.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUE(?,?,?,?,?)",(Title,Description,Country,Location,Date))
-    con.commit()
+    try:
+        con.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUE(?,?,?,?,?)",(Title,Description,Country,Location,Date))
+        con.commit()
+    except:
+        print("FEIL I TOUR_CREATE")
+    
 
 def Tour_get():
-    con.execute("SELECT * FROM Tour")
+    try:
+        con.execute("SELECT * FROM Tour")
+    except:
+        print("FEIL I TOUR_GET")
 
