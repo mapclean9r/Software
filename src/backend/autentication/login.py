@@ -25,7 +25,7 @@ class UserLogin:
             return False
 
     def admin_check_to_database(self):
-        if self.admin in admin_get(self.admin):
-            return True
+        if self.admin == admin_get(self.admin):
+            return self.admin
         else:
             return False
