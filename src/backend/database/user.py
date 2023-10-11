@@ -5,13 +5,13 @@ con = sqlite3.connect(pathing)
 cur = con.cursor()
 
 
-def create_user(Username,Password):
+def create_user(Username,Password,Admin):
         try:
             cur.execute("SELECT Username FROM User")
             user = cur.fetchall()
             cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
             user2 = cur.fetchone()
-            cur.execute("INSERT INTO User(Username, Password) VALUES(?,?)",(Username,Password,))
+            cur.execute("INSERT INTO User(Username, Password,Admin) VALUES(?,?,?)",(Username,Password,Admin))
             for i in user:
                 if i == user2:
                     return print("Brukernavn allerede i bruk")
