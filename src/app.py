@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request
 from frontend.routes import user_views
 
+# kjør i terminalen:
+# pip -r requirements.txt
+# poetry install
+# npm install
+# mvn install
+
+
 application = Flask(__name__)
 
 user_views.display_index()
