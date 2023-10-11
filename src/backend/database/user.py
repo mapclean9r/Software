@@ -20,10 +20,6 @@ def create_user(Username,Password,Admin):
         except:
              print("FEIL I CREATE_USER")
 
-
-
-    
-
 def username_get(Username):
     try:
         cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
@@ -39,6 +35,7 @@ def password_get(Username):
         return passs
     except:
          print("FEIL I PASSWORD_GET")
+         
 def admin_get(Username):
     try:
         cur.execute("SELECT Admin FROM User WHERE Username = ?",(Username,))
