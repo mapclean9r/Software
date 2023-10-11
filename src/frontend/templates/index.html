@@ -12,19 +12,42 @@
     <h1>
         explore the greatest collection of experiencenses
     </h1>
-    <p>Enter your username and password:</p>
-    <input type="name" , name="username" , placeholder="Username">
-    <input type="password" , name="password" , placeholder="Password">
-    <a href="homepage.html"><input type="submit" , name="submit" , placeholder="Login"></a>
+
+    <p>Login with username and password:</p>
+    <form method="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" />
+        </div>
+        <div class="form-group">
+            <label for="username">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" />
+        </div>
+        <br />
+        <button type="submit" class="">Login</button>
+    </form>
 
     <input type="checkbox" id="admin_login_id" name="admin_login" value="checkbox_value">
     <label for="admin_login_id"> Login as Admin?</label><br>
+    <br />
     <p>
         Dont have an acount? Registrer her:
     </p>
-    <input type="name" , name="registrer_username" , placeholder="New username">
-    <input type="password" , name="registrer_password" , placeholder="New password">
-    <input type="submit" , name="Registrer" , placeholder="Login">
+
+    <br />
+    <form method="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" />
+        </div>
+        <div class="form-group">
+            <label for="username">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" />
+        </div>
+        <br />
+        <button type="submit" class="">Submit</button>
+    </form>
+
 </body>
 
 </html>
