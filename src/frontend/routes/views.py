@@ -5,6 +5,8 @@ our_views = Blueprint('views', __name__)
 
 @our_views.route('/', methods=['GET', 'POST'])
 def display_index():
+    data = request.form
+    print(data)
     # if request.method == 'GET':
 
     # connection = sqlite3.connect('..backend/database/database.db')
