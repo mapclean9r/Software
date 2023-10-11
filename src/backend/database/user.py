@@ -11,7 +11,7 @@ def username_get(Username):
     cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
 
 def password_get(Username):
-    cur.execute("SELECT PASSWORD FROM User WHERE Username = ?",(Username,))
+    cur.execute("SELECT Password FROM User WHERE Username = ?",(Username,))
 
 
 
