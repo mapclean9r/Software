@@ -2,7 +2,7 @@ from src.backend.autentication.login import *
 
 
 def test_username_check_to_database():
-    create_user("Horse", "Horse")
+    create_user("Horse", "Horse", False)
     x = "Horse"
     y = "Horse"
     z = False
@@ -11,7 +11,7 @@ def test_username_check_to_database():
 
 
 def test_password_check_to_database():
-    create_user("Horse", "Horse")
+    create_user("Horse", "Horse", False)
     x = "Horse"
     y = "Horse"
     z = False

@@ -1,6 +1,11 @@
 from src.backend.database.user import *
 
 
+# Slik bruker du klassen
+# x = "brukernavn" y = "passord" z = True eller False
+# variabel_navn = UserLogin(x, y, z)
+# UserLogin.username_check_to_database(variabel_navn)
+
 class UserLogin:
     def __init__(self, username, password, admin):
         self.name = username
@@ -16,5 +21,11 @@ class UserLogin:
     def password_check_to_database(self):
         if self.password in password_get(self.password):
             return self.name
+        else:
+            return False
+
+    def admin_check_to_database(self):
+        if self.admin in admin_get(self.admin):
+            return True
         else:
             return False
