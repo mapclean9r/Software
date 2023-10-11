@@ -4,9 +4,25 @@ pathing = os.path.dirname(__file__) + "/database.db"
 con = sqlite3.connect(pathing)
 cur = con.cursor()
 
+
 def create_user(Username,Password):
-    cur.execute("INSERT INTO User(Username, Password) VALUES(?,?)",(Username,Password,))
-    con.commit()
+        try:
+            cur.execute("SELECT Username FROM User")
+            user = cur.fetchall()
+            cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
+            user2 = cur.fetchone()
+            cur.execute("INSERT INTO User(Username, Password) VALUES(?,?)",(Username,Password,))
+            for i in user:
+                if i == user2:
+                    return print("Brukernavn allerede i bruk")
+            con.commit()
+            return print("Bruker opprettet")
+        except:
+             print("FEIL I CREATE_USER")
+
+
+
+    
 
 def username_get(Username):
     cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
@@ -20,7 +36,5 @@ def password_get(Username):
 
 
 
-#create_user("TEST","TSET")
-print(username_get("TEST"))
-print(password_get("TEST"))
+create_user("LALALdAL","TSET")
 

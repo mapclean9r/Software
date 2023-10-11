@@ -12,4 +12,3 @@ def Tour_create(Title,Description,Country,Location,Date):
 def Tour_get():
     con.execute("SELECT * FROM Tour")
 
-
