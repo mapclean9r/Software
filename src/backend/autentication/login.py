@@ -1,9 +1,11 @@
 from src.backend.database.user import *
 
+
 class UserLogin:
-    def __init__(self, username, password):
+    def __init__(self, username, password, admin):
         self.name = username
         self.password = password
+        self.admin = admin
 
     def username_check_to_database(self):
         if self.name in username_get(self.name):
@@ -16,4 +18,3 @@ class UserLogin:
             return self.name
         else:
             return False
-
