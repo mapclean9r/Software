@@ -6,7 +6,8 @@ def databasecreation():
     cur.execute('''CREATE TABLE IF NOT EXISTS User (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
             Username CHAR(45),
-            Password TEXT   
+            Password TEXT
+            Admin BOOLEAN
     );''')
     cur.execute('''CREATE TABLE IF NOT EXISTS Tour(
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
