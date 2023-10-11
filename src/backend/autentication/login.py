@@ -11,3 +11,9 @@ class UserLogin:
         else:
             return False
 
+    def password_check_to_database(self):
+        if self.password in password_get(self.password):
+            return self.name
+        else:
+            return False
+
