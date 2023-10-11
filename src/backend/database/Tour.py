@@ -13,4 +13,3 @@ def Tour_get():
     con.execute("SELECT * FROM Tour")
 
 
-con.close()

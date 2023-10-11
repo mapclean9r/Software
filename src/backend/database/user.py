@@ -24,4 +24,3 @@ def password_get(Username):
 print(username_get("TEST"))
 print(password_get("TEST"))
 
-con.close()
