@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Blueprint
+
+our_views = Blueprint('views', __name__)
 
 
-@application.route('/', methods=['GET', 'POST'])
+@our_views.route('/', methods=['GET', 'POST'])
 def display_index():
     # if request.method == 'GET':
 
