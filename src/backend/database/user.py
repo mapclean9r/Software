@@ -11,7 +11,7 @@ def create_user(Username,Password,Admin):
             user = cur.fetchall()
             cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
             user2 = cur.fetchone()
-            cur.execute("INSERT INTO User(Username, Password,Admin) VALUES(?,?,?)",(Username,Password,Admin))
+            cur.execute("INSERT INTO User(Username, Password, Admin) VALUES(?,?,?)",(Username,Password,Admin))
             for i in user:
                 if i == user2:
                     return print("Brukernavn allerede i bruk")
@@ -43,9 +43,14 @@ def admin_get(Username):
         return admin
     except:
          print("FEIL I ADMIN_GET")
+def id_get(Username):
+    try:
+          cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
+    except:
+         print("FEIL I ID_GET")
     
 
 
 
 
-
+create_user("IKKEADMIN","ADMIN",0)
