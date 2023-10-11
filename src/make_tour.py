@@ -1,5 +1,10 @@
 from flask import Flask
 
+# kjør i terminalen:
+# pip -r requirements.txt
+# poetry install
+# npm install
+# mvn install
 
 app = Flask(__name__)
 
