@@ -29,3 +29,7 @@ class UserLogin:
             return self.admin
         else:
             return False
+
+    def get_stored_username_get(self):
+        get_cur_user = username_get(self.name)
+        return get_cur_user
