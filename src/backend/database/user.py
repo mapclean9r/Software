@@ -28,11 +28,14 @@ def username_get(Username):
     cur.execute("SELECT Username FROM User WHERE Username = ?",(Username,))
     user = cur.fetchone()
     return user
-
 def password_get(Username):
     cur.execute("SELECT Password FROM User WHERE Username = ?",(Username,))
     passs = cur.fetchone()
     return passs
+def admin_get(Username):
+    cur.execute("SELECT Admin FROM User WHERE Username = ?",(Username,))
+    admin = cur.fetchone()
+    return admin
 
 
 
