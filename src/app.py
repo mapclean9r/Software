@@ -1,16 +1,24 @@
-from flask import Flask, render_template, request
-from frontend.routes import user_views
+from flask import Flask, render_template, url_for
 
-# kjør i terminalen:
-# pip install -r requirements.txt
-# poetry install
-# npm install
-# mvn install
+application = Flask(__name__, template_folder='frontend/templates')
 
 
-application = Flask(__name__)
+@application.route('/')
+def index():
 
-user_views.display_index()
+    return render_template('/index.html')
+
+
+@application.route('/registrer')
+def registrer_page():
+
+    return render_template('/registrer.html')
+
+
+@application.route('/homepage')
+def homepage():
+
+    return render_template('/homepage.html')
 
 
 if __name__ == '__main__':

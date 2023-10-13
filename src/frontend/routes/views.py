@@ -1,25 +1,21 @@
-from flask import Flask, render_template, request, Blueprint
+from flask import Flask, render_template, url_for
 
 our_views = Blueprint('views', __name__)
 
 
 @our_views.route('/', methods=['GET', 'POST'])
 def display_index():
-    data = request.form
-    print(data)
-    # if request.method == 'GET':
 
-    # connection = sqlite3.connect('..backend/database/database.db')
-    # cursor = connection.cursor()
-
-    return render_template('index.html')
+    return render_template('frontend/routes/index.html')
 
 
 @application.route('/homepage', methods=['GET', 'POST'])
 def display_homepage():
-    # if request.method == 'GET':
 
-    # connection = sqlite3.connect('..backend/database/database.db')
-    # cursor = connection.cursor()
+    return render_template('frontend/routes/homepage.html')
 
-    return render_template('homepage.html')
+
+@application.route('/registrer')
+def display_registrer_page():
+
+    return render_template('frontend/routes/registrer.html')

@@ -4,16 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="delay_time; URL=new_website_url" />
-    <title>Login Page</title>
+    <title>Registrer</title>
 </head>
 
 <body>
-    <h1>
-        explore the greatest collection of experiencenses
-    </h1>
-
-    <p>Login with username and password:</p>
     <form method="POST">
         <div class="form-group">
             <label for="username">Username</label>
@@ -23,19 +17,11 @@
             <label for="username">Password</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" />
         </div>
+        <input type="checkbox" id="admin_login_id" name="admin_login" value="checkbox_value" style="margin-top: 15px;">
+        <label for="admin_login_id"> Registrer account as an Admin account?</label><br>
         <br />
-
-        <button type="submit" class="">Login</button>
-        <br />
-        <br />
-        <a href="{{ url_for('homepage') }}">Skip login prosess link</a>
+        <button type="submit" class="">Submit</button>
     </form>
-    <br />
-    <p>
-        Dont have an account?
-    </p>
-    <a href="{{ url_for('registrer_page') }}">Registrer her:</a>
-
 </body>
 
 </html>
