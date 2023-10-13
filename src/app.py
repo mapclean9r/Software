@@ -1,8 +1,10 @@
 from flask import Flask, render_template, url_for
 
+# definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
 
 
+# våre paths:
 @application.route('/')
 def index():
 
