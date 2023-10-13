@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for
+# Denne filen er ikke i bruk per dags dato. pather er definert direkte i app.py
 
 our_views = Blueprint('views', __name__)
 
