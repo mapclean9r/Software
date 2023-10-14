@@ -10,6 +10,22 @@
 <body>
     <h1>This is the Homepage</h1>
 
+    <form action="/create_a_tour" , method="POST">
+        <input type="text" , name="Title" , placeholder="Title">
+        <input type="text" , name="Description" , placeholder="Description">
+        <input type="text" , name="Country" , placeholder="Country">
+        <input type="text" , name="Location" , placeholder="Location">
+        <input type="date" , name="Date">
+        <button type="submit">Create a tour</button>
+    </form>
+
+    <ul>
+        {% for tour in tours%}
+        <li>
+            <button type="submit" , formaction="/delete_a_tour">Delete tour</button>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>
