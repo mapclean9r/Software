@@ -8,8 +8,9 @@
 </head>
 
 <body>
-    <h1>This is the Homepage</h1>
+    <h1>This is the Homepage</h1><br>
 
+    <h2>To sell your tour, you must enter details for your tour first:</h2>
     <form action="/create_a_tour" , method="POST">
         <input type="text" , name="Title" , placeholder="Title">
         <input type="text" , name="Description" , placeholder="Description">
@@ -20,9 +21,13 @@
     </form>
 
     <ul>
-        {% for tour in tours%}
+        {% for tour in list_of_tours%}
         <li>
-            <button type="submit" , formaction="/delete_a_tour">Delete tour</button>
+            <strong>Title:</strong> {{ tour[1] }}
+            <strong>Description:</strong> {{ tour[2] }}
+            <strong>Country:</strong> {{ tour[3] }}
+            <strong>Location:</strong> {{ tour[4] }}
+            <strong>Date:</strong> {{ tour[5] }}
         </li>
         {% endfor %}
     </ul>

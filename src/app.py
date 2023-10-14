@@ -25,10 +25,10 @@ def homepage():
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
     cursor.execute("SELECT * from Tour")
-    list_med_turer = cursor.fetchall()
+    list = cursor.fetchall()
     db.close()
 
-    return render_template('/homepage.html', turer=list_med_turer)
+    return render_template('/homepage.html', list_of_tours=list)
 
 
 @application.route('/create_a_tour', methods=['POST'])
