@@ -12,6 +12,7 @@
 
     <h2>To sell your tour, you must enter details for your tour first:</h2>
     <form action="/create_a_tour" , method="POST">
+
         <input type="text" , name="Title" , placeholder="Title">
         <input type="text" , name="Description" , placeholder="Description">
         <input type="text" , name="Country" , placeholder="Country">
@@ -20,17 +21,21 @@
         <button type="submit">Create a tour</button>
     </form>
 
-    <ul>
-        {% for tour in list_of_tours%}
-        <li>
-            <strong>Title:</strong> {{ tour[1] }}
-            <strong>Description:</strong> {{ tour[2] }}
-            <strong>Country:</strong> {{ tour[3] }}
-            <strong>Location:</strong> {{ tour[4] }}
-            <strong>Date:</strong> {{ tour[5] }}
-        </li>
-        {% endfor %}
-    </ul>
+    <form action="/checkbox_tour_delete" method="POST">
+        <ul>
+            {% for tour in list_of_tours%}
+            <li>
+                <input type="checkbox" name="checkbox_row" value="{{ tour[0] }}">
+                <strong>Title:</strong> {{ tour[1] }}
+                <strong>Description:</strong> {{ tour[2] }}
+                <strong>Country:</strong> {{ tour[3] }}
+                <strong>Location:</strong> {{ tour[4] }}
+                <strong>Date:</strong> {{ tour[5] }}
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Delete</button>
+    </form>
 </body>
 
 </html>

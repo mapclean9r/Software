@@ -6,8 +6,6 @@ application = Flask(__name__, template_folder='frontend/templates')
 
 
 # våre paths:
-
-
 @application.route('/')
 def index():
 
@@ -50,8 +48,18 @@ def create_a_tour():
     return redirect(url_for('homepage'))
 
 
-@application.route('/delete_a_tour', methods=['POST'])
-def delete_a_tour():
+@application.route('/checkbox_tour_delete', methods=['POST'])
+def checkbox_tour_delete():
+    if request.method == 'POST':
+        selected = request.form.getlist('checkbox_row')
+
+        database = sqlite3.connect('backend/database/database.db')
+        cursor = database.cursor()
+
+        for ID in selected:
+            cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+        database.commit()
+        database.close()
     return redirect(url_for('homepage'))
 
 
