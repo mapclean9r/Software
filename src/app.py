@@ -9,6 +9,12 @@ application = Flask(__name__, template_folder='frontend/templates')
 # våre paths:
 @application.route('/')
 def index():
+    # if request.method == 'POST':
+    # username = request.form['username']
+    # password = request.form['password']
+    # user = re
+
+    # TODO gjør ferdig innlogging funksjonalitet...
 
     return render_template('/index.html')
 
