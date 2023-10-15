@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
-from backend.database import Tour
+from backend.database.tour import Tour_create
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -39,15 +39,8 @@ def create_a_tour():
         location = request.form['Location']
         date = request.form['Date']
 
-        database = sqlite3.connect('backend/database/database.db')
-        cursor = database.cursor()
+        Tour_create(title, description, country, location, date)
 
-        # TODO funksjonen som er kommentert ut under burde heller brukes, da får vi separert ut funksjonalitet i flere filer.
-        # Tour.Tour_create(title, description, country, location, date)
-        cursor.execute('INSERT INTO Tour (Title, Description, Country, Location, Date) VALUES (?, ?, ?, ?, ?)', (
-            title, description, country, location, date))
-        database.commit()
-        database.close()
     return redirect(url_for('homepage'))
 
 
