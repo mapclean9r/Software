@@ -39,6 +39,7 @@ def create_a_tour():
         location = request.form['Location']
         date = request.form['Date']
 
+        # Jeg bruker "Tour_create-funksonen" som ligger i backend/database/tour.py
         Tour_create(title, description, country, location, date)
 
     return redirect(url_for('homepage'))
