@@ -11,14 +11,13 @@ def get_db_connetion():
     return conn
 
 
-
 # Root page
 @app.route("/")
 def root():
     conn = get_db_connetion()
-
-
-    return render_template('make_tour_index.html')
+    tourdb = conn.execute("SELECT * FROM Tour")
+    conn.close()
+    return render_template('make_tour_index.html', tourdb=tourdb)
 
 
 if __name__ == "__main__":

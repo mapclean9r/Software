@@ -9,6 +9,13 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    {% block body %}{% endblock %}
+    <nav>
+        <a href="{{ url_for('make_tour_index') }}">FlaskApp</a>
+        <a href="#">About</a>
+    </nav>
+    <hr>
+    <div class="content">
+        {% block body %}{% endblock %}
+    </div>
 </body>
 </html>
