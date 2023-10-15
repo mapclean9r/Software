@@ -21,6 +21,7 @@ def Tour_create_values_into_table(Title,Description,Country,Location,Date):
     con.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUES('Tour','Nice tour','Tourland','Tour Ave','2023-01-01')",
                 (Title, Description, Country, Location, Date))
     con.commit()
+    con.close()
 
 '''
 def Tour_get():
