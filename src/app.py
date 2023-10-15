@@ -10,21 +10,20 @@ application = Flask(__name__, template_folder='frontend/templates')
 @application.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-
         connection = sqlite3.connect('backend/database/database.db')
         cursor = connection.cursor()
         username = request.form['name']
         password = request.form['password']
 
-        # print(username, password)
+        print(username, password)
 
-        login_correct = "SELECT Username, Password FROM User where Username=  '" + \
+        login_info_send_to_sql = "SELECT Username, Password FROM User where Username=  '" + \
             username+"' and password= '"+password+"'"
-        cursor.execute(login_correct)
+        cursor.execute(login_info_send_to_sql)
 
         login_output = cursor.fetchall()
 
-        if len(login_correct) == 0:
+        if len(login_info_send_to_sql) == 0:
             print("invalid passord or username.")
         else:
             return render_template('/homepage.html')
@@ -34,8 +33,16 @@ def index():
     return render_template('/index.html')
 
 
-@application.route('/registrer')
+@application.route('/registrer', methods=['GET', 'POST'])
 def registrer_page():
+    if request.method == 'POST':
+        connection = sqlite3.connect('backend/database/database.db')
+        cursor = connection.cursor()
+        username = request.form['name']
+        password = request.form['password']
+        is_admin = request.form.get('admin_login', False)
+
+        print(username, password, is_admin)
 
     return render_template('/registrer.html')
 
