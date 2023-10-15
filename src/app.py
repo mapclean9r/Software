@@ -7,12 +7,27 @@ application = Flask(__name__, template_folder='frontend/templates')
 
 
 # våre paths:
-@application.route('/')
+@application.route('/', methods=['GET', 'POST'])
 def index():
-    # if request.method == 'POST':
-    # username = request.form['username']
-    # password = request.form['password']
-    # user = re
+    if request.method == 'POST':
+
+        connection = sqlite3.connect('backend/database/database.db')
+        cursor = connection.cursor()
+        username = request.form['name']
+        password = request.form['password']
+
+        # print(username, password)
+
+        login_correct = "SELECT Username, Password FROM User where Username=  '" + \
+            username+"' and password= '"+password+"'"
+        cursor.execute(login_correct)
+
+        login_output = cursor.fetchall()
+
+        if len(login_correct) == 0:
+            print("invalid passord or username.")
+        else:
+            return render_template('/homepage.html')
 
     # TODO gjør ferdig innlogging funksjonalitet...
 
