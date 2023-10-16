@@ -45,8 +45,9 @@ def registrer_page():
 
         print(username, password, is_admin)
 
-        new_login = UserRegister(username, password, is_admin)
-        UserRegister.register_user_in_database(new_login)
+        new_login = register.UserRegister(
+            username, password, is_admin)
+        register.UserRegister.register_user_in_database(new_login)
 
     return render_template('/registrer.html')
 
