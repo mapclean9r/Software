@@ -1,7 +1,8 @@
+import os
 import sqlite3
-con = sqlite3.connect("src/backend/database/database.db")
+pathing = os.path.dirname(__file__) + "/database.db"
+con = sqlite3.connect(pathing)
 cur = con.cursor()
-
 def databasecreation():
     cur.execute('''CREATE TABLE IF NOT EXISTS User (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
