@@ -8,8 +8,39 @@
 </head>
 
 <body>
-    <h1>This is the Homepage</h1>
+    <h1>This is the Homepage</h1><br>
 
+    <h2>To sell your tour, you must enter details for your tour first:</h2>
+    <form action="/create_a_tour" , method="POST">
+
+        <input type="text" , name="Title" , placeholder="Title">
+        <input type="text" , name="Description" , placeholder="Description">
+        <input type="text" , name="Country" , placeholder="Country">
+        <input type="text" , name="Location" , placeholder="Location">
+        <input type="date" , name="Date">
+        <button type="submit">Create a tour</button>
+    </form>
+
+    <form action="/checkbox_tour_delete" method="POST">
+        <ul>
+            {% for tour in list_of_tours%}
+            <li>
+                <input type="checkbox" name="checkbox_row" value="{{ tour[0] }}">
+                <strong>Title:</strong> {{ tour[1] }}
+                <strong>Description:</strong> {{ tour[2] }}
+                <strong>Country:</strong> {{ tour[3] }}
+                <strong>Location:</strong> {{ tour[4] }}
+                <strong>Date:</strong> {{ tour[5] }}
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Delete</button>
+    </form>
+    <button type="submit">Buy tour</button> <br>
+    <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
+    <a href="{{ url_for('index') }}">Logout</a> <br>
+
+    <h2>Bought tours:</h2>
 </body>
 
 </html>
