@@ -1,4 +1,5 @@
 from src.backend.database.user import *
+import json
 
 
 # Slik bruker du klassen
@@ -30,6 +31,20 @@ class UserLogin:
         else:
             return False
 
-    def get_stored_username_get(self):
-        get_cur_user = username_get(self.name)
-        return get_cur_user
+    def save_user_online(self):
+        data = {'user_online': self.name}
+        with open('user_online.json', 'w') as file:
+            json.dump(data, file)
+
+    def get_user_online(self):
+        try:
+            with open('user_online.json', 'r') as file:
+                data = json.load(file)
+                return data.get('user_online', '')
+        except FileNotFoundError:
+            return r'user_online.json File Not Found'
+
+# Usage for json save_user_online & get_user_online
+# login_cred1 = UserLogin("Horse", "pwHorse", True)
+# UserLogin.save_user_online(login_cred1)
+# print(UserLogin.get_user_online(login_cred1))
