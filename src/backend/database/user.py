@@ -1,5 +1,6 @@
 import os
 import sqlite3
+
 pathing = os.path.dirname(__file__) + "/database.db"
 con = sqlite3.connect(pathing)
 cur = con.cursor()

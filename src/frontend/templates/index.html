@@ -12,21 +12,28 @@
     <h1>
         explore the greatest collection of experiencenses
     </h1>
-    <p>Enter your username and password:</p>
-    <input type="name" , name="username" , placeholder="Username">
-    <input type="password" , name="password" , placeholder="Password">
-    <a href="homepage.html">
-        <input type="submit" , name="submit" , placeholder="Login">
-    </a>
 
-    <input type="checkbox" id="admin_login_id" name="admin_login" value="checkbox_value">
-    <label for="admin_login_id"> Login as Admin?</label><br>
+    <p>Login with username and password:</p>
+    <form method="POST">
+        <label for="name">Username: </label>
+        <input type="text" id="name" name="name" placeholder="Enter username" />
+
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password" placeholder="Enter password" />
+
+        <button type="submit" name="submit">Login</button>
+    </form>
+    <br />
+    <br />
+    <a href="{{ url_for('homepage') }}">Skip login prosess link</a>
+
+    <br />
     <p>
-        Dont have an acount? Registrer her:
+        Dont have an account?
     </p>
-    <input type="name" , name="registrer_username" , placeholder="New username">
-    <input type="password" , name="registrer_password" , placeholder="New password">
-    <input type="submit" , name="Registrer" , placeholder="Login">
+    <!-- under, er måten vi navigerer oss fra side til side -->
+    <a href="{{ url_for('registrer_page') }}">Registrer her:</a>
+
 </body>
 
 </html>
