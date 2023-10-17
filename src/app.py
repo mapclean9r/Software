@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
 
-from backend.database.tour import Tour_create
+from backend.database.Tour import Tour_create
 from backend.autentication import *
 from backend.database import user
 
@@ -21,9 +21,14 @@ def index():
 
         print(username, password)
 
-        login_info_send_to_sql = "SELECT Username, Password FROM User where Username=  '" + \
-            username+"' and password= '"+password+"'"
-        cursor.execute(login_info_send_to_sql)
+        # login_info_send_to_sql = "SELECT Username, Password FROM User where Username=  '" + \
+        # username+"' and password= '"+password+"'"
+        # cursor.execute(login_info_send_to_sql)
+
+        # login_output = cursor.fetchall()
+
+        login_info_send_to_sql = "SELECT Username, Password FROM User WHERE Username = ? AND Password = ?"
+        cursor.execute(login_info_send_to_sql, (username, password))
 
         login_output = cursor.fetchall()
 
