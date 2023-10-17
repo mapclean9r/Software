@@ -1,7 +1,8 @@
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
-from src.backend.autentication.register import *
-from src.backend.database.Tour import *
+from backend.autentication.register import *
+from backend.database.Tour import *
+
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -11,7 +12,7 @@ application = Flask(__name__, template_folder='frontend/templates')
 @application.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        connection = sqlite3.connect('backend/database/database.db')
+        connection = sqlite3.connect('src/backend/database/database.db')
         cursor = connection.cursor()
         username = request.form['name']
         password = request.form['password']
@@ -37,8 +38,6 @@ def index():
 @application.route('/registrer', methods=['GET', 'POST'])
 def registrer_page():
     if request.method == 'POST':
-        connection = sqlite3.connect('backend/database/database.db')
-        cursor = connection.cursor()
         username = request.form['name']
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
@@ -53,7 +52,7 @@ def registrer_page():
 
 @application.route('/homepage')
 def homepage():
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect('src/backend/database/database.db')
     cursor = db.cursor()
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
