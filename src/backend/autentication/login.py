@@ -38,15 +38,19 @@ class UserLogin:
             json.dump(data, file)
 
     # Gets the current username in the .json file
-    def get_user_online(self):
-        try:
-            with open('user_online.json', 'r') as file:
-                data = json.load(file)
-                return data.get('user_online', '')
-        except FileNotFoundError:
-            return r'user_online.json File Not Found'
+
+
+def get_user_online():
+    try:
+        with open('user_online.json', 'r') as file:
+            data = json.load(file)
+            return data.get('user_online', '')
+    except FileNotFoundError:
+        return r'user_online.json File Not Found'
+
 
 # Usage for json save_user_online & get_user_online
 # login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values
 # UserLogin.save_user_online(login_cred1)
-# print(UserLogin.get_user_online(login_cred1))
+
+# print(get_user_online())
