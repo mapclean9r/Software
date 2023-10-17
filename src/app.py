@@ -17,17 +17,9 @@ def index():
         username = request.form['name']
         password = request.form['password']
 
-        # con = sqlite3.connect('backend/database/database.db')
-        # cur = connection.cursor()
-
         print(username, password)
         userlogin_is_valid = user.check_if_username_and_password_is_correct(
             username, password)
-
-        # login_info_send_to_sql = "SELECT Username, Password FROM User WHERE Username = ? AND Password = ?"
-        # cursor.execute(login_info_send_to_sql, (username, password))
-
-        # login_output = cursor.fetchall()
 
         if userlogin_is_valid:
             print("You are logged in")
