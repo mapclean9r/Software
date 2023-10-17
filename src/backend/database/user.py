@@ -31,6 +31,16 @@ def username_get(Username):
     return user
 
 
+def check_if_username_and_password_is_correct(username, password):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute(
+        "SELECT * FROM User WHERE Username = ? AND Password = ?", (username, password))
+    result_sql = cur.fetchall()
+    con.close()
+    return result_sql
+
+
 def password_get(Username):
     cur.execute("SELECT Password FROM User WHERE Username = ?", (Username,))
     passs = cur.fetchone()

@@ -14,31 +14,27 @@ application = Flask(__name__, template_folder='frontend/templates')
 @application.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        connection = sqlite3.connect('backend/database/database.db')
-        cursor = connection.cursor()
         username = request.form['name']
         password = request.form['password']
 
-        print(username, password)
+        # con = sqlite3.connect('backend/database/database.db')
+        # cur = connection.cursor()
 
-        # login_info_send_to_sql = "SELECT Username, Password FROM User where Username=  '" + \
-        # username+"' and password= '"+password+"'"
-        # cursor.execute(login_info_send_to_sql)
+        print(username, password)
+        userlogin_is_valid = user.check_if_username_and_password_is_correct(
+            username, password)
+
+        # login_info_send_to_sql = "SELECT Username, Password FROM User WHERE Username = ? AND Password = ?"
+        # cursor.execute(login_info_send_to_sql, (username, password))
 
         # login_output = cursor.fetchall()
 
-        login_info_send_to_sql = "SELECT Username, Password FROM User WHERE Username = ? AND Password = ?"
-        cursor.execute(login_info_send_to_sql, (username, password))
-
-        login_output = cursor.fetchall()
-
-        if len(login_info_send_to_sql) == 0:
-            print("invalid passord or username.")
-        else:
+        if userlogin_is_valid:
+            print("You are logged in")
             return render_template('/homepage.html')
-
-    # TODO gjør ferdig innlogging funksjonalitet...
-
+        else:
+            print("Something happend, you are not logged in")
+            return render_template('/index.html')
     return render_template('/index.html')
 
 
@@ -53,13 +49,12 @@ def registrer_page():
 
         print(username, password, is_admin)
 
-        # new_login = register.UserRegister(
-        # username, password, is_admin)
-        # register.UserRegister.register_user_in_database(new_login)
-
-        # denne funker
-        user.create_user(username, password, is_admin)
-
+        if username == user.username_get:
+            error_register = "Username exists."
+            return render_template('/registrer.html', error_register=error_register)
+        else:
+            new_user = user.create_user(username, password, is_admin)
+            return render_template('/registrer.html')
     return render_template('/registrer.html')
 
 

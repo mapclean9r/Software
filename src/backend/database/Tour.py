@@ -4,8 +4,10 @@ pathing = os.path.dirname(__file__) + "/database.db"
 con = sqlite3.connect(pathing)
 cur = con.cursor()
 
+
 def Tour_create(Title, Description, Country, Location, Date):
-    
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
 
     con.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUES(?,?,?,?,?)",
                 (Title, Description, Country, Location, Date))
