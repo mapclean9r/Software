@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
 from backend.database.tour import Tour_create
 from backend.autentication import *
+from backend.database import user
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -45,9 +46,12 @@ def registrer_page():
 
         print(username, password, is_admin)
 
-        new_login = register.UserRegister(
-            username, password, is_admin)
-        register.UserRegister.register_user_in_database(new_login)
+        # new_login = register.UserRegister(
+        # username, password, is_admin)
+        # register.UserRegister.register_user_in_database(new_login)
+
+        # denne funker
+        user.create_user(username, password, is_admin)
 
     return render_template('/registrer.html')
 
