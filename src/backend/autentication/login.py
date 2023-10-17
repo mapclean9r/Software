@@ -31,11 +31,13 @@ class UserLogin:
         else:
             return False
 
+    # Saves the users username to a .json file & overwrites on reuse
     def save_user_online(self):
         data = {'user_online': self.name}
         with open('user_online.json', 'w') as file:
             json.dump(data, file)
 
+    # Gets the current username in the .json file
     def get_user_online(self):
         try:
             with open('user_online.json', 'r') as file:
@@ -45,6 +47,6 @@ class UserLogin:
             return r'user_online.json File Not Found'
 
 # Usage for json save_user_online & get_user_online
-# login_cred1 = UserLogin("Horse", "pwHorse", True)
+# login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values
 # UserLogin.save_user_online(login_cred1)
 # print(UserLogin.get_user_online(login_cred1))
