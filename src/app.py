@@ -8,7 +8,7 @@ from backend.database import user
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
-
+application.secret_key = 'oursecretkey'
 
 # våre paths:
 @application.route('/', methods=['GET', 'POST'])
@@ -89,7 +89,6 @@ def checkbox_tour_delete():
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
-
 
 if __name__ == '__main__':
     application.run(debug=True)
