@@ -11,6 +11,8 @@ application = Flask(__name__, template_folder='frontend/templates')
 application.secret_key = 'oursecretkey'
 
 # våre paths:
+
+
 @application.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -76,8 +78,8 @@ def create_a_tour():
     return redirect(url_for('homepage'))
 
 
-@application.route('/checkbox_tour_delete', methods=['POST'])
-def checkbox_tour_delete():
+@application.route('/checkbox_tour', methods=['POST'])
+def checkbox_tour():
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_row')
 
@@ -89,6 +91,7 @@ def checkbox_tour_delete():
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
+
 
 if __name__ == '__main__':
     application.run(debug=True)
