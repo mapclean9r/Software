@@ -31,6 +31,14 @@ def username_get(Username):
     return user
 
 
+def get_id_if_provide_username(Username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
+    id = cur.fetchone()
+    return id
+
+
 def check_if_username_and_password_is_correct(username, password):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
