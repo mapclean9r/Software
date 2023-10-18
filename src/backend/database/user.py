@@ -7,8 +7,6 @@ cur = con.cursor()
 
 
 def create_user(Username, Password, Admin):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
     try:
         cur.execute("SELECT Username FROM User")
         user = cur.fetchall()
