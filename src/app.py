@@ -109,7 +109,7 @@ def checkbox_tour():
 
         selected = request.form.getlist('checkbox_row')
         action = request.form.get('handle_action')
-        database = sqlite3.connect('backend/database/database.db')
+        database = sqlite3.connect('src/backend/database/database.db')
         cursor = database.cursor()
 
         if action == 'delete':
@@ -122,6 +122,28 @@ def checkbox_tour():
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
+
+@application.route('/remove_bought_tour', methods=['POST'])
+def remove_bought_tour():
+    if request.method == 'POST':
+        global global_user_id
+
+        selected = request.form.getlist('checkbox_bought_tour')
+        action = request.form.get('handle_action')
+        database = sqlite3.connect('src/backend/database/database.db')
+        cursor = database.cursor()
+
+        i = 0
+        if action == 'delete':
+                    #while i > len(selected):
+                    cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,selected,))
+                    i += 1
+        database.commit()
+        database.close()
+    return redirect(url_for('homepage'))
+
+
+
 
 
 if __name__ == '__main__':
