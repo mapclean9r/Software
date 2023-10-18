@@ -114,11 +114,10 @@ def checkbox_tour():
 
         if action == 'delete':
             for ID in selected:
-                cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+                Tour_delete(ID)
         elif action == 'buy':
             for ID in selected:
-                cursor.execute(
-                    'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
+                Tour_bought(global_user_id,ID)
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
@@ -135,8 +134,8 @@ def remove_bought_tour():
 
         i = 0
         if action == 'delete':
-                    #while i > len(selected):
-                    cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,selected,))
+                    for id in selected:
+                        cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,id,))
                     i += 1
         database.commit()
         database.close()

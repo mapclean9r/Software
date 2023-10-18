@@ -60,7 +60,7 @@ def Tour_filter_by_country(Country):
     except:
         print("FEIL I TOUR_FILTER_BY_COUNTRY")
 
-def Tour_bought(Tur_id,Bruker_id):
+def Tour_bought(Bruker_id,Tur_id):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     try:
@@ -68,6 +68,8 @@ def Tour_bought(Tur_id,Bruker_id):
         con.commit()
     except:
         print("FEIL I TOUR_BOUGHT")
+    
+    
 
 def Tour_who_bought(user):
     con = sqlite3.connect(pathing)
@@ -80,5 +82,9 @@ def Tour_who_bought(user):
         print("FEIL I TOUR_WHO_BOUGHT")
 
 
-
+def Tour_delete(id):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
+    con.commit()
 
