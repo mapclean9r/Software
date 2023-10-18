@@ -92,5 +92,11 @@ def checkbox_tour_delete():
     return redirect(url_for('homepage'))
 
 
+@application.route('/favorites')
+def favorites():
+
+    return render_template('/favorites.html')
+
+
 if __name__ == '__main__':
     application.run(debug=True)

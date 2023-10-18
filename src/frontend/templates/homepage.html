@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+    {% block head %}{% endblock %}
 </head>
 
 <body>
@@ -41,9 +43,11 @@
     </form>
     <button type="submit">Buy tour</button> <br>
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
-    <a href="{{ url_for('index') }}">Logout</a> <br>
+    <a href="{{ url_for('index') }}">Logout</a>
+    <a href="{{ url_for('favorites') }}">Favorites</a> <br>
 
     <h2>Bought tours:</h2>
+    {% block body %}{% endblock %}
 </body>
 
 </html>
