@@ -7,6 +7,8 @@ cur = con.cursor()
 
 
 def Tour_create(Title, Description, Country, Location, Date):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUES(?,?,?,?,?)",(Title,Description,Country,Location,Date,))
         con.commit()
@@ -19,6 +21,8 @@ def Tour_create(Title, Description, Country, Location, Date):
 
 
 def Tour_get_all():
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("SELECT * FROM Tour")
         tur = cur.fetchall()
@@ -27,6 +31,8 @@ def Tour_get_all():
         print("FEIL I TOUR_GET_ALL")
 
 def Tour_get(id):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("SELECT Title,Description,Country,Location,Date FROM Tour WHERE ID = ?", (id,))
         tour = cur.fetchall()
@@ -35,6 +41,8 @@ def Tour_get(id):
         print("FEIL I TOUR_GET")
 
 def Tour_find_title(Title):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("SELECT Title,Description,Country,Location,Date FROM Tour WHERE Title = ?",(Title,))
         title = cur.fetchall()
@@ -43,6 +51,8 @@ def Tour_find_title(Title):
         print("FEIL I TOUR_FIND_TITLE")
 
 def Tour_filter_by_country(Country):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("SELECT Title,Description,Country,Location,Date FROM Tour WHERE Country = ?",(Country,))
         land = cur.fetchall()
@@ -51,6 +61,8 @@ def Tour_filter_by_country(Country):
         print("FEIL I TOUR_FILTER_BY_COUNTRY")
 
 def Tour_bought(Tur_id,Bruker_id):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)",(Bruker_id,Tur_id,))
         con.commit()
@@ -58,6 +70,8 @@ def Tour_bought(Tur_id,Bruker_id):
         print("FEIL I TOUR_BOUGHT")
 
 def Tour_who_bought(user):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("SELECT Title, Description, Country, Location, Date FROM Tour INNER JOIN TourBooked ON Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?", (user,))
         userr = cur.fetchall()

@@ -1,10 +1,10 @@
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
 
-from backend.database.Tour import Tour_create
+from backend.database.Tour import *
 from backend.autentication import *
 from backend.database import user
-from src.backend.autentication.login import UserLogin
+from backend.autentication.login import UserLogin
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')

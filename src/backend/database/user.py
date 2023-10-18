@@ -7,6 +7,8 @@ cur = con.cursor()
 
 
 def create_user(Username, Password, Admin):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("SELECT Username FROM User")
         user = cur.fetchall()
@@ -17,12 +19,10 @@ def create_user(Username, Password, Admin):
         for i in user:
             if i == user2:
                 print("Brukernavn allerede i bruk")
-                return 0
         con.commit()
-        print("Bruker opprettet")
-        return 1
+        return print("Bruker opprettet")
     except:
-        print("FEIL I CREATE_USER")
+        return print("FEIL I CREATE_USER")
 
 
 def username_get(Username):
@@ -52,6 +52,8 @@ def check_if_username_and_password_is_correct(username, password):
 
 
 def password_get(Username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("SELECT Password FROM User WHERE Username = ?",(Username,))
         passs = cur.fetchone()
@@ -60,6 +62,8 @@ def password_get(Username):
          print("FEIL I PASSWORD_GET")
          
 def admin_get(Username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         cur.execute("SELECT Admin FROM User WHERE Username = ?",(Username,))
         admin = cur.fetchone()
@@ -67,6 +71,8 @@ def admin_get(Username):
     except:
          print("FEIL I ADMIN_GET")
 def id_get(Username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
           cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
           user = cur.fetchone
