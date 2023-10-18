@@ -75,9 +75,17 @@ def homepage():
 
     # cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
     # list_of_bought_tours = cursor.fetchall()
-    # db.close()
+    cursor.execute('''SELECT * 
+                        FROM Tour 
+                        INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+                        WHERE TourBooked.User_ID = ?''', (global_user_id,))
 
-    return render_template('/homepage.html', list_of_tours=list)
+    # cursor.execute("SELECT * FROM TourBooked WHERE User_ID = ?",
+    # (global_user_id,))
+    list_of_bought_tours = cursor.fetchall()
+    db.close()
+
+    return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
 
 
 @application.route('/create_a_tour', methods=['POST'])
@@ -99,10 +107,12 @@ def create_a_tour():
 def checkbox_tour():
     if request.method == 'POST':
         global global_user_id
+
         selected = request.form.getlist('checkbox_row')
         action = request.form.get('handle_action')
         database = sqlite3.connect('backend/database/database.db')
         cursor = database.cursor()
+
         if action == 'delete':
             for ID in selected:
                 cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
