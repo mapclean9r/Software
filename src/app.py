@@ -1,10 +1,10 @@
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
 
-from backend.database.Tour import Tour_create
+from backend.database.Tour import *
 from backend.autentication import *
 from backend.database import user
-from src.backend.autentication.login import UserLogin
+from backend.autentication.login import UserLogin
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -21,8 +21,6 @@ def index():
         username = request.form['name']
         password = request.form['password']
 
-        # global_user_id = 0
-
         # Jeg gjør om fra tupple til int:
         global_user_id_in_tuple = user.get_id_if_provide_username(username)
         if global_user_id_in_tuple:
@@ -30,7 +28,6 @@ def index():
             global_user_id = global_user_id_int
             print(f"Current user ID: {global_user_id_int}")
         # Den er gjort om til int:
-
 
         t = UserLogin(username, password, False)
         UserLogin.username_check_to_database(t)
@@ -72,21 +69,20 @@ def registrer_page():
 
 @application.route('/homepage')
 def homepage():
+    global global_user_id
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
 
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
 
-    # cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
-    # list_of_bought_tours = cursor.fetchall()
-    cursor.execute('''SELECT * 
-                        FROM Tour 
-                        INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-                        WHERE TourBooked.User_ID = ?''', (global_user_id,))
+    # list_of_bought_tours = Tour_who_bought(global_user_id)
 
-    # cursor.execute("SELECT * FROM TourBooked WHERE User_ID = ?",
-    # (global_user_id,))
+    cursor.execute('''SELECT *
+    FROM Tour
+    INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+    WHERE TourBooked.User_ID = ?''', (global_user_id,))
+
     list_of_bought_tours = cursor.fetchall()
     db.close()
 
