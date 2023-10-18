@@ -1,6 +1,8 @@
 from src.backend.database.user import *
 import json
 
+#from ..database.user import *
+
 
 # Slik bruker du klassen
 # x = "brukernavn" y = "passord" z = True eller False

@@ -128,8 +128,13 @@ def checkbox_tour():
 
 @application.route('/favorites')
 def favorites():
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
 
-    return render_template('/favorites.html')
+    list_of_bought_tours = cursor.fetchall()
+    db.close()
+
+    return render_template('/favorites.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
 
 
 if __name__ == '__main__':
