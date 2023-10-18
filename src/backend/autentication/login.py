@@ -1,7 +1,7 @@
-from src.backend.database.user import *
+from backend.database.user import *
 import json
 
-from src.backend.database.user import username_get
+from backend.database.user import username_get
 
 
 # Slik bruker du klassen
@@ -41,7 +41,7 @@ class UserLogin:
     # Saves the users username to a .json file & overwrites on reuse
     def save_user_online(self):
         data = {'user_online': self.name}
-        with open('backend/autentication/user_online.json', 'w') as file:
+        with open('src/backend/autentication/user_online.json', 'w') as file:
             json.dump(data, file)
 
     # Gets the current username in the .json file
