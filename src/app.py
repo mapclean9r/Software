@@ -4,7 +4,7 @@ import sqlite3
 from backend.database.Tour import Tour_create
 from backend.autentication import *
 from backend.database import user
-
+from src.backend.autentication.login import UserLogin
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -30,6 +30,13 @@ def index():
             global_user_id = global_user_id_int
             print(f"Current user ID: {global_user_id_int}")
         # Den er gjort om til int:
+
+
+        t = UserLogin(username, password, False)
+        UserLogin.username_check_to_database(t)
+        UserLogin.password_check_to_database(t)
+        UserLogin.admin_check_to_database(t)
+        UserLogin.save_user_online(t)
 
         print(username, password)
         userlogin_is_valid = user.check_if_username_and_password_is_correct(
