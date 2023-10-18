@@ -83,33 +83,3 @@ def id_get(Username):
     except:
         print("FEIL I ID_GET")
 
-
-def username_get_bool(Username):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    cur.execute("SELECT Username FROM User WHERE Username = ?", (Username,))
-    user = cur.fetchone()
-    if Username == user:
-        return True
-    else:
-        return False
-
-
-def password_get_bool(Username):
-    try:
-        cur.execute("SELECT Password FROM User WHERE Username = ?", (Username,))
-        passs = cur.fetchone()
-        if Username == passs:
-            return True
-    except:
-        print("FEIL I PASSWORD_GET")
-
-
-def admin_get_bool(Username):
-    try:
-        cur.execute("SELECT Admin FROM User WHERE Username = ?", (Username,))
-        admin = cur.fetchone()
-        if Username == admin:
-            return True
-    except:
-        print("FEIL I ADMIN_GET")
