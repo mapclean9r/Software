@@ -16,7 +16,6 @@ class UserLogin:
         self.admin = admin
 
     def username_check_to_database(self):
-
         if username_get(self.name):
             print("username WWWW")
             return self.name
