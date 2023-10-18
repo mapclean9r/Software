@@ -21,8 +21,6 @@ def index():
         username = request.form['name']
         password = request.form['password']
 
-        # global_user_id = 0
-
         # Jeg gjør om fra tupple til int:
         global_user_id_in_tuple = user.get_id_if_provide_username(username)
         if global_user_id_in_tuple:
@@ -80,15 +78,11 @@ def homepage():
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
 
-    # cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
-    # list_of_bought_tours = cursor.fetchall()
     cursor.execute('''SELECT * 
                         FROM Tour 
                         INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
                         WHERE TourBooked.User_ID = ?''', (global_user_id,))
 
-    # cursor.execute("SELECT * FROM TourBooked WHERE User_ID = ?",
-    # (global_user_id,))
     list_of_bought_tours = cursor.fetchall()
     db.close()
 
