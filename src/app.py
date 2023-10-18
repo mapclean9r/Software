@@ -1,36 +1,47 @@
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
-from src.backend.autentication.register import *
-from src.backend.database.Tour import *
+
+from backend.database.Tour import Tour_create
+from backend.autentication import *
+from backend.database import user
+
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
-
+application.secret_key = 'oursecretkey'
 
 # våre paths:
+global_user_id = 0
+
+
 @application.route('/', methods=['GET', 'POST'])
 def index():
+    global global_user_id
     if request.method == 'POST':
-        connection = sqlite3.connect('backend/database/database.db')
-        cursor = connection.cursor()
         username = request.form['name']
         password = request.form['password']
 
+        # global_user_id = 0
+
+        # Jeg gjør om fra tupple til int:
+        global_user_id_in_tuple = user.get_id_if_provide_username(username)
+        if global_user_id_in_tuple:
+            global_user_id_int = int(global_user_id_in_tuple[0])
+            global_user_id = global_user_id_int
+            print(f"Current user ID: {global_user_id_int}")
+        # Den er gjort om til int:
+
         print(username, password)
+        userlogin_is_valid = user.check_if_username_and_password_is_correct(
+            username, password)
+        print(f"Current user ID: {global_user_id}")
 
-        login_info_send_to_sql = "SELECT Username, Password FROM User where Username=  '" + \
-            username+"' and password= '"+password+"'"
-        cursor.execute(login_info_send_to_sql)
-
-        login_output = cursor.fetchall()
-
-        if len(login_info_send_to_sql) == 0:
-            print("invalid passord or username.")
-        else:
+        if userlogin_is_valid:
+            print("You are logged in")
             return render_template('/homepage.html')
-
-    # TODO gjør ferdig innlogging funksjonalitet...
-
+        else:
+            print("Something happend, you are not logged in")
+            return render_template('/index.html')
     return render_template('/index.html')
 
 
@@ -45,9 +56,12 @@ def registrer_page():
 
         print(username, password, is_admin)
 
-        new_login = UserRegister(username, password, is_admin)
-        UserRegister.register_user_in_database(new_login)
-
+        if username == user.username_get:
+            error_register = "Username exists."
+            return render_template('/registrer.html', error_register=error_register)
+        else:
+            new_user = user.create_user(username, password, is_admin)
+            return render_template('/registrer.html')
     return render_template('/registrer.html')
 
 
@@ -55,9 +69,13 @@ def registrer_page():
 def homepage():
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
+
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
-    db.close()
+
+    # cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
+    # list_of_bought_tours = cursor.fetchall()
+    # db.close()
 
     return render_template('/homepage.html', list_of_tours=list)
 
@@ -77,16 +95,21 @@ def create_a_tour():
     return redirect(url_for('homepage'))
 
 
-@application.route('/checkbox_tour_delete', methods=['POST'])
-def checkbox_tour_delete():
+@application.route('/checkbox_tour', methods=['POST'])
+def checkbox_tour():
     if request.method == 'POST':
+        global global_user_id
         selected = request.form.getlist('checkbox_row')
-
+        action = request.form.get('handle_action')
         database = sqlite3.connect('backend/database/database.db')
         cursor = database.cursor()
-
-        for ID in selected:
-            cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+        if action == 'delete':
+            for ID in selected:
+                cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+        elif action == 'buy':
+            for ID in selected:
+                cursor.execute(
+                    'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
