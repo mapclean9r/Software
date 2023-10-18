@@ -20,19 +20,21 @@ def index():
     if request.method == 'POST':
         username = request.form['name']
         password = request.form['password']
-        global_user_id = 0
-        # Jeg gjør om fra tupple til int:
-        global_user_id = user.get_id_if_provide_username(username)
-        global_user_id_int = int(global_user_id[0])
-        global_user_id = global_user_id_int
-        # Den er gjort om til int:
 
-        print(
-            f"this is the current users ID: {global_user_id}")
+        # global_user_id = 0
+
+        # Jeg gjør om fra tupple til int:
+        global_user_id_in_tuple = user.get_id_if_provide_username(username)
+        if global_user_id_in_tuple:
+            global_user_id_int = int(global_user_id_in_tuple[0])
+            global_user_id = global_user_id_int
+            print(f"Current user ID: {global_user_id_int}")
+        # Den er gjort om til int:
 
         print(username, password)
         userlogin_is_valid = user.check_if_username_and_password_is_correct(
             username, password)
+        print(f"Current user ID: {global_user_id}")
 
         if userlogin_is_valid:
             print("You are logged in")
