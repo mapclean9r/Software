@@ -11,7 +11,7 @@ application = Flask(__name__, template_folder='frontend/templates')
 application.secret_key = 'oursecretkey'
 
 # våre paths:
-global_user_id = None
+global_user_id = 0
 
 
 @application.route('/', methods=['GET', 'POST'])
@@ -20,10 +20,15 @@ def index():
     if request.method == 'POST':
         username = request.form['name']
         password = request.form['password']
-
+        global_user_id = 0
+        # Jeg gjør om fra tupple til int:
         global_user_id = user.get_id_if_provide_username(username)
+        global_user_id_int = int(global_user_id[0])
+        global_user_id = global_user_id_int
+        # Den er gjort om til int:
+
         print(
-            f"this is the current users ID: {user.get_id_if_provide_username(username)}")
+            f"this is the current users ID: {global_user_id}")
 
         print(username, password)
         userlogin_is_valid = user.check_if_username_and_password_is_correct(
@@ -91,13 +96,18 @@ def create_a_tour():
 @application.route('/checkbox_tour', methods=['POST'])
 def checkbox_tour():
     if request.method == 'POST':
+        global global_user_id
         selected = request.form.getlist('checkbox_row')
-
+        action = request.form.get('handle_action')
         database = sqlite3.connect('backend/database/database.db')
         cursor = database.cursor()
-
-        for ID in selected:
-            cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+        if action == 'delete':
+            for ID in selected:
+                cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+        elif action == 'buy':
+            for ID in selected:
+                cursor.execute(
+                    'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
         database.commit()
         database.close()
     return redirect(url_for('homepage'))

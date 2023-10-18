@@ -34,9 +34,10 @@
             </li>
             {% endfor %}
         </ul>
-        <button type="submit">Delete</button>
+        <button type="submit" name="handle_action" value="delete">Delete</button>
+        <button type="submit" name="handle_action" value="buy">Buy tour</button> <br>
     </form>
-    <button type="submit">Buy tour</button> <br>
+
 
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
     <a href="{{ url_for('index') }}">Logout</a> <br>
