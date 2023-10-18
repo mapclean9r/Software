@@ -14,13 +14,13 @@ class UserLogin:
         self.admin = admin
 
     def username_check_to_database(self):
-        if self.name in username_get(self.name):
+        if self.name == username_get(self.name):
             return self.name
         else:
             return False
 
     def password_check_to_database(self):
-        if self.password in password_get(self.password):
+        if self.password == password_get(self.password):
             return self.name
         else:
             return False
