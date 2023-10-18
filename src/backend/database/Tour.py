@@ -51,11 +51,11 @@ def Tour_filter_by_country(Country):
         print("FEIL I TOUR_FILTER_BY_COUNTRY")
 
 def Tour_bought(Tur_id,Bruker_id):
-    #try:
+    try:
         cur.execute("INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)",(Bruker_id,Tur_id,))
         con.commit()
-    #except:
-    #    print("IKKE FERDIG SÅ FEIL I TOUR_BOUGHT")
+    except:
+        print("FEIL I TOUR_BOUGHT")
 
 def Tour_who_bought(user):
     try:
