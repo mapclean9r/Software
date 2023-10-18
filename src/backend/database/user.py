@@ -26,6 +26,8 @@ def create_user(Username, Password, Admin):
 
 
 def username_get(Username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     cur.execute("SELECT Username FROM User WHERE Username = ?", (Username,))
     user = cur.fetchone()
     return user
