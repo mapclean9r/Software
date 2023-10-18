@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>This is the Homepage</h1><br>
+    <h1>Hello this is the homepage</h1><br>
 
     <h2>To sell your tour, you must enter details for your tour first:</h2>
     <form action="/create_a_tour" , method="POST">
@@ -21,7 +21,7 @@
         <button type="submit">Create a tour</button>
     </form>
 
-    <form action="/checkbox_tour_delete" method="POST">
+    <form action="/checkbox_tour" method="POST">
         <ul>
             {% for tour in list_of_tours%}
             <li>
@@ -37,6 +37,7 @@
         <button type="submit">Delete</button>
     </form>
     <button type="submit">Buy tour</button> <br>
+
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
     <a href="{{ url_for('index') }}">Logout</a> <br>
 

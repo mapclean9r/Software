@@ -6,13 +6,9 @@ con = sqlite3.connect(pathing)
 cur = con.cursor()
 
 
-def Tour_create(Title,Description,Country,Location,Date):
-    try:
-        con.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUE(?,?,?,?,?)",(Title,Description,Country,Location,Date))
-        con.commit()
-    except:
-        print("FEIL I TOUR_CREATE")
-    
+def Tour_create(Title, Description, Country, Location, Date):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
 
 def Tour_get_all():
     try:
@@ -43,6 +39,8 @@ def Tour_bought(Tur_id,Bruker_id):
         con.execute("INSERT INTO TourBooked(User_ID,Tour_ID VALUES(?,?))",(Tur_id,Bruker_id))
     except:
         print("IKKE FERDIG SÅ FEIL I TOUR_BOUGHT")
+
+        
     
 
 
