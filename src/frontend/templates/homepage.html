@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css')}}">
 </head>
 
 <body>
@@ -21,6 +22,9 @@
         <button type="submit">Create a tour</button>
     </form>
 
+    <h3>Search tour</h3>
+    <input type="search" placeholder="Search..">
+
     <form action="/checkbox_tour_delete" method="POST">
         <ul>
             {% for tour in list_of_tours%}
@@ -34,11 +38,12 @@
             </li>
             {% endfor %}
         </ul>
-        <button type="submit">Delete</button>
+        <button type="submit" name="handle_action" value="delete">Delete</button>
+        <button type="submit" name="handle_action" value="buy">Buy tour</button> <br>
     </form>
-    <button type="submit">Buy tour</button> <br>
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
     <a href="{{ url_for('index') }}">Logout</a> <br>
+    <a href="{{ url_for('favorites') }}">Favorites</a>
 
     <h2>Bought tours:</h2>
 </body>
