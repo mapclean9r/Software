@@ -1,10 +1,10 @@
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
 
-from backend.database.Tour import Tour_create
+from backend.database.Tour import *
 from backend.autentication import *
 from backend.database import user
-
+from backend.autentication.login import UserLogin
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -29,6 +29,12 @@ def index():
             print(f"Current user ID: {global_user_id_int}")
         # Den er gjort om til int:
 
+        t = UserLogin(username, password, False)
+        UserLogin.username_check_to_database(t)
+        UserLogin.password_check_to_database(t)
+        UserLogin.admin_check_to_database(t)
+        UserLogin.save_user_online(t)
+
         print(username, password)
         userlogin_is_valid = user.check_if_username_and_password_is_correct(
             username, password)
@@ -46,8 +52,6 @@ def index():
 @application.route('/registrer', methods=['GET', 'POST'])
 def registrer_page():
     if request.method == 'POST':
-        connection = sqlite3.connect('backend/database/database.db')
-        cursor = connection.cursor()
         username = request.form['name']
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
@@ -65,16 +69,19 @@ def registrer_page():
 
 @application.route('/homepage')
 def homepage():
+    global global_user_id
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
 
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
 
-    cursor.execute('''SELECT * 
-                        FROM Tour 
-                        INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-                        WHERE TourBooked.User_ID = ?''', (global_user_id,))
+    # list_of_bought_tours = Tour_who_bought(global_user_id)
+
+    cursor.execute('''SELECT *
+    FROM Tour
+    INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+    WHERE TourBooked.User_ID = ?''', (global_user_id,))
 
     list_of_bought_tours = cursor.fetchall()
     db.close()

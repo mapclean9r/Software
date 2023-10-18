@@ -1,4 +1,4 @@
-from src.backend.database.user import *
+from backend.database.user import *
 
 
 class UserRegister:
@@ -9,3 +9,4 @@ class UserRegister:
 
     def register_user_in_database(self):
         create_user(self.name, self.password, self.admin)
+        print(self.name,self.password,self.admin)
