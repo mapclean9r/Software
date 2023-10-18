@@ -10,8 +10,22 @@
 <body>
     <h1>Favorite tours page:</h1>
 
+    <form action="/remove_bought_tour" method="POST">
+        <ul>
+            {% for tour in list_of_bought_tours %}
+            <li>
+                <input type="checkbox" name="checkbox_bought_tour" value="{{ tour[0] }}">
+                <strong>Title:</strong> {{ tour[1] }}
+                <strong>Description:</strong> {{ tour[2] }}
+                <strong>Country:</strong> {{ tour[3] }}
+                <strong>Location:</strong> {{ tour[4] }}
+                <strong>Date:</strong> {{ tour[5] }}
+            </li>
+            {% endfor %}
+        </ul>
+    </form>
 
 
-    <a href="{{ url_for('index') }}"></a>
+    <a href="{{ url_for('homepage') }}">Back to homepage</a>
 </body>
 </html>

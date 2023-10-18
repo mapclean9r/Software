@@ -128,13 +128,24 @@ def checkbox_tour():
 
 @application.route('/favorites')
 def favorites():
+    global global_user_id
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
 
-    list_of_bought_tours = cursor.fetchall()
+    cursor.execute("SELECT * from Tour")
+    list = cursor.fetchall()
+
+
+    cursor.execute('''SELECT *
+        FROM Tour
+        INNER JOIN TourFavorites on Tour.ID = TourFavorites.Tour_ID
+        WHERE TourFavorites.User_ID = ?''', (global_user_id,))
+
+
+    list_of_favorited_tours = cursor.fetchall()
     db.close()
 
-    return render_template('/favorites.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
+    return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
 
 
 if __name__ == '__main__':
