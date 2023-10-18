@@ -1,5 +1,7 @@
-from backend.database.user import *
+from src.backend.database.user import *
 import json
+
+from src.backend.database.user import username_get
 
 
 # Slik bruker du klassen
@@ -14,13 +16,17 @@ class UserLogin:
         self.admin = admin
 
     def username_check_to_database(self):
-        if self.name == username_get(self.name):
+
+        if username_get(self.name):
+            print("username WWWW")
             return self.name
         else:
+            print("mini LL")
             return False
 
     def password_check_to_database(self):
         if self.password == password_get(self.password):
+            print("pw L")
             return self.name
         else:
             return False
@@ -34,7 +40,7 @@ class UserLogin:
     # Saves the users username to a .json file & overwrites on reuse
     def save_user_online(self):
         data = {'user_online': self.name}
-        with open('user_online.json', 'w') as file:
+        with open('backend/autentication/user_online.json', 'w') as file:
             json.dump(data, file)
 
     # Gets the current username in the .json file
@@ -42,7 +48,7 @@ class UserLogin:
 
 def get_user_online():
     try:
-        with open('user_online.json', 'r') as file:
+        with open('backend/autentication/user_online.json', 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
