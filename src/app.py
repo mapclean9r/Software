@@ -34,7 +34,12 @@ def index():
         UserLogin.password_check_to_database(t)
         UserLogin.admin_check_to_database(t)
         UserLogin.save_user_online(t)
-        print(get_user_online())
+        print(get_user_online(), "get_user_online")
+
+        print(UserLogin.username_check_to_database(t))
+        print(UserLogin.password_check_to_database(t))
+        print(UserLogin.admin_check_to_database(t))
+
 
         print(username, password)
         userlogin_is_valid = user.check_if_username_and_password_is_correct(

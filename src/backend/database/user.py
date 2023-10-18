@@ -53,6 +53,8 @@ def check_if_username_and_password_is_correct(username, password):
 
 def password_get(Username):
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute("SELECT Password FROM User WHERE Username = ?", (Username,))
         passs = cur.fetchone()
         return passs
@@ -62,6 +64,8 @@ def password_get(Username):
 
 def admin_get(Username):
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute("SELECT Admin FROM User WHERE Username = ?", (Username,))
         admin = cur.fetchone()
         return admin
@@ -71,6 +75,8 @@ def admin_get(Username):
 
 def id_get(Username):
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
         user = cur.fetchone
         return user

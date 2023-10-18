@@ -25,14 +25,15 @@ class UserLogin:
             return False
 
     def password_check_to_database(self):
-        if self.password == password_get(self.password):
-            print("pw L")
-            return self.name
+        if password_get(self.name):
+            print("pw dub")
+            return self.password
         else:
             return False
 
     def admin_check_to_database(self):
-        if self.admin == admin_get(self.admin):
+        if admin_get(self.name):
+            print("admin dub")
             return self.admin
         else:
             return False
