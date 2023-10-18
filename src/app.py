@@ -55,8 +55,6 @@ def index():
 @application.route('/registrer', methods=['GET', 'POST'])
 def registrer_page():
     if request.method == 'POST':
-        connection = sqlite3.connect('backend/database/database.db')
-        cursor = connection.cursor()
         username = request.form['name']
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
