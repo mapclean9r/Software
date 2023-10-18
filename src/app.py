@@ -11,13 +11,19 @@ application = Flask(__name__, template_folder='frontend/templates')
 application.secret_key = 'oursecretkey'
 
 # våre paths:
+global_user_id = None
 
 
 @application.route('/', methods=['GET', 'POST'])
 def index():
+    global global_user_id
     if request.method == 'POST':
         username = request.form['name']
         password = request.form['password']
+
+        global_user_id = user.get_id_if_provide_username(username)
+        print(
+            f"this is the current users ID: {user.get_id_if_provide_username(username)}")
 
         print(username, password)
         userlogin_is_valid = user.check_if_username_and_password_is_correct(
@@ -56,9 +62,13 @@ def registrer_page():
 def homepage():
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
+
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
-    db.close()
+
+    # cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
+    # list_of_bought_tours = cursor.fetchall()
+    # db.close()
 
     return render_template('/homepage.html', list_of_tours=list)
 
