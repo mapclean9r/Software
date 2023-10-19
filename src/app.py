@@ -121,6 +121,10 @@ def checkbox_tour():
             for ID in selected:
                 cursor.execute(
                     'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
+        elif action == 'favorite':
+            for ID in selected:
+                cursor.execute(
+                    'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
