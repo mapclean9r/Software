@@ -131,6 +131,26 @@ def checkbox_tour():
             for ID in selected:
                 cursor.execute(
                     'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
+                Tour_bought(global_user_id,ID)
+        database.commit()
+        database.close()
+    return redirect(url_for('homepage'))
+
+@application.route('/remove_bought_tour', methods=['POST'])
+def remove_bought_tour():
+    if request.method == 'POST':
+        global global_user_id
+
+        selected = request.form.getlist('checkbox_bought_tour')
+        action = request.form.get('handle_action')
+        database = sqlite3.connect('src/backend/database/database.db')
+        cursor = database.cursor()
+
+        i = 0
+        if action == 'delete':
+                    for id in selected:
+                        cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,id,))
+                    i += 1
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
@@ -156,6 +176,9 @@ def favorites():
     db.close()
 
     return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
+
+
+
 
 
 if __name__ == '__main__':

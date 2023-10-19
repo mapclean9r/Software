@@ -62,8 +62,12 @@
             </li>
             {% endfor %}
         </ul>
+        <button type="submit" name="handle_action" value="delete">Remove tour</button>
         <!-- <button type="submit" name="handle_action" value="remove">Remove</button> -->
     </form>
+    <a href="{{ url_for('index') }}">Logout</a> <br>
+    <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
+
 
 </body>
 
