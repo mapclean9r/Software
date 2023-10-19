@@ -131,7 +131,6 @@ def checkbox_tour():
             for ID in selected:
                 cursor.execute(
                     'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
-                Tour_bought(global_user_id,ID)
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
@@ -143,7 +142,7 @@ def remove_bought_tour():
 
         selected = request.form.getlist('checkbox_bought_tour')
         action = request.form.get('handle_action')
-        database = sqlite3.connect('src/backend/database/database.db')
+        database = sqlite3.connect('backend/database/database.db')
         cursor = database.cursor()
 
         i = 0
