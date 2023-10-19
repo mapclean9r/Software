@@ -52,6 +52,8 @@ def check_if_username_and_password_is_correct(username, password):
 
 
 def password_get(Username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
@@ -63,6 +65,8 @@ def password_get(Username):
 
 
 def admin_get(Username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
@@ -74,6 +78,8 @@ def admin_get(Username):
 
 
 def id_get(Username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
