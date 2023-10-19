@@ -2,8 +2,6 @@ import os
 import sqlite3
 
 pathing = os.path.dirname(__file__) + "/database.db"
-con = sqlite3.connect(pathing)
-cur = con.cursor()
 
 
 def Tour_create(Title, Description, Country, Location, Date):
@@ -22,6 +20,8 @@ def Tour_create(Title, Description, Country, Location, Date):
 
 def Tour_get_all():
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute("SELECT * FROM Tour")
         tur = cur.fetchall()
         return tur
@@ -31,6 +31,8 @@ def Tour_get_all():
 
 def Tour_get(id):
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute(
             "SELECT Title,Description,Country,Location,Date FROM Tour WHERE ID = ?", (id,))
         tour = cur.fetchall()
@@ -41,6 +43,8 @@ def Tour_get(id):
 
 def Tour_find_title(Title):
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute(
             "SELECT Title,Description,Country,Location,Date FROM Tour WHERE Title = ?", (Title,))
         title = cur.fetchall()
@@ -51,6 +55,8 @@ def Tour_find_title(Title):
 
 def Tour_filter_by_country(Country):
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute(
             "SELECT Title,Description,Country,Location,Date FROM Tour WHERE Country = ?", (Country,))
         land = cur.fetchall()
@@ -61,6 +67,8 @@ def Tour_filter_by_country(Country):
 
 def Tour_bought(Tur_id, Bruker_id):
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute(
             "INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)", (Bruker_id, Tur_id,))
         con.commit()
@@ -70,6 +78,8 @@ def Tour_bought(Tur_id, Bruker_id):
 
 def Tour_who_bought(user):
     try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
         cur.execute("SELECT Title, Description, Country, Location, Date FROM Tour INNER JOIN TourBooked ON Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?", (user,))
         userr = cur.fetchall()
         return userr

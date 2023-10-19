@@ -1,13 +1,8 @@
 import os
 import sqlite3
-
 pathing = os.path.dirname(__file__) + "/database.db"
 con = sqlite3.connect(pathing)
 cur = con.cursor()
-'''
-con = sqlite3.connect("src/backend/database/database.db")
-cur = con.cursor()
-'''
 
 def databasecreation():
     cur.execute('''CREATE TABLE IF NOT EXISTS User (
