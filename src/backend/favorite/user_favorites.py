@@ -4,6 +4,9 @@ from src.backend.autentication.login import UserLogin, get_user_online
 from src.backend.database.Tour import Tour_get
 
 
+# unused file
+
+
 class Favorite:
     def __init__(self, json_file_name):
         self.json_file_name = json_file_name
@@ -30,9 +33,8 @@ class Favorite:
             print("L")
         self.save_json()
 
-
-#Tour = "BBIIIGIGIG"
-#tur_data = {"Tour": Tour}
-#test = Favorite("ufavorite.json")
-#Favorite.add_item_to_json(test, "bigboyuser", tur_data)
-#Tour_get()
+# Tour = "Alaska"
+# tur_data = {"Tour": Tour}
+# test = Favorite("ufavorite.json")
+# Favorite.add_item_to_json(test, "bigboyuser", tur_data)
+# Tour_get()
