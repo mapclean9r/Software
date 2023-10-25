@@ -71,7 +71,7 @@ def homepage():
     global global_user_id
     all_tours_list = Tour_get_all()
     list_booked_tours_from_current_user = get_booked_tour_from_current_user(global_user_id)
-    
+
     return render_template('/homepage.html', list_of_tours=all_tours_list, list_of_bought_tours=list_booked_tours_from_current_user)
 
 
