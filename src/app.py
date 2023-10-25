@@ -48,7 +48,7 @@ def index():
         list = Tour_get_all()
         list_of_bought_tours = Tour_who_bought(global_user_id)
 
-        if userlogin_is_valid:
+        if login_checker:
             print("You are logged in")
             return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
         else:
