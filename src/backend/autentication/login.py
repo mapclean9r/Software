@@ -1,10 +1,10 @@
-from backend.database.user import *
+from ..database.user import *
 import json
 
 #from ..database.user import *
 
 
-from backend.database.user import *
+from ..database.user import *
 
 
 # Slik bruker du klassen
