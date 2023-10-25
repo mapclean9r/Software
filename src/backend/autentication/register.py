@@ -17,5 +17,5 @@ def username_checker(username, password, is_admin):
         error_register = "Username exists."
         return render_template('/registrer.html', error_register=error_register)
     else:
-        new_user = user.create_user(username, password, is_admin)
+        user.create_user(username, password, is_admin)
         return render_template('/registrer.html')
