@@ -3,8 +3,8 @@ from flask import Flask, render_template, url_for, redirect, request
 from backend.database.Tour import *
 from backend.database import user
 from backend.autentication.login import get_user_online, UserLogin
-from backend.autentication.login import *
-from backend.autentication.register import UserRegister
+from backend.autentication.login import login_checker
+from backend.autentication.register import UserRegister, username_checker
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -19,6 +19,7 @@ def index():
     global global_user_id
     username = ''
     password = ''
+    t = UserLogin(username, password, False)
     if request.method == 'POST':
         username = request.form['name']
         password = request.form['password']
@@ -30,25 +31,9 @@ def index():
             global_user_id = global_user_id_int
         # Den er gjort om til int:
 
-
         t = UserLogin(username, password, False)
-        UserLogin.username_check_to_database(t)
-        UserLogin.password_check_to_database(t)
-        UserLogin.admin_check_to_database(t)
-        UserLogin.save_user_online(t)
-        print(get_user_online(), "get_user_online")
 
-        print(UserLogin.username_check_to_database(t))
-        print(UserLogin.password_check_to_database(t))
-        print(UserLogin.admin_check_to_database(t))
-
-
-        print(username, password)
-
-
-    return login_checker(username, password,
-                         user.check_if_username_and_password_is_correct,
-                         global_user_id)
+    return UserLogin.login_process(t)
 
 
 @application.route('/registrer', methods=['GET', 'POST'])
@@ -58,12 +43,11 @@ def registrer_page():
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
 
-        #print(username, password, is_admin)
+        # print(username, password, is_admin)
 
-        UserRegister.username_checker(username, password, is_admin)
+        username_checker(username, password, is_admin)
 
     return render_template('/registrer.html')
-
 
 
 @application.route('/homepage')
@@ -160,12 +144,10 @@ def favorites():
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
 
-
     cursor.execute('''SELECT *
         FROM Tour
         INNER JOIN TourFavorites on Tour.ID = TourFavorites.Tour_ID
         WHERE TourFavorites.User_ID = ?''', (global_user_id,))
-
 
     list_of_favorited_tours = cursor.fetchall()
     db.close()
