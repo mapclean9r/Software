@@ -46,9 +46,12 @@ def index():
             username, password)
         print(f"Current user ID: {global_user_id}")
 
+        list = Tour_get_all()
+        list_of_bought_tours = Tour_who_bought(global_user_id)
+
         if userlogin_is_valid:
             print("You are logged in")
-            return render_template('/homepage.html')
+            return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
         else:
             print("Something happend, you are not logged in")
             return render_template('/index.html')
@@ -76,21 +79,11 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-    db = sqlite3.connect('src/backend/database/database.db')
-    cursor = db.cursor()
 
-    cursor.execute("SELECT * from Tour")
-    list = cursor.fetchall()
+    list = Tour_get_all()
+    list_of_bought_tours = Tour_who_bought(global_user_id)
 
-    # list_of_bought_tours = Tour_who_bought(global_user_id)
 
-    cursor.execute('''SELECT *
-    FROM Tour
-    INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-    WHERE TourBooked.User_ID = ?''', (global_user_id,))
-
-    list_of_bought_tours = cursor.fetchall()
-    db.close()
 
     return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
 
@@ -103,10 +96,7 @@ def create_a_tour():
         country = request.form['Country']
         location = request.form['Location']
         date = request.form['Date']
-
-        # Jeg bruker "Tour_create-funksonen" som ligger i backend/database/tour.py
         Tour_create(title, description, country, location, date)
-
     return redirect(url_for('homepage'))
 
 
@@ -114,25 +104,19 @@ def create_a_tour():
 def checkbox_tour():
     if request.method == 'POST':
         global global_user_id
-
         selected = request.form.getlist('checkbox_row')
         action = request.form.get('handle_action')
-        database = sqlite3.connect('src/backend/database/database.db')
-        cursor = database.cursor()
-
         if action == 'delete':
             for ID in selected:
-                cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+                print(global_user_id)
+                print(ID)
+                Tour_delete(ID)
         elif action == 'buy':
             for ID in selected:
-                cursor.execute(
-                    'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
+                Tour_bought(ID,global_user_id)
         elif action == 'favorite':
             for ID in selected:
-                cursor.execute(
-                    'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
-        database.commit()
-        database.close()
+                Tour_favoritt(global_user_id,ID)
     return redirect(url_for('homepage'))
 
 @application.route('/remove_bought_tour', methods=['POST'])
@@ -140,18 +124,13 @@ def remove_bought_tour():
     if request.method == 'POST':
         global global_user_id
 
-        selected = request.form.getlist('checkbox_bought_tour')
+        selected = request.form.getlist('checkbox_remove_bought_tour')
         action = request.form.get('handle_action')
-        database = sqlite3.connect('src/backend/database/database.db')
-        cursor = database.cursor()
-
-        i = 0
         if action == 'delete':
-                    for id in selected:
-                        cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,id,))
-                    i += 1
-        database.commit()
-        database.close()
+            for ID in selected:
+                print(global_user_id)
+                print(ID)
+                Tour_who_bought_delete(global_user_id,ID)
     return redirect(url_for('homepage'))
 
 
@@ -172,7 +151,6 @@ def favorites():
 
 
     list_of_favorited_tours = cursor.fetchall()
-    db.close()
 
     return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
 

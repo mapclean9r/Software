@@ -22,7 +22,7 @@ def Tour_get_all():
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
-        cur.execute("SELECT * FROM Tour")
+        cur.execute("SELECT Title,Description,Country,Location,Date FROM Tour")
         tur = cur.fetchall()
         return tur
     except:
@@ -68,8 +68,7 @@ def Tour_bought(Tur_id,Bruker_id):
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
-        cur.execute(
-            "INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)", (Bruker_id, Tur_id,))
+        cur.execute("INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)", (Bruker_id, Tur_id,))
         con.commit()
     except:
         print("FEIL I TOUR_BOUGHT")
@@ -81,6 +80,7 @@ def Tour_who_bought(user):
         cur = con.cursor()
         cur.execute("SELECT Title, Description, Country, Location, Date FROM Tour INNER JOIN TourBooked ON Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?", (user,))
         userr = cur.fetchall()
+        con.commit()
         return userr
     except:
         print("FEIL I TOUR_WHO_BOUGHT")
@@ -92,3 +92,23 @@ def Tour_delete(id):
     cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     con.commit()
 
+def Tour_who_bought_delete(user,tur_id):
+    #try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
+        cur.execute("DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?",(user,tur_id,))
+        userr = cur.fetchall()
+        con.commit()
+        return userr
+    #except:
+    #    print("FEIL I TOUR_WHO_BOUGHT")
+
+
+def Tour_favoritt(user,tur_id):
+    try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
+        cur.execute('INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (user, tur_id))
+        con.commit()
+    except:
+        print("FEIL I TOUR FAVORITT")

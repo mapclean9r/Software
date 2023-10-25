@@ -78,14 +78,12 @@ def admin_get(Username):
 
 
 def id_get(Username):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
         cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
-        user = cur.fetchone
-        return user
+        userr = cur.fetchone()
+        return userr
     except:
         print("FEIL I ID_GET")
 
