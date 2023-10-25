@@ -135,6 +135,7 @@ def checkbox_tour():
         database.close()
     return redirect(url_for('homepage'))
 
+
 @application.route('/remove_bought_tour', methods=['POST'])
 def remove_bought_tour():
     if request.method == 'POST':
@@ -176,6 +177,25 @@ def favorites():
 
     return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
 
+
+@application.route('/remove_favorite_tour', methods=['POST'])
+def remove_favorite_tour():
+    if request.method == 'POST':
+        global global_user_id
+
+        selected = request.form.getlist('checkbox_favorite_tour')
+        action = request.form.get('handle_action')
+        database = sqlite3.connect('backend/database/database.db')
+        cursor = database.cursor()
+
+        i = 0
+        if action == 'delete':
+                    for id in selected:
+                        cursor.execute('DELETE FROM TourFavorites WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,id,))
+                    i += 1
+        database.commit()
+        database.close()
+    return redirect(url_for('favorites'))
 
 
 

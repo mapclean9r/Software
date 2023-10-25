@@ -10,7 +10,7 @@
 <body>
     <h1>Favorite tours page:</h1>
 
-    <form action="/update_favorites" method="POST">
+    <form action="/remove_favorite_tour" method="POST">
         <ul>
             {% for tour in list_of_favorited_tours %}
             <li>
@@ -23,6 +23,7 @@
             </li>
             {% endfor %}
         </ul>
+        <button type="submit" name="handle_action" value="delete">Remove tour</button>
     </form>
 
 
