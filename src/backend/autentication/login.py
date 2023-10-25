@@ -1,7 +1,7 @@
 from src.backend.database.user import *
 import json
 
-#from ..database.user import *
+# from ..database.user import *
 
 
 from src.backend.database.user import *
@@ -46,9 +46,8 @@ class UserLogin:
         with open('backend/autentication/user_online.json', 'w') as file:
             json.dump(data, file)
 
-    # Gets the current username in the .json file
 
-
+# Gets the current username in the .json file
 def get_user_online():
     try:
         with open('backend/autentication/user_online.json', 'r') as file:
@@ -64,7 +63,6 @@ def get_user_online_is_admin():
         return True
     else:
         return False
-
 
 # Usage for json save_user_online & get_user_online
 # login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values
