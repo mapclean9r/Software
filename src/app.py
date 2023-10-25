@@ -28,8 +28,8 @@ def index():
         if global_user_id_in_tuple:
             global_user_id_int = int(global_user_id_in_tuple[0])
             global_user_id = global_user_id_int
-            print(f"Current user ID: {global_user_id_int}")
         # Den er gjort om til int:
+
 
         t = UserLogin(username, password, False)
         UserLogin.username_check_to_database(t)
@@ -58,7 +58,7 @@ def registrer_page():
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
 
-        print(username, password, is_admin)
+        #print(username, password, is_admin)
 
         UserRegister.username_checker(username, password, is_admin)
 
