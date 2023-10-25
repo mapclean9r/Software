@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, redirect, request
 from backend.database.Tour import *
 from backend.database import user
 from backend.autentication.login import get_user_online, UserLogin
-from backend.autentication.login import login_checker
+from backend.autentication.login import *
 from backend.autentication.register import UserRegister, username_checker
 
 # definerer hvor templates ligger
@@ -109,7 +109,8 @@ def checkbox_tour():
                 cursor.execute(
                     'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
         elif action == 'admin':
-            get_user_online_is_admin()
+            if get_user_online_is_admin():
+                return redirect(url_for('adminpage'))
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
