@@ -58,6 +58,12 @@ def get_user_online():
         return r'user_online.json File Not Found'
 
 
+def get_user_online_is_admin():
+    admin_check = get_user_online()
+    if admin_get(admin_check):
+        return True
+    else:
+        return False
 
 
 # Usage for json save_user_online & get_user_online
