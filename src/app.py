@@ -1,10 +1,10 @@
 from flask import Flask, render_template, url_for, redirect, request
-import sqlite3
 
 from backend.database.Tour import *
-from backend.autentication import *
 from backend.database import user
-from backend.autentication.login import UserLogin, get_user_online
+from backend.autentication.login import get_user_online, UserLogin
+from backend.autentication.login import login_checker
+from backend.autentication.register import UserRegister
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -17,6 +17,8 @@ global_user_id = 0
 @application.route('/', methods=['GET', 'POST'])
 def index():
     global global_user_id
+    username = ''
+    password = ''
     if request.method == 'POST':
         username = request.form['name']
         password = request.form['password']
@@ -42,17 +44,11 @@ def index():
 
 
         print(username, password)
-        userlogin_is_valid = user.check_if_username_and_password_is_correct(
-            username, password)
-        print(f"Current user ID: {global_user_id}")
 
-        if userlogin_is_valid:
-            print("You are logged in")
-            return render_template('/homepage.html')
-        else:
-            print("Something happend, you are not logged in")
-            return render_template('/index.html')
-    return render_template('/index.html')
+
+    return login_checker(username, password,
+                         user.check_if_username_and_password_is_correct,
+                         global_user_id)
 
 
 @application.route('/registrer', methods=['GET', 'POST'])
@@ -64,13 +60,10 @@ def registrer_page():
 
         print(username, password, is_admin)
 
-        if username == user.username_get:
-            error_register = "Username exists."
-            return render_template('/registrer.html', error_register=error_register)
-        else:
-            new_user = user.create_user(username, password, is_admin)
-            return render_template('/registrer.html')
+        UserRegister.username_checker(username, password, is_admin)
+
     return render_template('/registrer.html')
+
 
 
 @application.route('/homepage')

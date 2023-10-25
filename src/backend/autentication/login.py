@@ -1,5 +1,7 @@
 from src.backend.database.user import *
 import json
+from flask import render_template
+
 
 #from ..database.user import *
 
@@ -57,6 +59,17 @@ def get_user_online():
     except FileNotFoundError:
         return r'user_online.json File Not Found'
 
+def login_checker(username_input, password_input, user_check_function, globalkey):
+    userlogin_is_valid = user_check_function(
+        username_input, password_input)
+
+    print(f"Current user ID: {globalkey}")
+    if userlogin_is_valid:
+        print("You are logged in")
+        return render_template('/homepage.html')
+    else:
+        print("Something happend, you are not logged in")
+        return render_template('/index.html')
 
 # Usage for json save_user_online & get_user_online
 # login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values
