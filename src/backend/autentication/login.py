@@ -78,13 +78,9 @@ def login_checker(username_input, password_input, user_check_function, globalkey
 
 def get_user_online_is_admin():
     admin_check = get_user_online()
-    print(get_user_online())
-    print(admin_check)
     if admin_get(admin_check) is True:
-        print("True<")
         return True
     else:
-        print("False<")
         return False
 
 # Usage for json save_user_online & get_user_online
