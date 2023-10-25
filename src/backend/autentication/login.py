@@ -3,7 +3,7 @@ import json
 from flask import render_template
 
 
-#from ..database.user import *
+# from ..database.user import *
 
 
 from src.backend.database.user import *
@@ -48,9 +48,8 @@ class UserLogin:
         with open('backend/autentication/user_online.json', 'w') as file:
             json.dump(data, file)
 
-    # Gets the current username in the .json file
 
-
+# Gets the current username in the .json file
 def get_user_online():
     try:
         with open('backend/autentication/user_online.json', 'r') as file:
@@ -70,6 +69,13 @@ def login_checker(username_input, password_input, user_check_function, globalkey
     else:
         print("Something happend, you are not logged in")
         return render_template('/index.html')
+
+def get_user_online_is_admin():
+    admin_check = get_user_online()
+    if admin_get(admin_check):
+        return True
+    else:
+        return False
 
 # Usage for json save_user_online & get_user_online
 # login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values
