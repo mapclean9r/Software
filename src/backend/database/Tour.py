@@ -92,3 +92,13 @@ def Tour_delete(id):
     cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     con.commit()
 
+def get_booked_tour_from_current_user(global_key):
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+    cursor.execute('''SELECT *
+        FROM Tour
+        INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+        WHERE TourBooked.User_ID = ?''', (global_key,))
+
+    list_of_bought_tours = cursor.fetchall()
+    return list_of_bought_tours

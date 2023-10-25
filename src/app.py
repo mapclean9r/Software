@@ -69,23 +69,11 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-    db = sqlite3.connect('backend/database/database.db')
-    cursor = db.cursor()
+    all_tours_list = Tour_get_all()
+    list_booked_tours_from_current_user = get_booked_tour_from_current_user(global_user_id)
+    
+    return render_template('/homepage.html', list_of_tours=all_tours_list, list_of_bought_tours=list_booked_tours_from_current_user)
 
-    cursor.execute("SELECT * from Tour")
-    list = cursor.fetchall()
-
-    # list_of_bought_tours = Tour_who_bought(global_user_id)
-
-    cursor.execute('''SELECT *
-    FROM Tour
-    INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-    WHERE TourBooked.User_ID = ?''', (global_user_id,))
-
-    list_of_bought_tours = cursor.fetchall()
-    db.close()
-
-    return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
 
 
 @application.route('/create_a_tour', methods=['POST'])
