@@ -188,11 +188,11 @@ def remove_favorite_tour():
         database = sqlite3.connect('backend/database/database.db')
         cursor = database.cursor()
 
-        i = 0
+
         if action == 'delete':
                     for id in selected:
                         cursor.execute('DELETE FROM TourFavorites WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,id,))
-                    i += 1
+
         database.commit()
         database.close()
     return redirect(url_for('favorites'))
