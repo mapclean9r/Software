@@ -1,10 +1,10 @@
-from src.backend.database.user import *
+from backend.database.user import *
 import json
 
 #from ..database.user import *
 
 
-from src.backend.database.user import *
+from backend.database.user import *
 
 
 # Slik bruker du klassen
@@ -43,7 +43,7 @@ class UserLogin:
     # Saves the users username to a .json file & overwrites on reuse
     def save_user_online(self):
         data = {'user_online': self.name}
-        with open('backend/autentication/user_online.json', 'w') as file:
+        with open('src/backend/autentication/user_online.json', 'w') as file:
             json.dump(data, file)
 
     # Gets the current username in the .json file
@@ -51,7 +51,7 @@ class UserLogin:
 
 def get_user_online():
     try:
-        with open('backend/autentication/user_online.json', 'r') as file:
+        with open('src/backend/autentication/user_online.json', 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
