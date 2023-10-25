@@ -76,7 +76,7 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect('src/backend/database/database.db')
     cursor = db.cursor()
 
     cursor.execute("SELECT * from Tour")
@@ -117,7 +117,7 @@ def checkbox_tour():
 
         selected = request.form.getlist('checkbox_row')
         action = request.form.get('handle_action')
-        database = sqlite3.connect('backend/database/database.db')
+        database = sqlite3.connect('src/backend/database/database.db')
         cursor = database.cursor()
 
         if action == 'delete':
@@ -142,7 +142,7 @@ def remove_bought_tour():
 
         selected = request.form.getlist('checkbox_bought_tour')
         action = request.form.get('handle_action')
-        database = sqlite3.connect('backend/database/database.db')
+        database = sqlite3.connect('src/backend/database/database.db')
         cursor = database.cursor()
 
         i = 0
@@ -158,7 +158,7 @@ def remove_bought_tour():
 @application.route('/favorites')
 def favorites():
     global global_user_id
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect('src/backend/database/database.db')
     cursor = db.cursor()
 
     cursor.execute("SELECT * from Tour")
