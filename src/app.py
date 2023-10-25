@@ -111,6 +111,8 @@ def checkbox_tour():
                 Tour_delete(ID)
         elif action == 'buy':
             for ID in selected:
+                print(ID)
+                print(global_user_id)
                 Tour_bought(ID,global_user_id)
         elif action == 'favorite':
             for ID in selected:
