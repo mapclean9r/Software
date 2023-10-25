@@ -2,7 +2,6 @@ from src.backend.database.user import *
 import json
 from flask import render_template
 
-
 # from ..database.user import *
 
 
@@ -22,13 +21,13 @@ class UserLogin:
 
     def username_check_to_database(self):
         if username_get(self.name):
-            return self.name
+            return True
         else:
             return False
 
     def password_check_to_database(self):
         if password_get(self.name):
-            return self.password
+            return True
         else:
             return False
 
@@ -37,6 +36,15 @@ class UserLogin:
             return self.admin
         else:
             return False
+
+    def login_process(self):
+        self.save_user_online()
+        user = self.username_check_to_database()
+        passw = self.password_check_to_database()
+        if user is True and passw is True:
+            return render_template('/homepage.html')
+        else:
+            return render_template('/index.html')
 
     # Saves the users username to a .json file & overwrites on reuse
     def save_user_online(self):
@@ -54,6 +62,7 @@ def get_user_online():
     except FileNotFoundError:
         return r'user_online.json File Not Found'
 
+
 def login_checker(username_input, password_input, user_check_function, globalkey):
     userlogin_is_valid = user_check_function(
         username_input, password_input)
@@ -65,6 +74,7 @@ def login_checker(username_input, password_input, user_check_function, globalkey
     else:
         print("Something happend, you are not logged in")
         return render_template('/index.html')
+
 
 def get_user_online_is_admin():
     admin_check = get_user_online()

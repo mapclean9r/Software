@@ -19,6 +19,7 @@ def index():
     global global_user_id
     username = ''
     password = ''
+    t = UserLogin(username, password, False)
     if request.method == 'POST':
         username = request.form['name']
         password = request.form['password']
@@ -30,25 +31,9 @@ def index():
             global_user_id = global_user_id_int
         # Den er gjort om til int:
 
-
         t = UserLogin(username, password, False)
-        UserLogin.username_check_to_database(t)
-        UserLogin.password_check_to_database(t)
-        UserLogin.admin_check_to_database(t)
-        UserLogin.save_user_online(t)
-        print(get_user_online(), "get_user_online")
 
-        print(UserLogin.username_check_to_database(t))
-        print(UserLogin.password_check_to_database(t))
-        print(UserLogin.admin_check_to_database(t))
-
-
-        print(username, password)
-
-
-    return login_checker(username, password,
-                         user.check_if_username_and_password_is_correct,
-                         global_user_id)
+    return UserLogin.login_process(t)
 
 
 @application.route('/registrer', methods=['GET', 'POST'])
@@ -58,12 +43,11 @@ def registrer_page():
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
 
-        #print(username, password, is_admin)
+        # print(username, password, is_admin)
 
         username_checker(username, password, is_admin)
 
     return render_template('/registrer.html')
-
 
 
 @application.route('/homepage')
@@ -128,6 +112,7 @@ def checkbox_tour():
         database.close()
     return redirect(url_for('homepage'))
 
+
 @application.route('/remove_bought_tour', methods=['POST'])
 def remove_bought_tour():
     if request.method == 'POST':
@@ -140,9 +125,9 @@ def remove_bought_tour():
 
         i = 0
         if action == 'delete':
-                    for id in selected:
-                        cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,id,))
-                    i += 1
+            for id in selected:
+                cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id, id,))
+            i += 1
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
@@ -157,20 +142,15 @@ def favorites():
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
 
-
     cursor.execute('''SELECT *
         FROM Tour
         INNER JOIN TourFavorites on Tour.ID = TourFavorites.Tour_ID
         WHERE TourFavorites.User_ID = ?''', (global_user_id,))
 
-
     list_of_favorited_tours = cursor.fetchall()
     db.close()
 
     return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
-
-
-
 
 
 if __name__ == '__main__':
