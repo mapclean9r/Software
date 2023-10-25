@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, redirect, request
 from backend.database.Tour import *
 from backend.database import user
 from backend.autentication.login import get_user_online, UserLogin
-from backend.autentication.login import login_checker
+from backend.autentication.login import *
 from backend.autentication.register import UserRegister
 
 # definerer hvor templates ligger
@@ -124,6 +124,8 @@ def checkbox_tour():
             for ID in selected:
                 cursor.execute(
                     'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
+        elif action == 'admin':
+            get_user_online_is_admin()
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
@@ -139,11 +141,11 @@ def remove_bought_tour():
         database = sqlite3.connect('backend/database/database.db')
         cursor = database.cursor()
 
-        i = 0
+
         if action == 'delete':
                     for id in selected:
                         cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,id,))
-                    i += 1
+
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
@@ -191,6 +193,26 @@ def remove_favorite_tour():
     return redirect(url_for('favorites'))
 
 
+@application.route('/adminpage')
+def adminpage():
+    global global_user_id
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * from Tour")
+    list = cursor.fetchall()
+
+    # list_of_bought_tours = Tour_who_bought(global_user_id)
+
+    cursor.execute('''SELECT *
+    FROM Tour
+    INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+    WHERE TourBooked.User_ID = ?''', (global_user_id,))
+
+    list_of_bought_tours = cursor.fetchall()
+    db.close()
+
+    return render_template('/adminpage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
 
 
 if __name__ == '__main__':
