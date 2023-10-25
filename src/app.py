@@ -4,7 +4,7 @@ from backend.database.Tour import *
 from backend.database import user
 from backend.autentication.login import get_user_online, UserLogin
 from backend.autentication.login import login_checker
-from backend.autentication.register import UserRegister
+from backend.autentication.register import UserRegister, username_checker
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -60,7 +60,7 @@ def registrer_page():
 
         #print(username, password, is_admin)
 
-        UserRegister.username_checker(username, password, is_admin)
+        username_checker(username, password, is_admin)
 
     return render_template('/registrer.html')
 
