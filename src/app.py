@@ -4,7 +4,7 @@ import sqlite3
 from backend.database.Tour import *
 from backend.autentication import *
 from backend.database import user
-from backend.autentication.login import UserLogin
+from backend.autentication.login import UserLogin, get_user_online
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -34,6 +34,12 @@ def index():
         UserLogin.password_check_to_database(t)
         UserLogin.admin_check_to_database(t)
         UserLogin.save_user_online(t)
+        print(get_user_online(), "get_user_online")
+
+        print(UserLogin.username_check_to_database(t))
+        print(UserLogin.password_check_to_database(t))
+        print(UserLogin.admin_check_to_database(t))
+
 
         print(username, password)
         userlogin_is_valid = user.check_if_username_and_password_is_correct(
@@ -121,9 +127,57 @@ def checkbox_tour():
             for ID in selected:
                 cursor.execute(
                     'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
+        elif action == 'favorite':
+            for ID in selected:
+                cursor.execute(
+                    'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
         database.commit()
         database.close()
     return redirect(url_for('homepage'))
+
+@application.route('/remove_bought_tour', methods=['POST'])
+def remove_bought_tour():
+    if request.method == 'POST':
+        global global_user_id
+
+        selected = request.form.getlist('checkbox_bought_tour')
+        action = request.form.get('handle_action')
+        database = sqlite3.connect('backend/database/database.db')
+        cursor = database.cursor()
+
+        i = 0
+        if action == 'delete':
+                    for id in selected:
+                        cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id,id,))
+                    i += 1
+        database.commit()
+        database.close()
+    return redirect(url_for('homepage'))
+
+
+@application.route('/favorites')
+def favorites():
+    global global_user_id
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * from Tour")
+    list = cursor.fetchall()
+
+
+    cursor.execute('''SELECT *
+        FROM Tour
+        INNER JOIN TourFavorites on Tour.ID = TourFavorites.Tour_ID
+        WHERE TourFavorites.User_ID = ?''', (global_user_id,))
+
+
+    list_of_favorited_tours = cursor.fetchall()
+    db.close()
+
+    return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
+
+
+
 
 
 if __name__ == '__main__':
