@@ -7,7 +7,7 @@ from backend.autentication.login import *
 from backend.autentication.register import UserRegister, username_checker
 
 # definerer hvor templates ligger
-application = Flask(__name__, template_folder='frontend/templates')
+application = Flask(__name__, static_url_path='/static', template_folder='frontend/templates')
 application.secret_key = 'oursecretkey'
 
 # våre paths:
