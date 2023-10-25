@@ -42,9 +42,6 @@ def registrer_page():
         username = request.form['name']
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
-
-        # print(username, password, is_admin)
-
         username_checker(username, password, is_admin)
 
     return render_template('/registrer.html')
@@ -69,7 +66,6 @@ def create_a_tour():
         location = request.form['Location']
         date = request.form['Date']
 
-        # Jeg bruker "Tour_create-funksonen" som ligger i backend/database/tour.py
         Tour_create(title, description, country, location, date)
 
     return redirect(url_for('homepage'))
