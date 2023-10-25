@@ -56,7 +56,7 @@ class UserLogin:
 # Gets the current username in the .json file
 def get_user_online():
     try:
-        with open('backend/autentication/user_online.json', 'r') as file:
+        with open('user_online.json', 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
@@ -78,9 +78,13 @@ def login_checker(username_input, password_input, user_check_function, globalkey
 
 def get_user_online_is_admin():
     admin_check = get_user_online()
-    if admin_get(admin_check):
+    print(get_user_online())
+    print(admin_check)
+    if admin_get(admin_check) is True:
+        print("True<")
         return True
     else:
+        print("False<")
         return False
 
 # Usage for json save_user_online & get_user_online
@@ -88,3 +92,5 @@ def get_user_online_is_admin():
 # UserLogin.save_user_online(login_cred1)
 
 # print(get_user_online())
+
+
