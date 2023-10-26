@@ -8,21 +8,25 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/adminpage.css') }}">
 </head>
 
+
 <body>
-    <h1>Hello this is the admin page [per nå akkurat lik homepage]</h1><br>
+<div id="grid">
 
-    <h2>To sell your tour, you must enter details for your tour first:</h2>
-    <form action="/create_a_tour" , method="POST">
+    <div id="colored_body">
+    <h1 id="intro">Hello this is the admin page</h1><br>
 
-        <input type="text" , name="Title" , placeholder="Title">
-        <input type="text" , name="Description" , placeholder="Description">
-        <input type="text" , name="Country" , placeholder="Country">
-        <input type="text" , name="Location" , placeholder="Location">
-        <input type="date" , name="Date">
-        <button type="submit">Create a tour</button>
+    <h2 id="instruction">To sell your tour, you must enter details for your tour first:</h2>
+    <form action="/create_a_tour" , method="POST" id="form_create_tour_input">
+
+        <input type="text" , name="Title" , placeholder="Title" class="input_styling">
+        <input type="text" , name="Description" , placeholder="Description" class="input_styling">
+        <input type="text" , name="Country" , placeholder="Country" class="input_styling">
+        <input type="text" , name="Location" , placeholder="Location" class="input_styling">
+        <input type="date" , name="Date" class="input_styling">
+        <button type="submit" class="tour_button_styling">Create a tour</button>
     </form>
 
-    <form action="/checkbox_tour" method="POST">
+    <form action="/checkbox_tour" method="POST" id="available_tours">
         <ul>
             {% for tour in list_of_tours%}
             <li>
@@ -35,18 +39,15 @@
             </li>
             {% endfor %}
         </ul>
-        <button type="submit" name="handle_action" value="delete">Delete</button>
-        <button type="submit" name="handle_action" value="buy">Buy tour</button>
-        <button type="submit" name="handle_action" value="favorite">Favorite tour</button> <br>
+        <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Delete</button>
+        <button type="submit" name="handle_action" value="buy" class="checkbox_button_styling">Buy tour</button>
+        <button type="submit" name="handle_action" value="favorite" class="checkbox_button_styling">Favorite tour</button>
+        <button type="submit" name="handle_action" value="admin" class="checkbox_button_styling">Go to admin page</button> <br>
     </form> <br>
 
 
-    <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
-    <a href="{{ url_for('favorites') }}">Favorites</a> <br>
-    <a href="{{ url_for('index') }}">Logout</a>
-
     <h2>Bought tours:</h2>
-    <form action="/remove_bought_tour" method="POST">
+    <form action="/remove_bought_tour" method="POST" id="bought_tours">
         <ul>
             {% for tour in list_of_bought_tours %}
             <li>
@@ -59,13 +60,18 @@
             </li>
             {% endfor %}
         </ul>
-        <button type="submit" name="handle_action" value="delete">Remove tour</button>
+        <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Remove tour</button>
         <!-- <button type="submit" name="handle_action" value="remove">Remove</button> -->
     </form>
-    <a href="{{ url_for('index') }}">Logout</a> <br>
+    </div>
+
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
+    <div id="sidebar">
+        <a href="{{ url_for('favorites') }}">Favorites</a> <br>
+        <a href="{{ url_for('index') }}">Logout</a>
+    </div>
 
-
+</div>
 </body>
 
 </html>
