@@ -31,7 +31,7 @@ def index():
             global_user_id = global_user_id_int
         # Den er gjort om til int:
 
-        t = UserLogin(username, password, False)
+        UserLogin.admin_check_to_database(t)
 
     return UserLogin.login_process(t)
 
@@ -46,6 +46,7 @@ def registrer_page():
         # print(username, password, is_admin)
 
         username_checker(username, password, is_admin)
+
 
     return render_template('/registrer.html')
 
