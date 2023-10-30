@@ -36,7 +36,6 @@ class UserLogin:
                 print(x)
                 b = x
             if self.password == b:
-                print(f"{self.name} True")
                 return True
             else:
                 return False
@@ -48,11 +47,8 @@ class UserLogin:
                 print(x)
                 b = x
             if admin_get(b):
-                print(f"{admin_get(self.name)} trueee")
-                print(self.admin)
                 return self.admin
             else:
-                print(f"{admin_get(self.name)} falseee" )
                 return False
 
 
