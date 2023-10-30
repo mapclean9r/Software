@@ -47,6 +47,7 @@ def registrer_page():
 
         username_checker(username, password, is_admin)
 
+
     return render_template('/registrer.html')
 
 

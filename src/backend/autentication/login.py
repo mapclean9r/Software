@@ -36,16 +36,20 @@ class UserLogin:
                 print(x)
                 b = x
             if self.password == b:
-                print(f"{self.name} True")
                 return True
             else:
                 return False
 
     def admin_check_to_database(self):
-        if admin_get(self.name):
-            return self.admin
-        else:
-            return False
+        tuple = admin_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                print(x)
+                b = x
+            if admin_get(b):
+                return self.admin
+            else:
+                return False
 
     def login_process(self):
         self.save_user_online()
@@ -59,7 +63,7 @@ class UserLogin:
     # Saves the users username to a .json file & overwrites on reuse
     def save_user_online(self):
         data = {'user_online': self.name}
-        with open('src/backend/autentication/user_online.json', 'w') as file:
+        with open('backend/autentication/user_online.json', 'w') as file:
             json.dump(data, file)
 
 
@@ -98,5 +102,3 @@ def get_user_online_is_admin():
 # UserLogin.save_user_online(login_cred1)
 
 # print(get_user_online())
-
-
