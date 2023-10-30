@@ -31,7 +31,7 @@ def index():
             global_user_id = global_user_id_int
         # Den er gjort om til int:
 
-        UserLogin.admin_check_to_database(t)
+        t = UserLogin(username, password, False)
 
     return UserLogin.login_process(t)
 

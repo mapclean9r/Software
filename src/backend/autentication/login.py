@@ -51,7 +51,6 @@ class UserLogin:
             else:
                 return False
 
-
     def login_process(self):
         self.save_user_online()
         user = self.username_check_to_database()
@@ -103,5 +102,3 @@ def get_user_online_is_admin():
 # UserLogin.save_user_online(login_cred1)
 
 # print(get_user_online())
-
-
