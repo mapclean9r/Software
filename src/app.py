@@ -103,8 +103,7 @@ def checkbox_tour():
                 Tour_delete(ID)
         elif action == 'buy':
             for ID in selected:
-                cursor.execute(
-                    'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
+                Tour_bought(ID,global_user_id)
         elif action == 'favorite':
             for ID in selected:
                 cursor.execute(
