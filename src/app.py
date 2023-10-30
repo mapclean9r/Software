@@ -100,7 +100,7 @@ def checkbox_tour():
 
         if action == 'delete':
             for ID in selected:
-                cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+                Tour_delete(ID)
         elif action == 'buy':
             for ID in selected:
                 cursor.execute(
