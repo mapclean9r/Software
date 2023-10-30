@@ -120,16 +120,9 @@ def remove_bought_tour():
 
         selected = request.form.getlist('checkbox_bought_tour')
         action = request.form.get('handle_action')
-        database = sqlite3.connect('src/backend/database/database.db')
-        cursor = database.cursor()
-
-        i = 0
         if action == 'delete':
             for id in selected:
-                cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id, id,))
-            i += 1
-        database.commit()
-        database.close()
+                Tour_remove(global_user_id,id)
     return redirect(url_for('homepage'))
 
 

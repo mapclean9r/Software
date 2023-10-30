@@ -92,3 +92,9 @@ def Tour_delete(id):
     cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     con.commit()
 
+def Tour_remove(user,tur):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user, tur,))
+    con.commit()
+
