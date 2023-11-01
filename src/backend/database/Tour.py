@@ -101,8 +101,14 @@ def Tour_delete(id):
     cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     con.commit()
 
+def Tour_remove(user,tur):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user, tur,))
+    con.commit()
+
 def get_booked_tour_from_current_user(global_key):
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect(pathing)
     cursor = db.cursor()
     cursor.execute('''SELECT *
         FROM Tour
@@ -114,7 +120,7 @@ def get_booked_tour_from_current_user(global_key):
 
 
 def get_favorites_sql(id_user):
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect(pathing)
     cursor = db.cursor()
 
     cursor.execute("SELECT * from Tour")
@@ -132,7 +138,7 @@ def get_favorites_sql(id_user):
 def remove_bought_tour_sql(user_id_global):
     selected = request.form.getlist('checkbox_bought_tour')
     action = request.form.get('handle_action')
-    database = sqlite3.connect('backend/database/database.db')
+    database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':
         for id_user in selected:
@@ -140,6 +146,7 @@ def remove_bought_tour_sql(user_id_global):
     database.commit()
     database.close()
 
+<<<<<<< HEAD
 
 def checkbox_function(glob_id):
     selected = request.form.getlist('checkbox_row')
@@ -180,3 +187,17 @@ def list_tours():
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
     return list
+=======
+def Tour_edit(Title, Description, Country, Location, Date, ID):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    try:
+        cur.execute("UPDATE Tour SET Title = ?, Description = ?, Country = ?, Location = ?, Date = ? WHERE ID = ?", (Title, Description, Country, Location, Date, ID,))
+        con.commit()
+        print("Tur endret")
+    except:
+        print("FEIL I EDIT TOUR ")
+
+
+
+>>>>>>> main
