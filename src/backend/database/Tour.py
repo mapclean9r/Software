@@ -133,3 +133,24 @@ def remove_bought_tour_sql(user_id_global):
             cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id_user,))
     database.commit()
     database.close()
+
+
+def checkbox_function(glob_id):
+    selected = request.form.getlist('checkbox_row')
+    action = request.form.get('handle_action')
+    database = sqlite3.connect('backend/database/database.db')
+    cursor = database.cursor()
+
+    if action == 'delete':
+        for ID in selected:
+            cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+    elif action == 'buy':
+        for ID in selected:
+            cursor.execute(
+                'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
+    elif action == 'favorite':
+        for ID in selected:
+            cursor.execute(
+                'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
+    database.commit()
+    database.close()

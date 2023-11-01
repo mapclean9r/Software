@@ -5,7 +5,7 @@ from backend.database import user
 from backend.autentication.login import UserLogin
 from backend.autentication.register import username_checker
 from backend.handler.favorite_handler import get_favorite_tours_from_user
-from backend.handler.tour_handler import get_remove_bought_tour
+from backend.handler.tour_handler import get_remove_bought_tour, get_checkbox_to_lists
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -89,30 +89,11 @@ def create_a_tour():
     return redirect(url_for('homepage'))
 
 
-
 @application.route('/checkbox_tour', methods=['POST'])
 def checkbox_tour():
     if request.method == 'POST':
         global global_user_id
-
-        selected = request.form.getlist('checkbox_row')
-        action = request.form.get('handle_action')
-        database = sqlite3.connect('backend/database/database.db')
-        cursor = database.cursor()
-
-        if action == 'delete':
-            for ID in selected:
-                cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
-        elif action == 'buy':
-            for ID in selected:
-                cursor.execute(
-                    'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
-        elif action == 'favorite':
-            for ID in selected:
-                cursor.execute(
-                    'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
-        database.commit()
-        database.close()
+        get_checkbox_to_lists(global_user_id)
     return redirect(url_for('homepage'))
 
 @application.route('/remove_bought_tour', methods=['POST'])
