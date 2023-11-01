@@ -29,8 +29,8 @@ def username_get(Username):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     cur.execute("SELECT Username FROM User WHERE Username = ?", (Username,))
-    user = cur.fetchone()
-    return user
+    Username = cur.fetchone()
+    return Username
 
 
 def get_id_if_provide_username(Username):
