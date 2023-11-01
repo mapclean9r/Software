@@ -10,7 +10,7 @@ from backend.handler.tour_handler import get_remove_bought_tour, get_checkbox_to
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
-application.secret_key = 'oursecretkey'
+#application.secret_key = 'oursecretkey'
 
 # våre paths:
 global_user_id = 0
