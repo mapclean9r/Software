@@ -65,6 +65,18 @@
     </form>
     </div>
 
+
+    <h3>Users:</h3>
+    <ul>
+        {% for user in list_of_users %}
+        <li>
+            <input type="userlist" name="existing_users" value="{{ user[0] }}">
+            <p>Username: </p> {{ user[1] }}
+        </li>
+        {% endfor %}
+    </ul>
+
+
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
     <div id="sidebar">
         <a href="{{ url_for('favorites') }}">Favorites</a> <br>
