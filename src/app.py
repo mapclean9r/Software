@@ -145,9 +145,6 @@ def favorites():
 
     return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
 
-@application.route('/who_bought')
-def who_bought():
-    return render_template('/who_bought.html')
 
 if __name__ == '__main__':
     application.run(debug=True)

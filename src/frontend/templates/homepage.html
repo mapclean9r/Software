@@ -42,9 +42,8 @@
 
 
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
-    <a href="{{ url_for('favorites') }}">Favorites</a>
-    <a href="{{ url_for('who_bought') }}">who bought my tours</a>
-    <br>
+    <a href="{{ url_for('favorites') }}">Favorites</a> <br>
+    <a href="{{ url_for('index') }}">Logout</a>
 
     <h2>Bought tours:</h2>
     <form action="/remove_bought_tour" method="POST">
@@ -63,7 +62,6 @@
         <button type="submit" name="handle_action" value="delete">Remove tour</button>
         <!-- <button type="submit" name="handle_action" value="remove">Remove</button> -->
     </form>
-    <br />
     <a href="{{ url_for('index') }}">Logout</a> <br>
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
 
