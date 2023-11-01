@@ -48,11 +48,22 @@ class UserLogin:
                 return False
 
     def login_process(self):
+
+        db = sqlite3.connect('src/backend/database/database.db')
+        cursor = db.cursor()
+
+        cursor.execute("SELECT * from Tour")
+        list = cursor.fetchall()
+        # list_of_bought_tours = Tour_who_bought(global_user_id)       
         self.save_user_online()
         user = self.username_check_to_database()
         passw = self.password_check_to_database()
+        cursor.execute('''SELECT * FROM Tour INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?''', (id_get2(get_user_online()),))
+        list_of_bought_tours = cursor.fetchall()
+        db.close()
+
         if user is True and passw is True:
-            return render_template('/homepage.html')
+            return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
         else:
             return render_template('/index.html')
 
