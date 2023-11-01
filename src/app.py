@@ -3,7 +3,6 @@ from flask import Flask, render_template, url_for, redirect, request
 from backend.database.Tour import *
 from backend.database import user
 from backend.autentication.login import get_user_online, UserLogin
-from backend.autentication.login import login_checker
 from backend.autentication.register import UserRegister, username_checker
 
 # definerer hvor templates ligger
