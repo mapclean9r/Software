@@ -136,15 +136,16 @@ def get_favorites_sql(id_user):
 
 
 def remove_bought_tour_sql(user_id_global):
-    selected = request.form.getlist('checkbox_bought_tour')
-    action = request.form.get('handle_action')
-    database = sqlite3.connect(pathing)
-    cursor = database.cursor()
-    if action == 'delete':
-        for id_user in selected:
-            cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id_user,))
-    database.commit()
-    database.close()
+    if request.method == 'POST':
+        selected = request.form.getlist('checkbox_bought_tour')
+        action = request.form.get('handle_action')
+        database = sqlite3.connect(pathing)
+        cursor = database.cursor()
+        if action == 'delete':
+            for id_user in selected:
+                cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id_user,))
+        database.commit()
+        database.close()
 
 
 def checkbox_function(glob_id):
