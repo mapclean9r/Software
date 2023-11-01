@@ -146,5 +146,3 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
 
 
 
-Tour_edit("TEST","TEST","TEST","TEST","TEST","110")
-
