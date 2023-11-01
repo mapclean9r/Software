@@ -199,7 +199,6 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
     except:
         print("FEIL I EDIT TOUR ")
 
-
 def checkbox_outcomes(global_id):
     selected = request.form.getlist('checkbox_row')
     action = request.form.get('handle_action')

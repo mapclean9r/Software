@@ -1,7 +1,5 @@
 from flask import Flask, render_template, url_for, redirect
 
-from backend.database.Tour import *
-
 from backend.autentication.login import login_proc
 from backend.handler.auth_handler import get_username_checker
 from backend.handler.favorite_handler import get_favorite_tours_from_user
@@ -38,7 +36,6 @@ def checkbox_tour():
     get_checkbox_to_lists(global_user_id)
     get_checkbox_outcomes(global_user_id)
     return redirect(url_for('homepage'))
-
 
 @application.route('/remove_bought_tour', methods=['POST'])
 def remove_bought_tour():
