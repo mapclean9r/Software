@@ -162,7 +162,7 @@ def checkbox_function(glob_id):
     database.close()
 
 
-def get_list_of_user_bought_tours(global_id):
+def list_of_user_bought_tours(global_id):
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
     cursor.execute('''SELECT *
@@ -174,7 +174,7 @@ def get_list_of_user_bought_tours(global_id):
     return list_of_bought_tours
 
 
-def get_list_tours():
+def list_tours():
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
     cursor.execute("SELECT * from Tour")

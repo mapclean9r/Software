@@ -4,8 +4,10 @@ from backend.database.Tour import *
 from backend.database import user
 from backend.autentication.login import UserLogin
 from backend.autentication.register import username_checker
+from backend.handler.auth_handler import get_username_checker
 from backend.handler.favorite_handler import get_favorite_tours_from_user
-from backend.handler.tour_handler import get_remove_bought_tour, get_checkbox_to_lists
+from backend.handler.tour_handler import get_remove_bought_tour, get_checkbox_to_lists, get_tour_create, get_list_tours, \
+    get_list_of_user_bought_tours
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -39,7 +41,7 @@ def index():
 
 @application.route('/registrer', methods=['GET', 'POST'])
 def registrer_page():
-    username_checker()
+    get_username_checker()
     return render_template('/registrer.html')
 
 @application.route('/homepage')
@@ -52,7 +54,7 @@ def homepage():
 @application.route('/create_a_tour', methods=['POST'])
 def create_a_tour():
     if request.method == 'POST':
-        Tour_create()
+        get_tour_create()
     return redirect(url_for('homepage'))
 
 @application.route('/checkbox_tour', methods=['POST'])
