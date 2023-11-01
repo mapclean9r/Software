@@ -1,6 +1,6 @@
-from src.backend.database.user import *
+from ..database.user import *
 from flask import render_template
-from src.backend.database import user
+from ..database import user
 
 
 class UserRegister:
