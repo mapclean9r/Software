@@ -53,7 +53,7 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-    db = sqlite3.connect('src/backend/database/database.db')
+    db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
 
     cursor.execute("SELECT * from Tour")
@@ -152,6 +152,9 @@ def favorites():
 
     return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
 
+@application.route('/who_bought')
+def who_bought():
+    return render_template('/who_bought.html')
 
 if __name__ == '__main__':
     application.run(debug=True)
