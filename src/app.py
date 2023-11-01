@@ -53,7 +53,7 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-    db = sqlite3.connect('src/backend/database/database.db')
+    db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
 
     cursor.execute("SELECT * from Tour")
