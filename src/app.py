@@ -3,7 +3,6 @@ from flask import Flask, render_template, url_for, redirect, request
 from backend.database.Tour import *
 from backend.database import user
 from backend.autentication.login import get_user_online, UserLogin
-from backend.autentication.login import login_checker
 from backend.autentication.register import UserRegister, username_checker
 
 # definerer hvor templates ligger
@@ -44,14 +43,17 @@ def registrer_page():
         is_admin = request.form.get('admin_login', False)
         username_checker(username, password, is_admin)
 
+
     return render_template('/registrer.html')
 
 
 @application.route('/homepage')
 def homepage():
     global global_user_id
+
     all_tours_list = Tour_get_all()
     list_booked_tours_from_current_user = get_booked_tour_from_current_user(global_user_id)
+
 
     return render_template('/homepage.html', list_of_tours=all_tours_list, list_of_bought_tours=list_booked_tours_from_current_user)
 

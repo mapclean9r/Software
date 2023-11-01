@@ -20,22 +20,36 @@ class UserLogin:
         self.admin = admin
 
     def username_check_to_database(self):
-        if username_get(self.name):
-            return True
-        else:
-            return False
+        tuple = username_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                b = x
+            if self.name == b:
+                return True
+            else:
+                return False
 
     def password_check_to_database(self):
-        if password_get(self.name):
-            return True
-        else:
-            return False
+        tuple = password_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                print(x)
+                b = x
+            if self.password == b:
+                return True
+            else:
+                return False
 
     def admin_check_to_database(self):
-        if admin_get(self.name):
-            return self.admin
-        else:
-            return False
+        tuple = admin_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                print(x)
+                b = x
+            if admin_get(b):
+                return self.admin
+            else:
+                return False
 
     def login_process(self):
         self.save_user_online()
@@ -78,13 +92,9 @@ def login_checker(username_input, password_input, user_check_function, globalkey
 
 def get_user_online_is_admin():
     admin_check = get_user_online()
-    print(get_user_online())
-    print(admin_check)
     if admin_get(admin_check) is True:
-        print("True<")
         return True
     else:
-        print("False<")
         return False
 
 # Usage for json save_user_online & get_user_online
@@ -92,5 +102,3 @@ def get_user_online_is_admin():
 # UserLogin.save_user_online(login_cred1)
 
 # print(get_user_online())
-
-
