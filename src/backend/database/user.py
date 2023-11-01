@@ -85,22 +85,8 @@ def id_get(Username):
         cur = con.cursor()
         cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
         user = cur.fetchone
-        return user
+        return int(user[0])
     except:
         print("FEIL I ID_GET")
 
 
-def id_get2(Username):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    try:
-        cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
-        user = cur.fetchone()
-        if user is not None:
-            return int(user[0])  # Konverterer verdien til int
-        else:
-            return None  # Håndterer tilfelle der ingen resultat ble funnet
-    except Exception as e:
-        print("FEIL I ID_GET:", str(e))
-    finally:
-        con.close()

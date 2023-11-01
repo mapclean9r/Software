@@ -58,7 +58,7 @@ class UserLogin:
         self.save_user_online()
         user = self.username_check_to_database()
         passw = self.password_check_to_database()
-        cursor.execute('''SELECT * FROM Tour INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?''', (id_get2(get_user_online()),))
+        cursor.execute('''SELECT * FROM Tour INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?''', (id_get(get_user_online()),))
         list_of_bought_tours = cursor.fetchall()
         db.close()
 
