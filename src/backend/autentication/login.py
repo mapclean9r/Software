@@ -4,10 +4,12 @@ from flask import Flask, render_template, url_for, redirect, request
 from ..database import user
 from ..database.user import *
 
+
 # Slik bruker du klassen
 # x = "brukernavn" y = "passord" z = True eller False
 # variabel_navn = UserLogin(x, y, z)
 # UserLogin.username_check_to_database(variabel_navn)
+global_user_id = 0
 
 
 class UserLogin:
@@ -74,10 +76,24 @@ def get_user_online():
     except FileNotFoundError:
         return r'user_online.json File Not Found'
 
+
 def login_proc():
+    global global_user_id
+
     if request.method == 'POST':
         username = request.form['name']
         password = request.form['password']
+
+        db = sqlite3.connect('backend/database/database.db')
+        cursor = db.cursor()
+        cursor.execute("SELECT * from Tour")
+        list = cursor.fetchall()
+        cursor.execute('''SELECT *
+        FROM Tour
+        INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+        WHERE TourBooked.User_ID = ?''', (global_user_id,))
+
+        list_of_bought_tours = cursor.fetchall()
 
         t = UserLogin(username, password, False)
 
@@ -87,7 +103,7 @@ def login_proc():
         passw = UserLogin.password_check_to_database(t)
 
         if userr is True and passw is True:
-            return render_template('/homepage.html')
+            return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
         else:
             return render_template('/index.html')
     return render_template('index.html')
