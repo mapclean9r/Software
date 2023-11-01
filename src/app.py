@@ -1,9 +1,11 @@
-from flask import Flask, render_template, url_for, redirect, request
+from flask import Flask, render_template, url_for, redirect
 
 from backend.database.Tour import *
 from backend.database import user
-from backend.autentication.login import get_user_online, UserLogin
-from backend.autentication.register import UserRegister, username_checker
+from backend.autentication.login import UserLogin
+from backend.autentication.register import username_checker
+from backend.handler.favorite_handler import get_favorite_tours_from_user
+from backend.handler.tour_handler import get_remove_bought_tour
 
 # definerer hvor templates ligger
 application = Flask(__name__, template_folder='frontend/templates')
@@ -87,6 +89,7 @@ def create_a_tour():
     return redirect(url_for('homepage'))
 
 
+
 @application.route('/checkbox_tour', methods=['POST'])
 def checkbox_tour():
     if request.method == 'POST':
@@ -112,45 +115,18 @@ def checkbox_tour():
         database.close()
     return redirect(url_for('homepage'))
 
-
 @application.route('/remove_bought_tour', methods=['POST'])
 def remove_bought_tour():
     if request.method == 'POST':
         global global_user_id
-
-        selected = request.form.getlist('checkbox_bought_tour')
-        action = request.form.get('handle_action')
-        database = sqlite3.connect('backend/database/database.db')
-        cursor = database.cursor()
-
-        i = 0
-        if action == 'delete':
-            for id in selected:
-                cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (global_user_id, id,))
-            i += 1
-        database.commit()
-        database.close()
+        get_remove_bought_tour(global_user_id)
     return redirect(url_for('homepage'))
-
 
 @application.route('/favorites')
 def favorites():
     global global_user_id
-    db = sqlite3.connect('backend/database/database.db')
-    cursor = db.cursor()
-
-    cursor.execute("SELECT * from Tour")
-    list = cursor.fetchall()
-
-    cursor.execute('''SELECT *
-        FROM Tour
-        INNER JOIN TourFavorites on Tour.ID = TourFavorites.Tour_ID
-        WHERE TourFavorites.User_ID = ?''', (global_user_id,))
-
-    list_of_favorited_tours = cursor.fetchall()
-    db.close()
-
-    return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
+    list_of_favorited_tours = get_favorite_tours_from_user(global_user_id)
+    return render_template('/favorites.html', list_of_favorited_tours=list_of_favorited_tours)
 
 
 if __name__ == '__main__':
