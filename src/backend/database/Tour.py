@@ -108,3 +108,13 @@ def get_booked_tour_from_current_user(global_key):
 
     list_of_bought_tours = cursor.fetchall()
     return list_of_bought_tours
+
+def Tour_edit(Title, Description, Country, Location, Date, ID):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    try:
+        cur.execute("UPDATE Tour SET Title = ?, Description = ?, Country = ?, Location = ?, Date = ? WHERE ID = ?", (Title, Description, Country, Location, Date, ID,))
+        con.commit()
+        print("Tur endret")
+    except:
+        print("FEIL I EDIT TOUR ")
