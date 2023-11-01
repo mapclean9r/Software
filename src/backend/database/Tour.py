@@ -133,3 +133,18 @@ def remove_bought_tour_sql(user_id_global):
             cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id_user,))
     database.commit()
     database.close()
+
+def Tour_edit(Title, Description, Country, Location, Date, ID):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    try:
+        cur.execute("UPDATE Tour SET Title = ?, Description = ?, Country = ?, Location = ?, Date = ? WHERE ID = ?", (Title, Description, Country, Location, Date, ID,))
+        con.commit()
+        print("Tur endret")
+    except:
+        print("FEIL I EDIT TOUR ")
+
+
+
+Tour_edit("TEST","TEST","TEST","TEST","TEST","110")
+
