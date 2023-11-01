@@ -89,6 +89,7 @@ def create_a_tour():
     return redirect(url_for('homepage'))
 
 
+
 @application.route('/checkbox_tour', methods=['POST'])
 def checkbox_tour():
     if request.method == 'POST':
