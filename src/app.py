@@ -39,55 +39,21 @@ def index():
 
 @application.route('/registrer', methods=['GET', 'POST'])
 def registrer_page():
-    if request.method == 'POST':
-        username = request.form['name']
-        password = request.form['password']
-        is_admin = request.form.get('admin_login', False)
-
-        # print(username, password, is_admin)
-
-        username_checker(username, password, is_admin)
-
-
+    username_checker()
     return render_template('/registrer.html')
-
 
 @application.route('/homepage')
 def homepage():
     global global_user_id
-    db = sqlite3.connect('backend/database/database.db')
-    cursor = db.cursor()
-
-    cursor.execute("SELECT * from Tour")
-    list = cursor.fetchall()
-
-    # list_of_bought_tours = Tour_who_bought(global_user_id)
-
-    cursor.execute('''SELECT *
-    FROM Tour
-    INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-    WHERE TourBooked.User_ID = ?''', (global_user_id,))
-
-    list_of_bought_tours = cursor.fetchall()
-    db.close()
-
-    return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
-
+    list_tours = get_list_tours()
+    list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
+    return render_template('/homepage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours)
 
 @application.route('/create_a_tour', methods=['POST'])
 def create_a_tour():
     if request.method == 'POST':
-        title = request.form['Title']
-        description = request.form['Description']
-        country = request.form['Country']
-        location = request.form['Location']
-        date = request.form['Date']
-
-        # Jeg bruker "Tour_create-funksonen" som ligger i backend/database/tour.py
-        Tour_create(title, description, country, location, date)
-
+        Tour_create()
     return redirect(url_for('homepage'))
-
 
 @application.route('/checkbox_tour', methods=['POST'])
 def checkbox_tour():
