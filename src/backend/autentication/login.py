@@ -58,8 +58,9 @@ class UserLogin:
 
     # Saves the users username to a .json file & overwrites on reuse
     def save_user_online(self):
+        pathing = os.path.dirname(__file__) + "/user_online.json"
         data = {'user_online': self.name}
-        with open('backend/autentication/user_online.json', 'w') as file:
+        with open(pathing, 'w') as file:
             json.dump(data, file)
 
 

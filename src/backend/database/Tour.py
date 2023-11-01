@@ -102,7 +102,7 @@ def Tour_remove(user,tur):
     con.commit()
 
 def get_booked_tour_from_current_user(global_key):
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect(pathing)
     cursor = db.cursor()
     cursor.execute('''SELECT *
         FROM Tour
@@ -114,7 +114,7 @@ def get_booked_tour_from_current_user(global_key):
 
 
 def get_favorites_sql(id_user):
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect(pathing)
     cursor = db.cursor()
 
     cursor.execute("SELECT * from Tour")
@@ -132,7 +132,7 @@ def get_favorites_sql(id_user):
 def remove_bought_tour_sql(user_id_global):
     selected = request.form.getlist('checkbox_bought_tour')
     action = request.form.get('handle_action')
-    database = sqlite3.connect('backend/database/database.db')
+    database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':
         for id_user in selected:
