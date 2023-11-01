@@ -1,10 +1,11 @@
 
 setup.py
+<<<<<<< HEAD
+=======
 *.pyc
 src/backend/database/__pycache__/user.cpython-310.pyc
 src/backend/database/__pycache__/Tour.cpython-310.pyc
 src/backend/autentication/user_online.json
 src/backend/autentication/login.py
 src/backend/autentication/__pycache__/login.cpython-310.pyc
-src/backend/database/database.db
-src/backend/database/database.db
+>>>>>>> 4044dad794fdc75bbd23c5c9bad592abcfa2052c
