@@ -146,7 +146,6 @@ def remove_bought_tour_sql(user_id_global):
     database.commit()
     database.close()
 
-<<<<<<< HEAD
 
 def checkbox_function(glob_id):
     selected = request.form.getlist('checkbox_row')
@@ -187,7 +186,7 @@ def list_tours():
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
     return list
-=======
+
 def Tour_edit(Title, Description, Country, Location, Date, ID):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
@@ -200,4 +199,4 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
 
 
 
->>>>>>> main
+

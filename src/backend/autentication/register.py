@@ -1,12 +1,12 @@
-<<<<<<< HEAD
+
 from src.backend.database.user import *
 from flask import render_template, request
 from src.backend.database import user
-=======
+
 from ..database.user import *
 from flask import render_template
 from ..database import user
->>>>>>> main
+
 
 
 class UserRegister:

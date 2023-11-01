@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, redirect
 
 from backend.database.Tour import *
-from backend.database import user
+
 from backend.autentication.login import UserLogin, login_proc, get_user_online_is_admin
 from backend.autentication.register import username_checker
 from backend.handler.auth_handler import get_username_checker
@@ -44,9 +44,9 @@ def create_a_tour():
 def checkbox_tour():
     if request.method == 'POST':
         global global_user_id
-<<<<<<< HEAD
+
         get_checkbox_to_lists(global_user_id)
-=======
+
 
         selected = request.form.getlist('checkbox_row')
         action = request.form.get('handle_action')
@@ -65,7 +65,7 @@ def checkbox_tour():
                     'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_user_id, ID))
         database.commit()
         database.close()
->>>>>>> main
+
     return redirect(url_for('homepage'))
 
 @application.route('/remove_bought_tour', methods=['POST'])
