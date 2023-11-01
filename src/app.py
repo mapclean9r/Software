@@ -41,6 +41,9 @@ def registrer_page():
         username = request.form['name']
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
+
+        # print(username, password, is_admin)
+
         username_checker(username, password, is_admin)
 
 
@@ -50,13 +53,23 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
 
-    all_tours_list = Tour_get_all()
-    list_booked_tours_from_current_user = get_booked_tour_from_current_user(global_user_id)
+    cursor.execute("SELECT * from Tour")
+    list = cursor.fetchall()
 
+    # list_of_bought_tours = Tour_who_bought(global_user_id)
 
-    return render_template('/homepage.html', list_of_tours=all_tours_list, list_of_bought_tours=list_booked_tours_from_current_user)
+    cursor.execute('''SELECT *
+    FROM Tour
+    INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+    WHERE TourBooked.User_ID = ?''', (global_user_id,))
 
+    list_of_bought_tours = cursor.fetchall()
+    db.close()
+
+    return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
 
 
 @application.route('/create_a_tour', methods=['POST'])
@@ -68,6 +81,7 @@ def create_a_tour():
         location = request.form['Location']
         date = request.form['Date']
 
+        # Jeg bruker "Tour_create-funksonen" som ligger i backend/database/tour.py
         Tour_create(title, description, country, location, date)
 
     return redirect(url_for('homepage'))
@@ -138,6 +152,9 @@ def favorites():
 
     return render_template('/favorites.html', list_of_tours=list, list_of_favorited_tours=list_of_favorited_tours)
 
+@application.route('/who_bought')
+def who_bought():
+    return render_template('/who_bought.html')
 
 if __name__ == '__main__':
     application.run(debug=True)
