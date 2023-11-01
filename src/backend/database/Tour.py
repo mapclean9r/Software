@@ -3,28 +3,28 @@ import sqlite3
 
 from flask import request
 
-
 pathing = os.path.dirname(__file__) + "/database.db"
 
 
 def Tour_create():
-    title = request.form['Title']
-    description = request.form['Description']
-    country = request.form['Country']
-    location = request.form['Location']
-    date = request.form['Date']
+    if request.method == 'POST':
+        title = request.form['Title']
+        description = request.form['Description']
+        country = request.form['Country']
+        location = request.form['Location']
+        date = request.form['Date']
 
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    try:
-        cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUES(?,?,?,?,?)",
-                    (title, description, country, location, date,))
-        con.commit()
-        print("Tur laget")
-        return 1
-    except:
-        print("FEIL I CREATE TOUR ")
-        return 0
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
+        try:
+            cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUES(?,?,?,?,?)",
+                        (title, description, country, location, date,))
+            con.commit()
+            print("Tur laget")
+            return 1
+        except:
+            print("FEIL I CREATE TOUR ")
+            return 0
 
 
 def Tour_get_all():
@@ -148,24 +148,25 @@ def remove_bought_tour_sql(user_id_global):
 
 
 def checkbox_function(glob_id):
-    selected = request.form.getlist('checkbox_row')
-    action = request.form.get('handle_action')
-    database = sqlite3.connect('backend/database/database.db')
-    cursor = database.cursor()
+    if request.method == 'POST':
+        selected = request.form.getlist('checkbox_row')
+        action = request.form.get('handle_action')
+        database = sqlite3.connect('backend/database/database.db')
+        cursor = database.cursor()
 
-    if action == 'delete':
-        for ID in selected:
-            cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
-    elif action == 'buy':
-        for ID in selected:
-            cursor.execute(
-                'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
-    elif action == 'favorite':
-        for ID in selected:
-            cursor.execute(
-                'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
-    database.commit()
-    database.close()
+        if action == 'delete':
+            for ID in selected:
+                cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
+        elif action == 'buy':
+            for ID in selected:
+                cursor.execute(
+                    'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
+        elif action == 'favorite':
+            for ID in selected:
+                cursor.execute(
+                    'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
+        database.commit()
+        database.close()
 
 
 def list_of_user_bought_tours(global_id):
@@ -198,5 +199,21 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
         print("FEIL I EDIT TOUR ")
 
 
+def checkbox_outcomes(global_id):
+    selected = request.form.getlist('checkbox_row')
+    action = request.form.get('handle_action')
+    database = sqlite3.connect('backend/database/database.db')
+    cursor = database.cursor()
 
-
+    if action == 'delete':
+        for ID in selected:
+            Tour_delete(ID)
+    elif action == 'buy':
+        for ID in selected:
+            Tour_bought(ID, global_id)
+    elif action == 'favorite':
+        for ID in selected:
+            cursor.execute(
+                'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_id, ID))
+    database.commit()
+    database.close()
