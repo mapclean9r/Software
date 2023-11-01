@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, redirect
 
 from backend.database.Tour import *
 from backend.database import user
-from backend.autentication.login import UserLogin, login_proc
+from backend.autentication.login import UserLogin, login_proc, get_user_online_is_admin
 from backend.autentication.register import username_checker
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.handler.tour_handler import get_remove_bought_tour
@@ -17,7 +17,6 @@ global_user_id = 0
 
 @application.route('/', methods=['GET', 'POST'])
 def index():
-
     return login_proc()
 
 
@@ -81,7 +80,7 @@ def checkbox_tour():
 
         selected = request.form.getlist('checkbox_row')
         action = request.form.get('handle_action')
-        database = sqlite3.connect('src/backend/database/database.db')
+        database = sqlite3.connect('backend/database/database.db')
         cursor = database.cursor()
 
         if action == 'delete':

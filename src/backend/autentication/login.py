@@ -94,6 +94,7 @@ def login_proc():
         WHERE TourBooked.User_ID = ?''', (global_user_id,))
 
         list_of_bought_tours = cursor.fetchall()
+        db.close()
 
         t = UserLogin(username, password, False)
 
@@ -101,9 +102,10 @@ def login_proc():
 
         userr = UserLogin.username_check_to_database(t)
         passw = UserLogin.password_check_to_database(t)
-
+        is_admin = True
         if userr is True and passw is True:
-            return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
+            return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list,
+                                   list_of_bought_tours=list_of_bought_tours)
         else:
             return render_template('/index.html')
     return render_template('index.html')
