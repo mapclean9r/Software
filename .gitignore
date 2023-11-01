@@ -7,4 +7,3 @@ src/backend/autentication/user_online.json
 src/backend/autentication/login.py
 src/backend/autentication/__pycache__/login.cpython-310.pyc
 src/backend/database/database.db
-src/backend/database/database.db
