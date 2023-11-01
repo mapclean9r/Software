@@ -1,13 +1,14 @@
 import json
-from flask import render_template
+from flask import Flask, render_template, url_for, redirect, request
 
+from ..database import user
 from ..database.user import *
-
 
 # Slik bruker du klassen
 # x = "brukernavn" y = "passord" z = True eller False
 # variabel_navn = UserLogin(x, y, z)
 # UserLogin.username_check_to_database(variabel_navn)
+
 
 class UserLogin:
     def __init__(self, username, password, admin):
@@ -73,18 +74,23 @@ def get_user_online():
     except FileNotFoundError:
         return r'user_online.json File Not Found'
 
+def login_proc():
+    if request.method == 'POST':
+        username = request.form['name']
+        password = request.form['password']
 
-def login_checker(username_input, password_input, user_check_function, globalkey):
-    userlogin_is_valid = user_check_function(
-        username_input, password_input)
+        t = UserLogin(username, password, False)
 
-    print(f"Current user ID: {globalkey}")
-    if userlogin_is_valid:
-        print("You are logged in")
-        return render_template('/homepage.html')
-    else:
-        print("Something happend, you are not logged in")
-        return render_template('/index.html')
+        UserLogin.save_user_online(t)
+
+        userr = UserLogin.username_check_to_database(t)
+        passw = UserLogin.password_check_to_database(t)
+
+        if userr is True and passw is True:
+            return render_template('/homepage.html')
+        else:
+            return render_template('/index.html')
+    return render_template('index.html')
 
 
 def get_user_online_is_admin():
