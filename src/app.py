@@ -1,7 +1,6 @@
 from flask import Flask, render_template, url_for, redirect
 
-from backend.autentication.login import login_proc
-from backend.handler.auth_handler import get_username_checker
+from backend.handler.auth_handler import get_username_checker, get_start_login_process
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.handler.tour_handler import *
 
@@ -11,7 +10,7 @@ global_user_id = 0
 
 @application.route('/', methods=['GET', 'POST'])
 def index():
-    return login_proc()
+    return get_start_login_process()
 
 @application.route('/registrer', methods=['GET', 'POST'])
 def registrer_page():
