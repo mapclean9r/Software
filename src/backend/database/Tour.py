@@ -1,5 +1,9 @@
 import os
 import sqlite3
+
+from flask import redirect, url_for
+from backend.autentication.login import get_user_online_is_admin
+
 pathing = os.path.dirname(__file__) + "/database.db"
 
 
@@ -135,6 +139,16 @@ def remove_bought_tour_sql(user_id_global, selected, action):
     database.close()
 
 
+def remove_favorite_tour_sql(user_id_global, selected, action):
+    database = sqlite3.connect('backend/database/database.db')
+    cursor = database.cursor()
+    if action == 'delete':
+        for id in selected:
+            cursor.execute('DELETE FROM TourFavorites WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id,))
+    database.commit()
+    database.close()
+
+
 def checkbox_function(glob_id, selected, action):
     database = sqlite3.connect('backend/database/database.db')
     cursor = database.cursor()
@@ -150,6 +164,11 @@ def checkbox_function(glob_id, selected, action):
         for ID in selected:
             cursor.execute(
                 'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
+    elif action == 'admin':
+        if get_user_online_is_admin():
+            return redirect(url_for('adminpage'))
+    elif action == 'users':
+        return redirect(url_for('users'))
     database.commit()
     database.close()
 
@@ -172,6 +191,16 @@ def list_tours():
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
     return list
+
+def get_user_list():
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT Username FROM User")
+    users = cursor.fetchall()
+
+    #db.close()
+    #return [user[0] for user in users]
+    return users
 
 def Tour_edit(Title, Description, Country, Location, Date, ID):
     con = sqlite3.connect(pathing)
@@ -196,5 +225,10 @@ def checkbox_outcomes(global_id, selected, action):
         for ID in selected:
             cursor.execute(
                 'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_id, ID))
+    elif action == 'admin':
+        if get_user_online_is_admin():
+            return redirect(url_for('adminpage'))
+    elif action == 'users':
+        return redirect(url_for('users'))
     database.commit()
     database.close()

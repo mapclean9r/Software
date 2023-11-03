@@ -68,11 +68,13 @@
 
 
     <h1>List of Existing Users</h1>
-    <ul id="userlist">
+    <form id="userlist">
+    <ul>
         {% for user in users %}
             <li>{{ user }}</li>
         {% endfor %}
     </ul>
+    </form>
 
 
     <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
