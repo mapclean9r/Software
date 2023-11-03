@@ -1,4 +1,4 @@
-from backend.database.Tour import Tour_create, Tour_get_all, Tour_get
+from src.backend.database.Tour import Tour_create, Tour_get_all, Tour_get
 import pytest
 
 def test_new_tour_is_created():
