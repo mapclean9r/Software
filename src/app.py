@@ -48,6 +48,9 @@ def favorites():
     list_of_favorited_tours = get_favorite_tours_from_user(global_user_id)
     return render_template('/favorites.html', list_of_favorited_tours=list_of_favorited_tours)
 
+@application.route('/who_bought')
+def who_bought():
+    return render_template('/who_bought.html')
 
 if __name__ == '__main__':
     application.run(debug=True)
