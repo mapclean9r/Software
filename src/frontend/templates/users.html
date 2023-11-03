@@ -6,10 +6,12 @@
 </head>
 <body>
     <h1>List of Existing Users</h1>
-    <ul id="userlist">
+    <form id="userlist">
+    <ul>
         {% for user in users %}
             <li>{{ user }}</li>
         {% endfor %}
     </ul>
+    </form>
 </body>
 </html>

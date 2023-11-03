@@ -155,6 +155,16 @@ def remove_favorite_tour():
     return redirect(url_for('favorites'))
 
 
+def get_user_list():
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT Username FROM User")
+    users = cursor.fetchall()
+    db.close()
+
+    return [user[0] for user in users]
+
+
 @application.route('/adminpage')
 def adminpage():
     global global_user_id
@@ -172,23 +182,12 @@ def adminpage():
     WHERE TourBooked.User_ID = ?''', (global_user_id,))
 
     list_of_bought_tours = cursor.fetchall()
-
-    #list_of_users = get_user_list()
+    list_of_users = get_user_list()
 
     db.close()
 
 
-    return render_template('/adminpage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
-
-
-def get_user_list():
-    db = sqlite3.connect('backend/database/database.db')
-    cursor = db.cursor()
-    cursor.execute("SELECT Username FROM User")
-    users = cursor.fetchall()
-    db.close()
-
-    return [user[0] for user in users]
+    return render_template('/adminpage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours, users=list_of_users)
 
 
 @application.route('/users')

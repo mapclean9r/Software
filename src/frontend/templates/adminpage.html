@@ -42,7 +42,8 @@
         <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Delete</button>
         <button type="submit" name="handle_action" value="buy" class="checkbox_button_styling">Buy tour</button>
         <button type="submit" name="handle_action" value="favorite" class="checkbox_button_styling">Favorite tour</button>
-        <button type="submit" name="handle_action" value="admin" class="checkbox_button_styling">Go to admin page</button> <br>
+        <button type="submit" name="handle_action" value="admin" class="checkbox_button_styling">Go to admin page</button>
+        <button type="submit" name="handle_action" value="users" class="checkbox_button_styling">See users</button> <br>
     </form> <br>
 
 
@@ -66,12 +67,10 @@
     </div>
 
 
-    <h3>Users:</h3>
-    <ul>
-        {% for user in list_of_users %}
-        <li>
-            {{ user }}
-        </li>
+    <h1>List of Existing Users</h1>
+    <ul id="userlist">
+        {% for user in users %}
+            <li>{{ user }}</li>
         {% endfor %}
     </ul>
 
