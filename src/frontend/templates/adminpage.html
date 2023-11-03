@@ -70,8 +70,7 @@
     <ul>
         {% for user in list_of_users %}
         <li>
-            <input type="userlist" name="existing_users" value="{{ user[0] }}">
-            <p>Username: </p> {{ user[1] }}
+            {{ user }}
         </li>
         {% endfor %}
     </ul>

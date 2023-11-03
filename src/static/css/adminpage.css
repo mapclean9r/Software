@@ -6,7 +6,7 @@
 #grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
 }
 
 
@@ -95,7 +95,10 @@
     grid-row: 3/4;
 }
 
-
+.userlist{
+    grid-column: 2/4;
+    grid-row: 5/6;
+}
 
 ul{
     list-style-type: none;
