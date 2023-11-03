@@ -8,9 +8,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/homepage.css') }}">
 </head>
 
-
 <body>
 <div id="grid">
+    <h1>Hello this is the homepage</h1><br>
+    {% if is_admin %}
+    <p>Admin Only Button</p>
+    {% endif %}
 
     <div id="colored_body">
     <h1 id="intro">Hello this is the homepage</h1><br>
@@ -45,6 +48,11 @@
         <button type="submit" name="handle_action" value="admin" class="checkbox_button_styling">Go to admin page</button> <br>
     </form> <br>
 
+
+    <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
+    <a href="{{ url_for('favorites') }}">Favorites</a>
+    <a href="{{ url_for('who_bought') }}">who bought my tours</a>
+    <br>
 
     <h2>Bought tours:</h2>
     <form action="/remove_bought_tour" method="POST" id="bought_tours">

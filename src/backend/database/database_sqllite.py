@@ -17,7 +17,8 @@ def databasecreation():
                 Description TEXT,
                 Country TEXT,
                 Location TEXT,
-                Date DATETIME
+                Date DATETIME,
+                CreatedBy INTEGER
     );''')
     cur.execute('''CREATE TABLE IF NOT EXISTS TourBooked(
                 User_ID INTEGER,
