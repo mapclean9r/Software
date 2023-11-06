@@ -32,7 +32,6 @@ def create_a_tour():
 @application.route('/checkbox_tour', methods=['POST'])
 def checkbox_tour():
     global global_user_id
-    get_checkbox_to_lists(global_user_id)
     get_checkbox_outcomes(global_user_id)
     return redirect(url_for('homepage'))
 
