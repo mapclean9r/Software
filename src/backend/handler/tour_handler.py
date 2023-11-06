@@ -32,9 +32,8 @@ def get_tour_create():
         location = request.form['Location']
         date = request.form['Date']
         created_by = get_user_online()
-        created_by_id = id_get(created_by)
-        print(created_by_id)
-        return Tour_create(title, description, country, location, date, created_by_id)
+        print(created_by)
+        return Tour_create(title, description, country, location, date, created_by)
 
 def get_list_tours():
     return list_tours()
