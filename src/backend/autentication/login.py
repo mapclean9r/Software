@@ -33,12 +33,9 @@ class UserLogin:
 
     def admin_check_to_database(self):
         b = UserLogin.admin_tuple_to_str(self)
-        print(f"{b} BIIIIg")
         if b is True:
-            print("Funker")
             return True
         else:
-            print("Funker ikke")
             return False
 
     def login_process(self):
@@ -113,9 +110,6 @@ def login_proc():
         userr = UserLogin.username_check_to_database(t)
         passw = UserLogin.password_check_to_database(t)
         is_admin = UserLogin.admin_check_to_database(t)
-        print(userr)
-        print(passw)
-        print(is_admin)
         if userr and passw:
             return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list,
                                    list_of_bought_tours=list_of_bought_tours)
