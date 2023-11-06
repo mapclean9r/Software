@@ -131,39 +131,39 @@ def remove_bought_tour_sql(user_id_global, selected, action):
 
 
 def remove_favorite_tour_sql(user_id_global, selected, action):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
+    database = sqlite3.connect('backend/database/database.db')
+    cursor = database.cursor()
     if action == 'delete':
         for id in selected:
-            cur.execute('DELETE FROM TourFavorites WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id,))
-    con.commit()
-    con.close()
+            cursor.execute('DELETE FROM TourFavorites WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id,))
+    database.commit()
+    database.close()
 
 
 def list_of_user_bought_tours(global_id):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    cur.execute('''SELECT *
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+    cursor.execute('''SELECT *
         FROM Tour
         INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
         WHERE TourBooked.User_ID = ?''', (global_id,))
-    list_of_bought_tours = cur.fetchall()
-    con.close()
+    list_of_bought_tours = cursor.fetchall()
+    db.close()
     return list_of_bought_tours
 
 
 def list_tours():
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    cur.execute("SELECT * from Tour")
-    list = cur.fetchall()
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT * from Tour")
+    list = cursor.fetchall()
     return list
 
 def get_user_list():
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    cur.execute("SELECT Username FROM User")
-    users = cur.fetchall()
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT Username FROM User")
+    users = cursor.fetchall()
 
     return users
 
@@ -178,8 +178,8 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
         print("FEIL I EDIT TOUR ")
 
 def checkbox_outcomes(global_id, selected, action):
-    con = sqlite3.connect(pathing)
-    cursor = con.cursor()
+    database = sqlite3.connect('backend/database/database.db')
+    cursor = database.cursor()
     if action == 'delete':
         for ID in selected:
             Tour_delete(ID)
@@ -195,5 +195,5 @@ def checkbox_outcomes(global_id, selected, action):
             return redirect(url_for('adminpage'))
     elif action == 'users':
         return redirect(url_for('users'))
-    con.commit()
-    con.close()
+    database.commit()
+    database.close()

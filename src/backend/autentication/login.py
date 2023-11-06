@@ -4,7 +4,6 @@ from flask import Flask, render_template, url_for, redirect, request
 from ..database import user
 from ..database.user import *
 
-
 # Slik bruker du klassen
 # x = "brukernavn" y = "passord" z = True eller False
 # variabel_navn = UserLogin(x, y, z)
@@ -34,8 +33,8 @@ class UserLogin:
 
     def admin_check_to_database(self):
         b = UserLogin.admin_tuple_to_str(self)
-        if admin_get(b):
-            return self.admin
+        if b is True:
+            return True
         else:
             return False
 
@@ -69,9 +68,10 @@ class UserLogin:
 
     def admin_tuple_to_str(self):
         tuple = admin_get(self.name)
-        if tuple is not None:
-            for x in tuple:
-                return x
+        if tuple:
+            if tuple is not None:
+                for x in tuple:
+                    return bool(x)
 
 
 # Gets the current username in the .json file
@@ -109,8 +109,8 @@ def login_proc():
 
         userr = UserLogin.username_check_to_database(t)
         passw = UserLogin.password_check_to_database(t)
-        is_admin = True
-        if userr is True and passw is True:
+        is_admin = UserLogin.admin_check_to_database(t)
+        if userr and passw:
             return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list,
                                    list_of_bought_tours=list_of_bought_tours)
         else:
