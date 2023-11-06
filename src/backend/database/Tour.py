@@ -131,7 +131,7 @@ def remove_bought_tour_sql(user_id_global, selected, action):
 
 
 def remove_favorite_tour_sql(user_id_global, selected, action):
-    database = sqlite3.connect('backend/database/database.db')
+    database = sqlite3.connect('src/backend/database/database.db')
     cursor = database.cursor()
     if action == 'delete':
         for id in selected:
@@ -141,7 +141,7 @@ def remove_favorite_tour_sql(user_id_global, selected, action):
 
 
 def list_of_user_bought_tours(global_id):
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect('src/backend/database/database.db')
     cursor = db.cursor()
     cursor.execute('''SELECT *
         FROM Tour
@@ -153,14 +153,14 @@ def list_of_user_bought_tours(global_id):
 
 
 def list_tours():
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect('src/backend/database/database.db')
     cursor = db.cursor()
     cursor.execute("SELECT * from Tour")
     list = cursor.fetchall()
     return list
 
 def get_user_list():
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect('src/backend/database/database.db')
     cursor = db.cursor()
     cursor.execute("SELECT Username FROM User")
     users = cursor.fetchall()
@@ -178,7 +178,7 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
         print("FEIL I EDIT TOUR ")
 
 def checkbox_outcomes(global_id, selected, action):
-    database = sqlite3.connect('backend/database/database.db')
+    database = sqlite3.connect('src/backend/database/database.db')
     cursor = database.cursor()
     if action == 'delete':
         for ID in selected:
