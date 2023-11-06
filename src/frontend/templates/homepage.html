@@ -9,12 +9,17 @@
 </head>
 
 <body>
-    <h1>Hello this is the homepage</h1><br>
+    <h1>Homepage</h1><br>
     {% if is_admin %}
     <p>Admin Only Button</p>
     {% endif %}
 
-    <h2>To sell your tour, you must enter details for your tour first:</h2>
+    <a href="{{ url_for('favorites') }}">My favorites</a> <br>
+    <a href="{{ url_for('who_bought') }}">Who bought my tours?</a> <br>
+    <a href="{{ url_for('support_senter') }}">Supportsenter</a> <br>
+    <a href="{{ url_for('index') }}">Logout</a> <br>
+
+    <h2>Here are a list of the available tours. You can create, buy, delete or favorite tours.</h2>
     <form action="/create_a_tour" , method="POST">
 
         <input type="text" , name="Title" , placeholder="Title">
@@ -38,18 +43,20 @@
             </li>
             {% endfor %}
         </ul>
-        <button type="submit" name="handle_action" value="delete">Delete</button>
+        <h3>Afte you have selected preferred tour(s), choose a payment method and proceed to checkout:</h3>
+        <select id="dropdown">
+            <option value="valg1">Card</option>
+            <option value="valg2">Vipps</option>
+        </select>
         <button type="submit" name="handle_action" value="buy">Buy tour</button>
+        <br>
+        <br>
+        <button type="submit" name="handle_action" value="delete">Delete</button>
         <button type="submit" name="handle_action" value="favorite">Favorite tour</button> <br>
     </form> <br>
-
-
-    <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
-    <a href="{{ url_for('favorites') }}">Favorites</a>
-    <a href="{{ url_for('who_bought') }}">who bought my tours</a>
     <br>
-
-    <h2>Bought tours:</h2>
+    <hr />
+    <h2>Your bought tours:</h2>
     <form action="/remove_bought_tour" method="POST">
         <ul>
             {% for tour in list_of_bought_tours %}
@@ -63,16 +70,10 @@
             </li>
             {% endfor %}
         </ul>
-        <button type="submit" name="handle_action" value="delete">Remove tour</button>
+        <h3>Unable to attend a tour? Select the tour you wish to cancel and click the 'Cancel Tour' button:</h3>
+        <button type="submit" name="handle_action" value="delete">Cancel Tour</button>
         <!-- <button type="submit" name="handle_action" value="remove">Remove</button> -->
     </form>
-    <br>
-    <a href="{{ url_for('index') }}">Logout</a> <br>
-    <hr />
-    <h3>Do you have any questions? Contact us:</h3>
-    <p>Phonenumber: 69 60 80 00</p>
-    <p>Email: postmottak@hiof.no</p>
-
 
 </body>
 

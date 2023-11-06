@@ -52,5 +52,9 @@ def favorites():
 def who_bought():
     return render_template('/who_bought.html')
 
+@application.route('/support_senter')
+def support_senter():
+    return render_template('/support_senter.html')
+
 if __name__ == '__main__':
     application.run(debug=True)
