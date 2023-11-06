@@ -25,9 +25,9 @@ def username_checker():
         username = request.form['name']
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
-        print(user.username_get(username)[0])
+        print(user.username_get(username))
         print(username)
-        if username == user.username_get(username)[0]:
+        if username == user.username_get(username):
             error_register = "Username exists."
             return render_template('/registrer.html', error_register=error_register)
         elif username != user.username_get(username):
