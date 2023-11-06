@@ -11,11 +11,11 @@
 <body>
     <h1>Homepage</h1><br>
     {% if is_admin %}
-    <p>Admin Only Button</p>
+    <p style="color: red;">Admin Only Button</p>
     {% endif %}
 
     <a href="{{ url_for('favorites') }}">My favorites</a> <br>
-    <a href="{{ url_for('who_bought') }}">Who bought my tours?</a> <br>
+    <a href="{{ url_for('who_bought') }}">My created tours</a> <br>
     <a href="{{ url_for('support_senter') }}">Supportsenter</a> <br>
     <a href="{{ url_for('index') }}">Logout</a> <br>
 
@@ -48,11 +48,11 @@
             <option value="valg1">Card</option>
             <option value="valg2">Vipps</option>
         </select>
-        <button type="submit" name="handle_action" value="buy">Buy tour</button>
+        <button style="color: green;" type="submit" name="handle_action" value="buy">Buy tour</button>
         <br>
         <br>
-        <button type="submit" name="handle_action" value="delete">Delete</button>
-        <button type="submit" name="handle_action" value="favorite">Favorite tour</button> <br>
+        <button style="color: #8B0000;" type="submit" name="handle_action" value="delete">Delete</button>
+        <button  style="color: #e75480;" type="submit" name="handle_action" value="favorite">Favorite tour</button> <br>
     </form> <br>
     <br>
     <hr />
@@ -71,7 +71,7 @@
             {% endfor %}
         </ul>
         <h3>Unable to attend a tour? Select the tour you wish to cancel and click the 'Cancel Tour' button:</h3>
-        <button type="submit" name="handle_action" value="delete">Cancel Tour</button>
+        <button style="color: #8B0000;" type="submit" name="handle_action" value="delete">Cancel Tour</button>
         <!-- <button type="submit" name="handle_action" value="remove">Remove</button> -->
     </form>
 
