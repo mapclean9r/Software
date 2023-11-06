@@ -34,9 +34,11 @@ class UserLogin:
     def admin_check_to_database(self):
         b = UserLogin.admin_tuple_to_str(self)
         print(f"{b} BIIIIg")
-        if admin_get(b):
-            return self.admin
+        if b is True:
+            print("Funker")
+            return True
         else:
+            print("Funker ikke")
             return False
 
     def login_process(self):
