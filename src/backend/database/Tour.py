@@ -6,12 +6,12 @@ from backend.autentication.login import get_user_online_is_admin
 
 pathing = os.path.dirname(__file__) + "/database.db"
 
-def Tour_create(title, description, country, location, date):
+def Tour_create(title, description, country, location, date, created_by):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     try:
-        cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUES(?,?,?,?,?)",
-                    (title, description, country, location, date,))
+        cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,CreatedBy) VALUES(?,?,?,?,?,?)",
+                    (title, description, country, location, date, created_by))
         con.commit()
         print("Tur laget")
         return 1

@@ -77,7 +77,7 @@ class UserLogin:
 # Gets the current username in the .json file
 def get_user_online():
     try:
-        with open('user_online.json', 'r') as file:
+        with open('backend/autentication/user_online.json', 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
