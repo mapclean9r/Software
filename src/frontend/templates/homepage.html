@@ -11,22 +11,31 @@
 <body>
 <div id="grid">
     {% if is_admin %}
-    <p>Admin Only Button</p>
+    <p style="color: red;">Admin Only Button</p>
     {% endif %}
 
     <div id="colored_body">
     <h1 id="intro">Hello this is the homepage</h1><br>
 
+    <a href="{{ url_for('favorites') }}" class="top_links_styling">Favorites</a>
+    <a href="{{ url_for('who_bought') }}" class="top_links_styling">My created tours</a>
+    <a href="{{ url_for('support_senter') }}" class="top_links_styling">Supportsenter</a>
+    <a href="{{ url_for('index') }}" class="top_links_styling">Logout</a>
+
+    <h2>Here are a list of the available tours. You can create, buy, delete or favorite tours.</h2>
+    <form action="/create_a_tour" , method="POST">
+
     <h2 id="instruction">To sell your tour, you must enter details for your tour first:</h2>
     <form action="/create_a_tour" , method="POST" id="form_create_tour_input">
 
-        <input type="text" , name="Title" , placeholder="Title" class="input_styling">
-        <input type="text" , name="Description" , placeholder="Description" class="input_styling">
-        <input type="text" , name="Country" , placeholder="Country" class="input_styling">
-        <input type="text" , name="Location" , placeholder="Location" class="input_styling">
-        <input type="date" , name="Date" class="input_styling">
+        <input type="text" name="Title" placeholder="Title" class="input_styling">
+        <input type="text" name="Description" placeholder="Description" class="input_styling">
+        <input type="text" name="Country" placeholder="Country" class="input_styling">
+        <input type="text" name="Location" placeholder="Location" class="input_styling">
+        <input type="date" name="Date" class="input_styling">
         <button type="submit" class="tour_button_styling">Create a tour</button>
     </form>
+
 
     <form action="/checkbox_tour" method="POST" id="available_tours">
         <ul>
@@ -41,19 +50,19 @@
             </li>
             {% endfor %}
         </ul>
+        <h3>After you have selected preferred tour(s), choose a payment method and proceed to checkout:</h3>
+        <select id="dropdown">
+            <option value="valg1">Card</option>
+            <option value="valg2">Vipps</option>
+        </select>
+        <button type="submit" name="handle_action" value="buy" class="checkbox_buy_button_styling">Buy tour</button> <br>
         <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Delete</button>
-        <button type="submit" name="handle_action" value="buy" class="checkbox_button_styling">Buy tour</button>
         <button type="submit" name="handle_action" value="favorite" class="checkbox_button_styling">Favorite tour</button>
-        <button type="submit" name="handle_action" value="admin" class="checkbox_button_styling">Go to admin page</button> <br>
-    </form> <br>
+        <button type="submit" name="handle_action" value="admin" class="checkbox_button_styling">Go to admin page</button>
+    </form>
 
 
-    <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
-    <a href="{{ url_for('favorites') }}">Favorites</a>
-    <a href="{{ url_for('who_bought') }}">who bought my tours</a>
-    <br>
-
-    <h2>Bought tours:</h2>
+    <h2>Your bought tours:</h2>
     <form action="/remove_bought_tour" method="POST" id="bought_tours">
         <ul>
             {% for tour in list_of_bought_tours %}
@@ -67,16 +76,12 @@
             </li>
             {% endfor %}
         </ul>
-        <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Remove tour</button>
+        <h3>Unable to attend a tour? Select the tour you wish to cancel and click the 'Cancel Tour' button:</h3>
+        <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Cancel tour</button>
         <!-- <button type="submit" name="handle_action" value="remove">Remove</button> -->
     </form>
     </div>
 
-    <!-- Logut knappen bare sender en tilbake til index-siden uten noen form for logutfunksjonalitet. -->
-    <div id="sidebar">
-        <a href="{{ url_for('favorites') }}">Favorites</a> <br>
-        <a href="{{ url_for('index') }}">Logout</a>
-    </div>
 
 </div>
 </body>

@@ -6,7 +6,6 @@ from backend.autentication.login import get_user_online_is_admin
 
 pathing = os.path.dirname(__file__) + "/database.db"
 
-
 def Tour_create(title, description, country, location, date):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
@@ -20,7 +19,6 @@ def Tour_create(title, description, country, location, date):
         print("FEIL I CREATE TOUR ")
         return 0
 
-
 def Tour_get_all():
     try:
         con = sqlite3.connect(pathing)
@@ -30,7 +28,6 @@ def Tour_get_all():
         return tur
     except:
         print("FEIL I TOUR_GET_ALL")
-
 
 def Tour_get(id):
     try:
@@ -43,7 +40,6 @@ def Tour_get(id):
     except:
         print("FEIL I TOUR_GET")
 
-
 def Tour_find_title(Title):
     try:
         con = sqlite3.connect(pathing)
@@ -54,7 +50,6 @@ def Tour_find_title(Title):
         return title
     except:
         print("FEIL I TOUR_FIND_TITLE")
-
 
 def Tour_filter_by_country(Country):
     try:
@@ -67,7 +62,7 @@ def Tour_filter_by_country(Country):
     except:
         print("FEIL I TOUR_FILTER_BY_COUNTRY")
 
-def Tour_bought(Tur_id,Bruker_id):
+def Tour_bought(Tur_id, Bruker_id):
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
@@ -76,7 +71,6 @@ def Tour_bought(Tur_id,Bruker_id):
         con.commit()
     except:
         print("FEIL I TOUR_BOUGHT")
-
 
 def Tour_who_bought(user):
     try:
@@ -87,7 +81,6 @@ def Tour_who_bought(user):
         return userr
     except:
         print("FEIL I TOUR_WHO_BOUGHT")
-
 
 def Tour_delete(id):
     con = sqlite3.connect(pathing)
@@ -112,7 +105,6 @@ def get_booked_tour_from_current_user(global_key):
     list_of_bought_tours = cursor.fetchall()
     return list_of_bought_tours
 
-
 def get_favorites_sql(id_user):
     db = sqlite3.connect(pathing)
     cursor = db.cursor()
@@ -127,7 +119,6 @@ def get_favorites_sql(id_user):
     list_of_favorited_tours = cursor.fetchall()
     db.close()
     return list_of_favorited_tours
-
 
 def remove_bought_tour_sql(user_id_global, selected, action):
     database = sqlite3.connect(pathing)
@@ -174,8 +165,6 @@ def get_user_list():
     cursor.execute("SELECT Username FROM User")
     users = cursor.fetchall()
 
-    #db.close()
-    #return [user[0] for user in users]
     return users
 
 def Tour_edit(Title, Description, Country, Location, Date, ID):

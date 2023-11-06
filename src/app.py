@@ -1,5 +1,3 @@
-import sqlite3
-
 from flask import Flask, render_template, url_for, redirect
 
 from backend.database.Tour import get_user_list
@@ -77,7 +75,6 @@ def adminpage():
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     list_of_users = get_user_list()
 
-
     return render_template('/adminpage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours, users=list_of_users)
 
 
@@ -87,6 +84,10 @@ def users():
 
     return render_template('/users.html', users=list_of_users)
 
+
+@application.route('/support_senter')
+def support_senter():
+    return render_template('/support_senter.html')
 
 
 if __name__ == '__main__':

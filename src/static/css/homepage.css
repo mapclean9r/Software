@@ -6,7 +6,7 @@
 #grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr
 }
 
 
@@ -44,6 +44,7 @@
     box-sizing: border-box;
 }
 
+
 .tour_button_styling{
   background-color: #73C6B6;
   border: none;
@@ -72,6 +73,35 @@
 }
 
 
+.checkbox_buy_button_styling{
+  background-color: #66d47f;
+  border: none;
+  color: black;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+.top_links_styling{
+  background-color: #262626;
+  border: none;
+  color: white;
+  padding: 5px 16px;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 1px 2px;
+  cursor: pointer;
+}
+
+
 #available_tours{
     grid-column: 2/4;
     grid-row: 3/4;
@@ -86,9 +116,10 @@
 
 #colored_body{
     grid-column: 2/4;
-    grid-row: 1/6;
+    grid-row: 1/5;
     background-color: #F7F7F7;
 }
+
 
 #sidebar{
     grid-column: 4/5;
