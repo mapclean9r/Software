@@ -19,36 +19,25 @@ class UserLogin:
         self.admin = admin
 
     def username_check_to_database(self):
-        tuple = username_get(self.name)
-        if tuple is not None:
-            for x in tuple:
-                b = x
-            if self.name == b:
-                return True
-            else:
-                return False
+        b = UserLogin.name_tuple_to_str(self)
+        if self.name == b:
+            return True
+        else:
+            return False
 
     def password_check_to_database(self):
-        tuple = password_get(self.name)
-        if tuple is not None:
-            for x in tuple:
-                print(x)
-                b = x
-            if self.password == b:
-                return True
-            else:
-                return False
+        b = UserLogin.password_tuple_to_str(self)
+        if self.password == b:
+            return True
+        else:
+            return False
 
     def admin_check_to_database(self):
-        tuple = admin_get(self.name)
-        if tuple is not None:
-            for x in tuple:
-                print(x)
-                b = x
-            if admin_get(b):
-                return self.admin
-            else:
-                return False
+        b = UserLogin.admin_tuple_to_str(self)
+        if admin_get(b):
+            return self.admin
+        else:
+            return False
 
     def login_process(self):
         self.save_user_online()
@@ -65,6 +54,24 @@ class UserLogin:
         data = {'user_online': self.name}
         with open(pathing, 'w') as file:
             json.dump(data, file)
+
+    def name_tuple_to_str(self):
+        tuple = username_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                return x
+
+    def password_tuple_to_str(self):
+        tuple = password_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                return x
+
+    def admin_tuple_to_str(self):
+        tuple = admin_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                return x
 
 
 # Gets the current username in the .json file
