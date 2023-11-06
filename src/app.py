@@ -21,7 +21,7 @@ def registrer_page():
     return render_template('/registrer.html')
 
 
-@application.route('/homepage')
+@application.route('/homepage', methods=['GET', 'POST'])
 def homepage():
     global global_user_id
     list_tours = get_list_tours()
