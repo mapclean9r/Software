@@ -55,7 +55,8 @@
         <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Delete</button>
         <button type="submit" name="handle_action" value="favorite" class="checkbox_button_styling">Favorite tour</button>
         {% if is_admin == True: %}
-            <button type="submit" name="handle_action" value="admin" class="checkbox_button_styling">Go to admin page</button>
+            <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
+
         {% else %}
 
         {% endif %}
