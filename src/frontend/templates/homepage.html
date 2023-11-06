@@ -17,7 +17,12 @@
     <a href="{{ url_for('who_bought') }}" class="top_links_styling">My created tours</a>
     <a href="{{ url_for('support_senter') }}" class="top_links_styling">Supportsenter</a>
     <a href="{{ url_for('index') }}" class="top_links_styling">Logout</a>
+        {% if is_admin == True: %}
+            <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
 
+        {% else %}
+
+        {% endif %}
     <h2>Here are a list of the available tours. You can create, buy, delete or favorite tours.</h2>
     <form action="/create_a_tour" , method="POST">
 
@@ -54,12 +59,6 @@
         <button type="submit" name="handle_action" value="buy" class="checkbox_buy_button_styling">Buy tour</button> <br>
         <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Delete</button>
         <button type="submit" name="handle_action" value="favorite" class="checkbox_button_styling">Favorite tour</button>
-        {% if is_admin == True: %}
-            <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
-
-        {% else %}
-
-        {% endif %}
 
     </form>
 
