@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, redirect
 
+from backend.autentication.login import get_user_online_is_admin
 from backend.database.Tour import get_user_list
 from backend.handler.auth_handler import get_username_checker, get_start_login_process
 from backend.handler.favorite_handler import get_favorite_tours_from_user
@@ -26,7 +27,9 @@ def homepage():
     global global_user_id
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
-    return render_template('/homepage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours)
+    is_admin = get_user_online_is_admin()
+    return render_template('/homepage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours,
+                           is_admin=is_admin)
 
 
 @application.route('/create_a_tour', methods=['POST'])
@@ -47,6 +50,7 @@ def remove_bought_tour():
     global global_user_id
     get_remove_bought_tour(global_user_id)
     return redirect(url_for('homepage'))
+
 
 
 @application.route('/favorites')
