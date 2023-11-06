@@ -149,30 +149,6 @@ def remove_favorite_tour_sql(user_id_global, selected, action):
     database.close()
 
 
-def checkbox_function(glob_id, selected, action):
-    database = sqlite3.connect('backend/database/database.db')
-    cursor = database.cursor()
-
-    if action == 'delete':
-        for ID in selected:
-            cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
-    elif action == 'buy':
-        for ID in selected:
-            cursor.execute(
-                'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
-    elif action == 'favorite':
-        for ID in selected:
-            cursor.execute(
-                'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
-    elif action == 'admin':
-        if get_user_online_is_admin():
-            return redirect(url_for('adminpage'))
-    elif action == 'users':
-        return redirect(url_for('users'))
-    database.commit()
-    database.close()
-
-
 def list_of_user_bought_tours(global_id):
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()

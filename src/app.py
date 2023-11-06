@@ -40,7 +40,6 @@ def create_a_tour():
 @application.route('/checkbox_tour', methods=['POST'])
 def checkbox_tour():
     global global_user_id
-    get_checkbox_to_lists(global_user_id)
     get_checkbox_outcomes(global_user_id)
     return redirect(url_for('homepage'))
 
@@ -77,6 +76,7 @@ def adminpage():
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     list_of_users = get_user_list()
+
 
     return render_template('/adminpage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours, users=list_of_users)
 

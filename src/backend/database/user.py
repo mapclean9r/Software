@@ -72,7 +72,7 @@ def admin_get(Username):
         cur = con.cursor()
         cur.execute("SELECT Admin FROM User WHERE Username = ?", (Username,))
         admin = cur.fetchone()
-        return admin
+        return admin[0]
     except:
         print("FEIL I ADMIN_GET")
 
