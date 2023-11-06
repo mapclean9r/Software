@@ -154,23 +154,6 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
     except:
         print("FEIL I EDIT TOUR ")
 
-def checkbox_function(glob_id, selected, action):
-    database = sqlite3.connect('backend/database/database.db')
-    cursor = database.cursor()
-    if action == 'delete':
-        for ID in selected:
-            cursor.execute('DELETE FROM Tour WHERE ID = ?', (ID,))
-    elif action == 'buy':
-        for ID in selected:
-            cursor.execute(
-                'INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
-    elif action == 'favorite':
-        for ID in selected:
-            cursor.execute(
-                'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (glob_id, ID))
-    database.commit()
-    database.close()
-
 def checkbox_outcomes(global_id, selected, action):
     database = sqlite3.connect('backend/database/database.db')
     cursor = database.cursor()
