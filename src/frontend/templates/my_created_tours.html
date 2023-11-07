@@ -29,8 +29,18 @@
     <h2>
         List of people attending to your tours:
     </h2>
-        <br />
-        <hr />
+    <form action="/people_attending_my_tours" method="POST">
+        <ul>
+            {% for tour in list_people_attending_my_tours%}
+            <li>
+                <strong>Title:</strong> {{ tour[1] }}
+                <strong>Number of people attending:</strong> {{ tour[2] }}
+            </li>
+            {% endfor %}
+        </ul>
+    </form>
+    <br />
+    <hr />
     <a href="{{ url_for('homepage') }}">Back to homepage</a>
 </body>
 </html>
