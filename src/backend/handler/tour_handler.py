@@ -2,7 +2,7 @@ from flask import request
 
 from backend.autentication.login import get_user_online
 from backend.database.Tour import remove_bought_tour_sql, Tour_create, list_tours, \
-    list_of_user_bought_tours, checkbox_outcomes, remove_favorite_tour_sql, who_bought_my_tour, \
+    list_of_user_bought_tours, checkbox_outcomes, remove_favorite_tour_sql, tours_that_i_have_created, \
     remove_tours_that_i_have_created
 
 
@@ -44,11 +44,9 @@ def get_tour_create():
 def get_list_tours():
     return list_tours()
 
-
-
 def get_Tour_who_bought():
     created_by = get_user_online()
-    return who_bought_my_tour(created_by)
+    return tours_that_i_have_created(created_by)
 
 def get_list_of_user_bought_tours(global_id):
     return list_of_user_bought_tours(global_id)
