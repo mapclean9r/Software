@@ -1,7 +1,7 @@
 import json
 from flask import Flask, render_template, url_for, redirect, request
 
-from ..database import user
+
 from ..database.user import *
 
 # Slik bruker du klassen
@@ -77,7 +77,7 @@ class UserLogin:
 # Gets the current username in the .json file
 def get_user_online():
     try:
-        with open('src/backend/autentication/user_online.json', 'r') as file:
+        with open('backend/autentication/user_online.json', 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
