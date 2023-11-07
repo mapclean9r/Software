@@ -59,7 +59,7 @@ def favorites():
 @application.route('/who_bought')
 def who_bought():
     list_who_bought_my_tours = get_Tour_who_bought()
-    return render_template('/who_bought.html', list_my_bought_tours=list_who_bought_my_tours)
+    return render_template('/who_bought_my_tours.html', list_my_bought_tours=list_who_bought_my_tours)
 
 @application.route('/remove_who_bought', methods=['POST'])
 def remove_who_bought():
