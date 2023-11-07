@@ -23,7 +23,7 @@ def get_who_bought():
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_who_bought')
         action = request.form.get('handle_action')
-        return remove_tours_that_i_have_created(id, selected, action)
+        return remove_tours_that_i_have_created(selected, action)
 
 def get_checkbox_outcomes(gloal_id):
     selected = request.form.getlist('checkbox_row')

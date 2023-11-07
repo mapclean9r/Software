@@ -138,7 +138,7 @@ def remove_bought_tour_sql(user_id_global, selected, action):
     database.commit()
     database.close()
 
-def remove_tours_that_i_have_created(user_id_global, selected, action):
+def remove_tours_that_i_have_created(selected, action):
     database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':

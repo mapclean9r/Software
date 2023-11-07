@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, redirect
 
 from backend.database.Tour import get_user_list
 from backend.database.user import get_id_if_provide_username
-from backend.handler.auth_handler import get_username_checker, get_start_login_process, get_id_from_username
+from backend.handler.auth_handler import get_username_checker, get_start_login_process
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.handler.tour_handler import *
 
