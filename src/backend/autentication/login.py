@@ -91,7 +91,7 @@ def login_proc():
         username = request.form['name']
         password = request.form['password']
 
-        db = sqlite3.connect('src/backend/database/database.db')
+        db = sqlite3.connect('backend/database/database.db')
         cursor = db.cursor()
         cursor.execute("SELECT * from Tour")
         list = cursor.fetchall()
