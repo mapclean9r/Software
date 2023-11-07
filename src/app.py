@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect
 
 from backend.database.Tour import get_user_list
+from backend.database.user import get_id_if_provide_username
 from backend.handler.auth_handler import get_username_checker, get_start_login_process, get_id_from_username
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.handler.tour_handler import *
@@ -24,8 +25,9 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-    global_user_id = get_id_from_username()
-    print(global_user_id)
+
+    global_user_id = get_id_if_provide_username(get_user_online())[0]
+    
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     return render_template('/homepage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours)
