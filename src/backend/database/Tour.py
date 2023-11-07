@@ -82,7 +82,6 @@ def Tour_who_bought(user):
     except:
         print("FEIL I TOUR_WHO_BOUGHT")
 
-
 def Tour_delete(id):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
@@ -121,14 +120,14 @@ def get_favorites_sql(id_user):
     db.close()
     return list_of_favorited_tours
 
-def who_bought_my_tour(user_name):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-
-    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_name,))
-    # fungerer ikke helt hvis ikke jeg har *
-    list_tours = cur.fetchall()
-    return list_tours
+def remove_favorite_tour_sql(user_id_global, selected, action):
+    database = sqlite3.connect(pathing)
+    cursor = database.cursor()
+    if action == 'delete':
+        for id in selected:
+            cursor.execute('DELETE FROM TourFavorites WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id,))
+    database.commit()
+    database.close()
 
 def remove_bought_tour_sql(user_id_global, selected, action):
     database = sqlite3.connect(pathing)
@@ -139,6 +138,14 @@ def remove_bought_tour_sql(user_id_global, selected, action):
     database.commit()
     database.close()
 
+def tours_that_i_have_created(user_name):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+
+    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_name,))
+    list_tours = cur.fetchall()
+    return list_tours
+
 def remove_tours_that_i_have_created(selected, action):
     database = sqlite3.connect(pathing)
     cursor = database.cursor()
@@ -147,16 +154,6 @@ def remove_tours_that_i_have_created(selected, action):
             cursor.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     database.commit()
     database.close()
-
-def remove_favorite_tour_sql(user_id_global, selected, action):
-    database = sqlite3.connect(pathing)
-    cursor = database.cursor()
-    if action == 'delete':
-        for id in selected:
-            cursor.execute('DELETE FROM TourFavorites WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id,))
-    database.commit()
-    database.close()
-
 
 def list_of_user_bought_tours(global_id):
     db = sqlite3.connect(pathing)
@@ -168,7 +165,6 @@ def list_of_user_bought_tours(global_id):
     list_of_bought_tours = cursor.fetchall()
     db.close()
     return list_of_bought_tours
-
 
 def list_tours():
     db = sqlite3.connect(pathing)
@@ -182,7 +178,6 @@ def get_user_list():
     cursor = db.cursor()
     cursor.execute("SELECT Username FROM User")
     users = cursor.fetchall()
-
     return users
 
 def Tour_edit(Title, Description, Country, Location, Date, ID):
