@@ -60,16 +60,16 @@ def favorites():
     return render_template('/favorites.html', list_of_favorited_tours=list_of_favorited_tours)
 
 
-@application.route('/who_bought')
-def who_bought():
+@application.route('/my_created_tours')
+def my_created_tours():
     list_who_bought_my_tours = get_Tour_who_bought()
-    return render_template('/who_bought_my_tours.html', list_my_bought_tours=list_who_bought_my_tours)
+    return render_template('/my_created_tours.html', list_my_bought_tours=list_who_bought_my_tours)
 
-@application.route('/remove_who_bought', methods=['POST'])
+@application.route('/remove_my_created_tours', methods=['POST'])
 def remove_who_bought():
     global global_user_id
     get_who_bought()
-    return redirect(url_for('who_bought'))
+    return redirect(url_for('my_created_tours'))
 
 @application.route('/remove_favorite_tour', methods=['POST'])
 def remove_favorite_tour():
