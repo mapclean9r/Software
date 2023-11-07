@@ -126,6 +126,7 @@ def who_bought_my_tour(user_name):
     cur = con.cursor()
 
     cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_name,))
+    # fungerer ikke helt hvis ikke jeg har *
     list_tours = cur.fetchall()
     return list_tours
 
