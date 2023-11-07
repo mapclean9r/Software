@@ -6,5 +6,21 @@
 </head>
 <body>
     <a href="{{ url_for('homepage') }}">Back to homepage</a>
+
+    <form action="/remove_who_bought" method="POST">
+        <ul>
+            {% for tour in list_my_bought_tours%}
+            <li>
+                <input type="checkbox" name="checkbox_who_bought" value="{{ tour[0] }}">
+                <strong>Title:</strong> {{ tour[1] }}
+                <strong>Description:</strong> {{ tour[2] }}
+                <strong>Country:</strong> {{ tour[3] }}
+                <strong>Location:</strong> {{ tour[4] }}
+                <strong>Date:</strong> {{ tour[5] }}
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Delete</button>
+    </form>
 </body>
 </html>

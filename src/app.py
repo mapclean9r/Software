@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, redirect
 
-from backend.database.Tour import get_user_list
+from backend.database.Tour import get_user_list, Tour_who_bought
 from backend.handler.auth_handler import get_username_checker, get_start_login_process
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.handler.tour_handler import *
@@ -58,8 +58,14 @@ def favorites():
 
 @application.route('/who_bought')
 def who_bought():
-    return render_template('/who_bought.html')
+    list_who_bought_my_tours = get_Tour_who_bought()
+    return render_template('/who_bought.html', list_my_bought_tours=list_who_bought_my_tours)
 
+@application.route('/remove_who_bought', methods=['POST'])
+def remove_who_bought():
+    global global_user_id
+    get_who_bought()
+    return redirect(url_for('who_bought'))
 
 @application.route('/remove_favorite_tour', methods=['POST'])
 def remove_favorite_tour():
@@ -81,7 +87,6 @@ def adminpage():
 @application.route('/users')
 def users():
     list_of_users = get_user_list()
-
     return render_template('/users.html', users=list_of_users)
 
 
