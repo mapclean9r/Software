@@ -48,8 +48,6 @@ def get_list_tours():
 
 def get_Tour_who_bought():
     created_by = get_user_online()
-    selected = request.form.getlist('checkbox_row')
-    action = request.form.get('handle_action')
     return who_bought_my_tour(created_by)
 
 def get_list_of_user_bought_tours(global_id):
