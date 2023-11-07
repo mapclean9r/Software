@@ -24,8 +24,9 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-    global_user_id = get_id_from_username()
+    #global_user_id = get_id_from_username()
     print(global_user_id)
+
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     return render_template('/homepage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours)
