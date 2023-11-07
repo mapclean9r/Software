@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+
 pathing = os.path.dirname(__file__) + "/database.db"
 con = sqlite3.connect(pathing)
 cur = con.cursor()
@@ -88,4 +89,3 @@ def id_get(Username):
         return int(user)
     except:
         print("FEIL I ID_GET")
-

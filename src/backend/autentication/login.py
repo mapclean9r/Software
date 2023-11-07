@@ -1,7 +1,7 @@
 import json
 from flask import Flask, render_template, url_for, redirect, request
 
-from ..database import user
+
 from ..database.user import *
 
 # Slik bruker du klassen
