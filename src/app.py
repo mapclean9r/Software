@@ -66,7 +66,7 @@ def my_created_tours():
     global_user_id = get_id_if_provide_username()
 
     list_who_bought_my_tours = get_Tour_who_bought()
-    list_people_attending = get_list_tours_with_columns_title_and_number_of_people_attending(global_user_id)
+    list_people_attending = get_list_tours_with_columns_title_and_number_of_people_attending()
 
     return render_template('/my_created_tours.html',
                            list_my_bought_tours = list_who_bought_my_tours,
