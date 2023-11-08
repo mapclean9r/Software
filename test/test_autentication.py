@@ -26,3 +26,7 @@ def test_admin_check_to_database():
     z = False
     name_password = UserLogin(x, y, z)
     assert UserLogin.admin_check_to_database(name_password) == False
+
+# Register
+
+def test_
