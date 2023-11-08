@@ -1,7 +1,6 @@
 import json
 from flask import Flask, render_template, url_for, redirect, request
 
-
 from ..database.user import *
 
 # Slik bruker du klassen
@@ -112,7 +111,7 @@ def login_proc():
         is_admin = UserLogin.admin_check_to_database(t)
         if userr and passw:
             return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list,
-                                   list_of_bought_tours=list_of_bought_tours)
+                                       list_of_bought_tours=list_of_bought_tours)
         else:
             return render_template('/index.html')
     return render_template('index.html')
