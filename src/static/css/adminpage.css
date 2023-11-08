@@ -44,6 +44,7 @@
     box-sizing: border-box;
 }
 
+
 .tour_button_styling{
   background-color: #C70039;
   border: none;
@@ -68,6 +69,35 @@
   display: inline-block;
   font-size: 12px;
   margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+.checkbox_buy_button_styling{
+  background-color: #66d47f;
+  border: none;
+  color: black;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+.top_links_styling{
+  background-color: #262626;
+  border: none;
+  color: white;
+  padding: 5px 16px;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 1px 1px;
   cursor: pointer;
 }
 
