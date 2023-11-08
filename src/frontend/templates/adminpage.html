@@ -15,6 +15,19 @@
     <div id="colored_body">
     <h1 id="intro">Hello this is the admin page</h1><br>
 
+    <a href="{{ url_for('favorites') }}" class="top_links_styling">Favorites</a>
+    <a href="{{ url_for('who_bought') }}" class="top_links_styling">My created tours</a>
+    <a href="{{ url_for('support_senter') }}" class="top_links_styling">Supportsenter</a>
+    <a href="{{ url_for('index') }}" class="top_links_styling">Logout</a>
+        {% if is_admin %}
+            <a href="{{ url_for('homepage') }}" class="top_links_styling">Back to homepage</a>
+            <a href="{{ url_for('users') }}" class="top_links_styling">Go to users page</a>
+
+        {% else %}
+
+        {% endif %}
+
+
     <h2 id="instruction">To sell your tour, you must enter details for your tour first:</h2>
     <form action="/admin_create_a_tour" method="POST" id="form_create_tour_input">
 
@@ -43,7 +56,11 @@
         <button type="submit" name="handle_action" value="buy" class="checkbox_button_styling">Buy tour</button>
         <button type="submit" name="handle_action" value="favorite" class="checkbox_button_styling">Favorite tour</button>
         <button type="submit" name="handle_action" value="admin" class="checkbox_button_styling">Go to admin page</button>
+
+        {% if is_admin %}
         <button type="submit" name="handle_action" value="users" class="checkbox_button_styling">See users</button> <br>
+        {% endif %}
+
     </form> <br>
 
 
@@ -62,7 +79,6 @@
             {% endfor %}
         </ul>
         <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Remove tour</button>
-        <!-- <button type="submit" name="handle_action" value="remove">Remove</button> -->
     </form>
     </div>
 

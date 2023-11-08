@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, redirect
 
+from backend.autentication.login import UserLogin, get_user_online_is_admin
 from backend.database.Tour import get_user_list
 from backend.handler.auth_handler import get_username_checker, get_start_login_process
 from backend.handler.favorite_handler import get_favorite_tours_from_user
@@ -26,7 +27,9 @@ def homepage():
     global global_user_id
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
-    return render_template('/homepage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours)
+    is_admin = get_user_online_is_admin
+
+    return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours)
 
 
 @application.route('/create_a_tour', methods=['POST'])
@@ -74,8 +77,9 @@ def adminpage():
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     list_of_users = get_user_list()
+    is_admin = get_user_online_is_admin
 
-    return render_template('/adminpage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours, users=list_of_users)
+    return render_template('/adminpage.html', is_admin=is_admin, list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours, users=list_of_users)
 
 
 @application.route('/admin_checkbox_tour', methods=['POST'])

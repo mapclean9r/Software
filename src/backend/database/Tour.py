@@ -190,11 +190,5 @@ def checkbox_outcomes(global_id, selected, action):
         for ID in selected:
             cursor.execute(
                 'INSERT INTO TourFavorites (User_ID, Tour_ID) VALUES (?, ?)', (global_id, ID))
-    elif action == 'admin':
-        if get_user_online_is_admin():
-            return redirect(url_for('adminpage'))
-    elif action == 'users':
-        if get_user_online_is_admin():
-            return redirect(url_for('users'))
     database.commit()
     database.close()
