@@ -34,7 +34,7 @@ def username_checker():
 
 
 def validator_input_is_valid(username, password):
-    if username is "" or password is "":
+    if username == "" or password == "":
         return False
     if len(username) >= 14 or len(password) >= 14:
         return False

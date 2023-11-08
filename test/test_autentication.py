@@ -42,4 +42,3 @@ def test_validator_input_is_false():
     username = "horsefreuifjerufjerujf"
     password = "passwkjjjnnjnkjnkjnkjnkjnkjnkjn"
     assert validator_input_is_valid(username,password) is False
-    
