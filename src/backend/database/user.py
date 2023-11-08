@@ -83,7 +83,7 @@ def id_get(Username):
         con = sqlite3.connect(pathing)
         cur = con.cursor()
         cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
-        user = cur.fetchone
+        user = cur.fetchone()
         return sum(user)
     except:
         print("FEIL I ID_GET")
