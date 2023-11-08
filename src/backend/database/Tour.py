@@ -194,6 +194,7 @@ def checkbox_outcomes(global_id, selected, action):
         if get_user_online_is_admin():
             return redirect(url_for('adminpage'))
     elif action == 'users':
-        return redirect(url_for('users'))
+        if get_user_online_is_admin():
+            return redirect(url_for('users'))
     database.commit()
     database.close()

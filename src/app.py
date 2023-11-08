@@ -78,6 +78,26 @@ def adminpage():
     return render_template('/adminpage.html', list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours, users=list_of_users)
 
 
+@application.route('/admin_checkbox_tour', methods=['POST'])
+def admin_checkbox_tour():
+    global global_user_id
+    get_checkbox_outcomes(global_user_id)
+    return redirect(url_for('adminpage'))
+
+
+@application.route('/admin_remove_bought_tour', methods=['POST'])
+def admin_remove_bought_tour():
+    global global_user_id
+    get_remove_bought_tour(global_user_id)
+    return redirect(url_for('adminpage'))
+
+
+@application.route('/admin_create_a_tour', methods=['POST'])
+def admin_create_a_tour():
+    get_tour_create()
+    return redirect(url_for('adminpage'))
+
+
 @application.route('/users')
 def users():
     list_of_users = get_user_list()
