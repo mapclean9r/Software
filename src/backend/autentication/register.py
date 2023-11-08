@@ -39,7 +39,7 @@ def username_checker():
 def contains_14_and_over_words_check(username, password):
     if username is "" and password is "":
         return False
-    if len(username) >= 14 and len(password):
+    if len(username) >= 14 and len(password) >= 14:
         return False
     else:
         return True
