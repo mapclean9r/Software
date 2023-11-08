@@ -31,8 +31,17 @@ def username_checker():
             error_register = "Username exists."
             return render_template('/registrer.html', error_register=error_register)
         elif username != user.username_get(username):
-            if username is not "" and password is not "":
+            if contains_14_and_over_words_check(username, password) is True:
                 user.create_user(username, password, is_admin)
                 return render_template('/registrer.html')
             else:
                 return render_template('/registrer.html')
+
+
+def contains_14_and_over_words_check(username, password):
+    if username is not "" and password is not "":
+        return False
+    if len(username) >= 14 and len(password):
+        return False
+    else:
+        return True
