@@ -124,6 +124,7 @@ def get_user_online_is_admin():
     else:
         return False
 
+
 # Usage for json save_user_online & get_user_online
 # login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values
 # UserLogin.save_user_online(login_cred1)

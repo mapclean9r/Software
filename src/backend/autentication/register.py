@@ -25,8 +25,6 @@ def username_checker():
         username = request.form['name']
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
-        print(user.username_get(username))
-        print(username)
         if username == user.username_get(username):
             error_register = "Username exists."
             return render_template('/registrer.html', error_register=error_register)
@@ -39,7 +37,7 @@ def username_checker():
 
 
 def contains_14_and_over_words_check(username, password):
-    if username is not "" and password is not "":
+    if username is "" and password is "":
         return False
     if len(username) >= 14 and len(password):
         return False
