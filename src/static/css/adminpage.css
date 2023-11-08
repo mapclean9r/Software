@@ -1,0 +1,105 @@
+*{
+    font-family: "Gill Sans", sans-serif;
+}
+
+
+#grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr
+}
+
+
+#intro{
+    font-decoration: none;
+    font-size: 30px;
+    font-weight: 900;
+    grid-column: 2/4;
+    grid-row: 1/2;
+    background-color: #C70039;
+    padding: 20px;
+}
+
+
+#instruction{
+    font-decoration: none;
+    grid-column: 2/5;
+    grid-row: 1/2;
+    padding-left: 10px;
+}
+
+
+#form_create_tour_input{
+    grid-column: 2/4;
+    grid-row: 2/3;
+}
+
+
+.input_styling{
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.tour_button_styling{
+  background-color: #C70039;
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+.checkbox_button_styling{
+  background-color: #ffffff;
+  border: none;
+  color: black;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+#available_tours{
+    grid-column: 2/4;
+    grid-row: 3/4;
+}
+
+
+#bought_tours{
+    grid-column: 2/4;
+    grid-row: 5/6;
+}
+
+
+#colored_body{
+    grid-column: 2/4;
+    grid-row: 1/6;
+    background-color: #F7F7F7;
+}
+
+#sidebar{
+    grid-column: 4/5;
+    grid-row: 3/4;
+}
+
+.userlist{
+    grid-column: 1/2;
+    grid-row: 1/6;
+}
+
+ul{
+    list-style-type: none;
+}

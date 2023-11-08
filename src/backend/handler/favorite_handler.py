@@ -1,4 +1,4 @@
-from backend.database.Tour import get_favorites_sql
+from backend.database.favorites import get_favorites_sql
 
 
 def get_favorite_tours_from_user(user_id):

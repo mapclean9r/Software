@@ -1,13 +1,15 @@
 import json
-from flask import render_template
+from flask import Flask, render_template, url_for, redirect, request
+
 
 from ..database.user import *
-
 
 # Slik bruker du klassen
 # x = "brukernavn" y = "passord" z = True eller False
 # variabel_navn = UserLogin(x, y, z)
 # UserLogin.username_check_to_database(variabel_navn)
+global_user_id = 0
+
 
 class UserLogin:
     def __init__(self, username, password, admin):
@@ -16,36 +18,25 @@ class UserLogin:
         self.admin = admin
 
     def username_check_to_database(self):
-        tuple = username_get(self.name)
-        if tuple is not None:
-            for x in tuple:
-                b = x
-            if self.name == b:
-                return True
-            else:
-                return False
+        b = UserLogin.name_tuple_to_str(self)
+        if self.name == b:
+            return True
+        else:
+            return False
 
     def password_check_to_database(self):
-        tuple = password_get(self.name)
-        if tuple is not None:
-            for x in tuple:
-                print(x)
-                b = x
-            if self.password == b:
-                return True
-            else:
-                return False
+        b = UserLogin.password_tuple_to_str(self)
+        if self.password == b:
+            return True
+        else:
+            return False
 
     def admin_check_to_database(self):
-        tuple = admin_get(self.name)
-        if tuple is not None:
-            for x in tuple:
-                print(x)
-                b = x
-            if admin_get(b):
-                return self.admin
-            else:
-                return False
+        b = UserLogin.admin_tuple_to_str(self)
+        if b is True:
+            return True
+        else:
+            return False
 
     def login_process(self):
 
@@ -74,28 +65,68 @@ class UserLogin:
         with open(pathing, 'w') as file:
             json.dump(data, file)
 
+    def name_tuple_to_str(self):
+        tuple = username_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                return x
+
+    def password_tuple_to_str(self):
+        tuple = password_get(self.name)
+        if tuple is not None:
+            for x in tuple:
+                return x
+
+    def admin_tuple_to_str(self):
+        tuple = admin_get(self.name)
+        if tuple:
+            if tuple is not None:
+                for x in tuple:
+                    return bool(x)
+
 
 # Gets the current username in the .json file
 def get_user_online():
     try:
-        with open('user_online.json', 'r') as file:
+        with open('backend/autentication/user_online.json', 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
         return r'user_online.json File Not Found'
 
 
-def login_checker(username_input, password_input, user_check_function, globalkey):
-    userlogin_is_valid = user_check_function(
-        username_input, password_input)
+def login_proc():
+    global global_user_id
 
-    print(f"Current user ID: {globalkey}")
-    if userlogin_is_valid:
-        print("You are logged in")
-        return render_template('/homepage.html')
-    else:
-        print("Something happend, you are not logged in")
-        return render_template('/index.html')
+    if request.method == 'POST':
+        username = request.form['name']
+        password = request.form['password']
+
+        db = sqlite3.connect('backend/database/database.db')
+        cursor = db.cursor()
+        cursor.execute("SELECT * from Tour")
+        list = cursor.fetchall()
+        cursor.execute('''SELECT *
+        FROM Tour
+        INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+        WHERE TourBooked.User_ID = ?''', (global_user_id,))
+
+        list_of_bought_tours = cursor.fetchall()
+        db.close()
+
+        t = UserLogin(username, password, False)
+
+        UserLogin.save_user_online(t)
+
+        userr = UserLogin.username_check_to_database(t)
+        passw = UserLogin.password_check_to_database(t)
+        is_admin = UserLogin.admin_check_to_database(t)
+        if userr and passw:
+            return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list,
+                                   list_of_bought_tours=list_of_bought_tours)
+        else:
+            return render_template('/index.html')
+    return render_template('index.html')
 
 
 def get_user_online_is_admin():

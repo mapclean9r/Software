@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+
 pathing = os.path.dirname(__file__) + "/database.db"
 con = sqlite3.connect(pathing)
 cur = con.cursor()
@@ -29,11 +30,11 @@ def username_get(Username):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     cur.execute("SELECT Username FROM User WHERE Username = ?", (Username,))
-    user = cur.fetchone()
-    return user
+    Username = cur.fetchone()
+    return Username
 
 
-def get_id_if_provide_username(Username):
+def id_if_provide_username(Username):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
@@ -72,21 +73,17 @@ def admin_get(Username):
         cur = con.cursor()
         cur.execute("SELECT Admin FROM User WHERE Username = ?", (Username,))
         admin = cur.fetchone()
-        return admin
+        return admin[0]
     except:
         print("FEIL I ADMIN_GET")
 
 
 def id_get(Username):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
         cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
-        user = cur.fetchone
-        return int(user[0])
+        user = cur.fetchone()
+        return sum(user)
     except:
         print("FEIL I ID_GET")
-
-
