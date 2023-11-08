@@ -87,9 +87,11 @@ def list_tours_with_columns_title_and_number_of_people_attending(user_id):
             SELECT Tour.Title, COUNT(TourBooked.User_ID) AS Attending
             FROM Tour
             LEFT JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-            WHERE Tour.ID = ?
+            WHERE TourBooked.User_ID = ?
             GROUP BY Tour.ID
             ''', (user_id,))
     list_people_attending_tours = cursor.fetchall()
     db.close()
     return list_people_attending_tours
+
+print(list_tours_with_columns_title_and_number_of_people_attending(3))
