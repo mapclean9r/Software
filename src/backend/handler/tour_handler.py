@@ -6,6 +6,7 @@ from backend.database.favorites import remove_favorite_tour_sql
 from backend.database.Tour_advanced import remove_bought_tour_sql, tours_that_i_have_created, \
     remove_tours_that_i_have_created, list_of_user_bought_tours, checkbox_outcomes, \
     list_tours_with_columns_title_and_number_of_people_attending
+from backend.handler.auth_handler import get_id_from_username
 
 
 def get_remove_bought_tour(id):
@@ -53,5 +54,5 @@ def get_Tour_who_bought():
 def get_list_of_user_bought_tours(global_id):
     return list_of_user_bought_tours(global_id)
 
-def get_list_tours_with_columns_title_and_number_of_people_attending(global_id):
-    return list_tours_with_columns_title_and_number_of_people_attending(global_id)
+def get_list_tours_with_columns_title_and_number_of_people_attending(my_id):
+    return list_tours_with_columns_title_and_number_of_people_attending(my_id)

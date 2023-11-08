@@ -84,11 +84,11 @@ def list_tours_with_columns_title_and_number_of_people_attending(user_id):
     db = sqlite3.connect(pathing)
     cursor = db.cursor()
     cursor.execute('''
-            SELECT Tour.Title, COUNT(TourBooked.Tour_ID) AS Attending
+            SELECT Tour.Title, COUNT(TourBooked.User_ID) AS Attending
             FROM Tour
             LEFT JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-            WHERE TourBooked.User_ID = ?
-            GROUP BY Tour.Title
+            WHERE Tour.ID = ?
+            GROUP BY Tour.ID
             ''', (user_id,))
     list_people_attending_tours = cursor.fetchall()
     db.close()
