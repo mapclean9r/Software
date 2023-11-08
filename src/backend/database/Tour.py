@@ -4,17 +4,33 @@ import sqlite3
 pathing = os.path.dirname(__file__) + "/database.db"
 
 def Tour_create(title, description, country, location, date, created_by):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    try:
-        cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,CreatedBy) VALUES(?,?,?,?,?,?)",
-                    (title, description, country, location, date, created_by))
-        con.commit()
-        print("Tur laget")
-        return 1
-    except:
-        print("FEIL I CREATE TOUR ")
+    if len(title) <5 or len(title) >25:
+        print("title needs to be between 5 and 25 characters")
         return 0
+    elif len(description) <5 or len(description) > 45:
+        print("description needs to be between 5 and 45 characters")
+        return 0
+    elif len(country) <1:
+        print("You have not entered a Country in the tour")
+        return 0
+    elif len(location) <1:
+        print("You have not entered a location in the tour")
+        return 0
+    elif len(date) <8:
+        print("You have not entered a date in the tour")
+        return 0
+    else:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
+        try:
+            cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,CreatedBy) VALUES(?,?,?,?,?,?)",
+                        (title, description, country, location, date, created_by))
+            con.commit()
+            print("Tur laget")
+            return 1
+        except:
+            print("FEIL I CREATE TOUR ")
+            return 0
 
 def Tour_get_all():
     try:

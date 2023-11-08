@@ -25,8 +25,3 @@ def test_can_find_title_for_a_tour_when_we_provide_the_right_title():
     new_tour = Tour_create("burgerspisekonkuranse med dressing på salaten", "Nå er jeg mett", "Norge", "Oslo", "2023-09-02", "Rolf Maibrittson")
     assert len(Tour_find_title("burgerspisekonkuranse med dressing på salaten")) >= 1
     Tour_delete_if_title_is_provided("burgerspisekonkuranse med dressing på salaten")
-
-def test_if_all_inputfields_in_a_created_tour_have_values():
-    new_tour = Tour_create("tets1", "e", "Norge", "e", "2025-03-02","Kålrabi")
-    for field in new_tour:
-        str(field) 
