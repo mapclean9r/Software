@@ -75,8 +75,9 @@ class UserLogin:
 
 # Gets the current username in the .json file
 def get_user_online():
+    pathing = os.path.dirname(__file__) + "/user_online.json"
     try:
-        with open('backend/autentication/user_online.json', 'r') as file:
+        with open(pathing, 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
@@ -90,7 +91,7 @@ def login_proc():
         username = request.form['name']
         password = request.form['password']
 
-        db = sqlite3.connect('backend/database/database.db')
+        db = sqlite3.connect(pathing)
         cursor = db.cursor()
         cursor.execute("SELECT * from Tour")
         list = cursor.fetchall()
