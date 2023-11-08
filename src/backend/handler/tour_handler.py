@@ -1,4 +1,4 @@
-from flask import request
+from flask import url_for, redirect, request
 
 from backend.autentication.login import get_user_online
 from backend.database.Tour import Tour_create, list_tours
@@ -41,7 +41,6 @@ def get_tour_create():
         location = request.form['Location']
         date = request.form['Date']
         created_by = get_user_online()
-        print(created_by)
         return Tour_create(title, description, country, location, date, created_by)
 
 def get_list_tours():
