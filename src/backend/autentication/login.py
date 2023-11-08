@@ -1,7 +1,6 @@
 import json
 from flask import Flask, render_template, url_for, redirect, request
 
-
 from ..database.user import *
 
 # Slik bruker du klassen
@@ -87,8 +86,9 @@ class UserLogin:
 
 # Gets the current username in the .json file
 def get_user_online():
+    pathing = os.path.dirname(__file__) + "/user_online.json"
     try:
-        with open('backend/autentication/user_online.json', 'r') as file:
+        with open(pathing, 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
@@ -102,7 +102,7 @@ def login_proc():
         username = request.form['name']
         password = request.form['password']
 
-        db = sqlite3.connect('src/backend/database/database.db')
+        db = sqlite3.connect(pathing)
         cursor = db.cursor()
         cursor.execute("SELECT * from Tour")
         list = cursor.fetchall()
@@ -123,7 +123,7 @@ def login_proc():
         is_admin = UserLogin.admin_check_to_database(t)
         if userr and passw:
             return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list,
-                                   list_of_bought_tours=list_of_bought_tours)
+                                       list_of_bought_tours=list_of_bought_tours)
         else:
             return render_template('/index.html')
     return render_template('index.html')
@@ -135,6 +135,7 @@ def get_user_online_is_admin():
         return True
     else:
         return False
+
 
 # Usage for json save_user_online & get_user_online
 # login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values

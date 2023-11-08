@@ -54,6 +54,12 @@ def Tour_delete(id):
     cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     con.commit()
 
+def Tour_delete_if_title_is_provided(title):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute("DELETE FROM Tour WHERE Title = ?",(title,))
+    con.commit()
+
 def Tour_filter_by_country(Country):
     try:
         con = sqlite3.connect(pathing)

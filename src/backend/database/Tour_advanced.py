@@ -79,3 +79,17 @@ def checkbox_outcomes(global_id, selected, action):
         return redirect(url_for('users'))
     database.commit()
     database.close()
+
+def list_tours_with_columns_title_and_number_of_people_attending(created_by):
+    db = sqlite3.connect(pathing)
+    cursor = db.cursor()
+    cursor.execute('''
+            SELECT Tour.Title, COUNT(TourBooked.User_ID) AS Attending
+            FROM Tour
+            LEFT JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+            WHERE Tour.CreatedBy = ?
+            GROUP BY Tour.Title
+            ''', (created_by,))
+    list_people_attending_tours = cursor.fetchall()
+    db.close()
+    return list_people_attending_tours
