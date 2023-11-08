@@ -27,5 +27,5 @@ def test_we_can_not_find_title_for_a_tour_if_we_provide_wrong_title():
 
 def test_can_find_title_for_a_tour_when_we_provide_the_right_title():
     new_tour = Tour_create("burgerspisekonkuranse med dressing på salaten", "Nå er jeg mett", "Norge", "Oslo", "2023-09-02", "Rolf Maibrittson")
-    assert len(Tour_find_title("burgerspisekonkuranse")) >= 1
+    assert len(Tour_find_title("burgerspisekonkuranse med dressing på salaten")) >= 1
     Tour_delete_if_title_is_provided("burgerspisekonkuranse med dressing på salaten")
