@@ -1,9 +1,10 @@
 from flask import request
 
 from backend.autentication.login import get_user_online
-from backend.database.Tour import remove_bought_tour_sql, Tour_create, list_tours, \
-    list_of_user_bought_tours, checkbox_outcomes, remove_favorite_tour_sql, tours_that_i_have_created, \
-    remove_tours_that_i_have_created
+from backend.database.Tour import Tour_create, list_tours
+from backend.database.favorites import remove_favorite_tour_sql
+from backend.database.Tour_advanced import remove_bought_tour_sql, tours_that_i_have_created, \
+    remove_tours_that_i_have_created, list_of_user_bought_tours, checkbox_outcomes
 
 
 def get_remove_bought_tour(id):
