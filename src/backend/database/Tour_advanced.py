@@ -28,11 +28,10 @@ def remove_bought_tour_sql(user_id_global, selected, action):
     database.close()
 
 
-def tours_that_i_have_created(user_name):
+def tours_that_i_have_created(ID):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
-
-    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_name,))
+    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(ID,))
     list_tours = cur.fetchall()
     return list_tours
 

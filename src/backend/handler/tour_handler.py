@@ -1,6 +1,7 @@
 from flask import request
 
 from backend.autentication.login import get_user_online
+from backend.database.user import id_get
 from backend.database.Tour import Tour_create, list_tours
 from backend.database.favorites import remove_favorite_tour_sql
 from backend.database.Tour_advanced import remove_bought_tour_sql, tours_that_i_have_created, \
@@ -40,7 +41,7 @@ def get_tour_create():
         country = request.form['Country']
         location = request.form['Location']
         date = request.form['Date']
-        created_by = get_user_online()
+        created_by = id_get(get_user_online())
         print(created_by)
         return Tour_create(title, description, country, location, date, created_by)
 
@@ -49,11 +50,11 @@ def get_list_tours():
 
 def get_Tour_who_bought():
     created_by = get_user_online()
-    return tours_that_i_have_created(created_by)
+    return tours_that_i_have_created(id_get(created_by))
 
 def get_list_of_user_bought_tours(global_id):
     return list_of_user_bought_tours(global_id)
 
 def get_list_tours_with_columns_title_and_number_of_people_attending():
-    created_by = get_user_online()
+    created_by = id_get(get_user_online())
     return list_tours_with_columns_title_and_number_of_people_attending(created_by)
