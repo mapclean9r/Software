@@ -165,7 +165,7 @@ def get_user_list():
     cursor.execute("SELECT Username FROM User")
     users = cursor.fetchall()
 
-    return users
+    return [user[0] for user in users]
 
 def Tour_edit(Title, Description, Country, Location, Date, ID):
     con = sqlite3.connect(pathing)

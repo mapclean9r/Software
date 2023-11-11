@@ -72,6 +72,20 @@
   cursor: pointer;
 }
 
+.checkbox_user_button_styling{
+  background-color: #2e2e2e;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
 
 .checkbox_buy_button_styling{
   background-color: #66d47f;

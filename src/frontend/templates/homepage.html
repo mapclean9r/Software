@@ -17,16 +17,17 @@
     <div id="colored_body">
     <h1 id="intro">Hello this is the homepage</h1><br>
 
-    <a href="{{ url_for('favorites') }}" class="top_links_styling">Favorites</a>
-    <a href="{{ url_for('who_bought') }}" class="top_links_styling">My created tours</a>
-    <a href="{{ url_for('support_senter') }}" class="top_links_styling">Supportsenter</a>
-    <a href="{{ url_for('index') }}" class="top_links_styling">Logout</a>
         {% if is_admin %}
             <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
 
         {% else %}
 
         {% endif %}
+    <a href="{{ url_for('favorites') }}" class="top_links_styling">Favorites</a>
+    <a href="{{ url_for('who_bought') }}" class="top_links_styling">My created tours</a>
+    <a href="{{ url_for('support_senter') }}" class="top_links_styling">Supportsenter</a>
+    <a href="{{ url_for('index') }}" class="top_links_styling">Logout</a>
+
 
     <h2>Here are a list of the available tours. You can create, buy, delete or favorite tours.</h2>
     <h2 id="instruction">To sell your tour, you must enter details for your tour first:</h2>

@@ -17,10 +17,10 @@ def get_remove_favorite_tour(id):
         return remove_favorite_tour_sql(id, selected, action)
 
 
-def get_checkbox_outcomes(gloal_id):
+def get_checkbox_outcomes(global_id):
     selected = request.form.getlist('checkbox_row')
     action = request.form.get('handle_action')
-    return checkbox_outcomes(gloal_id, selected, action)
+    return checkbox_outcomes(global_id, selected, action)
 
 
 def get_tour_create():
@@ -35,6 +35,13 @@ def get_tour_create():
 
 def get_list_tours():
     return list_tours()
+
+
+def get_remove_user(id):
+    if request.method == 'POST':
+        selected = request.form.getlist('checkbox_userlist')
+        action = request.form.get('handle_user_deletion')
+        return remove_bought_tour_sql(id, selected, action)
 
 
 def get_list_of_user_bought_tours(global_id):
