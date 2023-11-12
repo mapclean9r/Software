@@ -17,12 +17,11 @@
     <a href="{{ url_for('my_created_tours') }}" class="top_links_styling">My created tours</a>
     <a href="{{ url_for('support_senter') }}" class="top_links_styling">Supportsenter</a>
     <a href="{{ url_for('index') }}" class="top_links_styling">Logout</a>
+
         {% if is_admin == True: %}
             <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
-
-        {% else %}
-
         {% endif %}
+
     <h2>Here are a list of the available tours. You can create, buy, delete or favorite tours.</h2>
     <form action="/create_a_tour" , method="POST">
 

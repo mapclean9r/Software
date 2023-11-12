@@ -120,7 +120,7 @@ def login_proc():
 
 def get_user_online_is_admin():
     admin_check = get_user_online()
-    if admin_get(admin_check) is True:
+    if admin_get(admin_check):
         return True
     else:
         return False
