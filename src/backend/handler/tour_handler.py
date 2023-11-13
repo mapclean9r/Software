@@ -1,7 +1,7 @@
-from flask import request
-from backend.database.Tour import remove_bought_tour_sql, Tour_create, list_tours, \
+
+from backend.database.Tour import remove_bought_tour_sql, \
     list_of_user_bought_tours, checkbox_outcomes, remove_favorite_tour_sql, remove_user_from_list_alt
-from flask import url_for, redirect, request
+from flask import request
 
 from backend.autentication.login import get_user_online
 from backend.database.user import id_get
