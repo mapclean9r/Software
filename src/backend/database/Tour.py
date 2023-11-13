@@ -1,23 +1,36 @@
 import os
 import sqlite3
 
-from flask import redirect, url_for
-from backend.autentication.login import get_user_online_is_admin
-
 pathing = os.path.dirname(__file__) + "/database.db"
 
-def Tour_create(title, description, country, location, date):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    try:
-        cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date) VALUES(?,?,?,?,?)",
-                    (title, description, country, location, date,))
-        con.commit()
-        print("Tur laget")
-        return 1
-    except:
-        print("FEIL I CREATE TOUR ")
+def Tour_create(title, description, country, location, date, created_by):
+    if len(title) <5 or len(title) >25:
+        print("title needs to be between 5 and 25 characters")
         return 0
+    elif len(description) <5 or len(description) > 45:
+        print("description needs to be between 5 and 45 characters")
+        return 0
+    elif len(country) <1:
+        print("You have not entered a Country in the tour")
+        return 0
+    elif len(location) <1:
+        print("You have not entered a location in the tour")
+        return 0
+    elif len(date) <8:
+        print("You have not entered a date in the tour")
+        return 0
+    else:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
+        try:
+            cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,CreatedBy) VALUES(?,?,?,?,?,?)",
+                        (title, description, country, location, date, created_by))
+            con.commit()
+            print("Tur laget")
+            return 1
+        except:
+            print("FEIL I CREATE TOUR ")
+            return 0
 
 
 def Tour_get_all():
@@ -55,6 +68,20 @@ def Tour_find_title(Title):
         print("FEIL I TOUR_FIND_TITLE")
 
 
+def Tour_delete(id):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
+    con.commit()
+
+
+def Tour_delete_if_title_is_provided(title):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute("DELETE FROM Tour WHERE Title = ?",(title,))
+    con.commit()
+
+
 def Tour_filter_by_country(Country):
     try:
         con = sqlite3.connect(pathing)
@@ -88,14 +115,6 @@ def Tour_who_bought(user):
     except:
         print("FEIL I TOUR_WHO_BOUGHT")
 
-
-def Tour_delete(id):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
-    cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
-    con.commit()
-
-
 def Tour_remove(user,tur):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
@@ -103,16 +122,12 @@ def Tour_remove(user,tur):
     con.commit()
 
 
-def get_booked_tour_from_current_user(global_key):
+def list_tours():
     db = sqlite3.connect(pathing)
     cursor = db.cursor()
-    cursor.execute('''SELECT *
-        FROM Tour
-        INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-        WHERE TourBooked.User_ID = ?''', (global_key,))
-
-    list_of_bought_tours = cursor.fetchall()
-    return list_of_bought_tours
+    cursor.execute("SELECT * from Tour")
+    list = cursor.fetchall()
+    return list
 
 
 def get_favorites_sql(id_user):
@@ -172,7 +187,7 @@ def list_tours():
 
 
 def get_user_list():
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect(pathing)
     cursor = db.cursor()
     cursor.execute("SELECT ID, Username FROM User")
     users = cursor.fetchall()

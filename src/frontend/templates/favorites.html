@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/favorites.css') }}">
 </head>
 <body>
-    <h1>Favorite tours page:</h1>
+    <h1>My favorites:</h1>
 
     <form action="/remove_favorite_tour" method="POST">
         <ul>
@@ -26,8 +26,15 @@
         </ul>
         <button type="submit" name="handle_action" value="delete">Remove tour</button>
     </form>
-
-
+        <br />
+        <hr />
     <a href="{{ url_for('homepage') }}">Back to homepage</a>
+
+    {% if is_admin %}
+    <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
+
+    {% else %}
+
+    {% endif %}
 </body>
 </html>

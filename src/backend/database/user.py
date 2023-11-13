@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+
 pathing = os.path.dirname(__file__) + "/database.db"
 con = sqlite3.connect(pathing)
 cur = con.cursor()
@@ -33,12 +34,12 @@ def username_get(Username):
     return Username
 
 
-def get_id_if_provide_username(Username):
+def id_if_provide_username(Username):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
     id = cur.fetchone()
-    return id[0]
+    return id
 
 
 def check_if_username_and_password_is_correct(username, password):
@@ -78,14 +79,11 @@ def admin_get(Username):
 
 
 def id_get(Username):
-    con = sqlite3.connect(pathing)
-    cur = con.cursor()
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
         cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
-        user = cur.fetchone
-        return user
+        user = cur.fetchone()
+        return sum(user)
     except:
         print("FEIL I ID_GET")
-

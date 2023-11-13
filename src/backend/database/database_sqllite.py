@@ -18,9 +18,10 @@ def databasecreation():
                 Country TEXT,
                 Location TEXT,
                 Date DATETIME,
-                CreatedBy INTEGER
+                CreatedBy 
     );''')
     cur.execute('''CREATE TABLE IF NOT EXISTS TourBooked(
+                ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 User_ID INTEGER,
                 Tour_ID INTEGER
     );''')
@@ -31,3 +32,5 @@ def databasecreation():
 
 
 databasecreation()
+#cur.execute("ALTER TABLE TourBooked DROP COLUMN ID")
+#cur.execute("ALTER TABLE TourBooked ADD ID INTEGER AUTOINCREMENT")

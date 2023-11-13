@@ -1,9 +1,7 @@
 import json
 from flask import Flask, render_template, url_for, redirect, request
 
-from ..database import user
 from ..database.user import *
-
 
 # Slik bruker du klassen
 # x = "brukernavn" y = "passord" z = True eller False
@@ -34,17 +32,28 @@ class UserLogin:
 
     def admin_check_to_database(self):
         b = UserLogin.admin_tuple_to_str(self)
-        if admin_get(b):
-            return self.admin
+        if b is True:
+            return True
         else:
             return False
 
     def login_process(self):
+
+        db = sqlite3.connect('src/backend/database/database.db')
+        cursor = db.cursor()
+
+        cursor.execute("SELECT * from Tour")
+        list = cursor.fetchall()
+        # list_of_bought_tours = Tour_who_bought(global_user_id)       
         self.save_user_online()
         user = self.username_check_to_database()
         passw = self.password_check_to_database()
+        cursor.execute('''SELECT * FROM Tour INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?''', (id_get(get_user_online()),))
+        list_of_bought_tours = cursor.fetchall()
+        db.close()
+
         if user is True and passw is True:
-            return render_template('/homepage.html')
+            return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
         else:
             return render_template('/index.html')
 
@@ -69,15 +78,17 @@ class UserLogin:
 
     def admin_tuple_to_str(self):
         tuple = admin_get(self.name)
-        if tuple is not None:
-            for x in tuple:
-                return x
+        if tuple:
+            if tuple is not None:
+                for x in tuple:
+                    return bool(x)
 
 
 # Gets the current username in the .json file
 def get_user_online():
+    pathing = os.path.dirname(__file__) + "/user_online.json"
     try:
-        with open('user_online.json', 'r') as file:
+        with open(pathing, 'r') as file:
             data = json.load(file)
             return data.get('user_online', '')
     except FileNotFoundError:
@@ -91,7 +102,7 @@ def login_proc():
         username = request.form['name']
         password = request.form['password']
 
-        db = sqlite3.connect('backend/database/database.db')
+        db = sqlite3.connect(pathing)
         cursor = db.cursor()
         cursor.execute("SELECT * from Tour")
         list = cursor.fetchall()
@@ -109,10 +120,10 @@ def login_proc():
 
         userr = UserLogin.username_check_to_database(t)
         passw = UserLogin.password_check_to_database(t)
-        is_admin = True
-        if userr is True and passw is True:
+        is_admin = UserLogin.admin_check_to_database(t)
+        if userr and passw:
             return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list,
-                                   list_of_bought_tours=list_of_bought_tours)
+                                       list_of_bought_tours=list_of_bought_tours)
         else:
             return render_template('/index.html')
     return render_template('index.html')
@@ -120,10 +131,11 @@ def login_proc():
 
 def get_user_online_is_admin():
     admin_check = get_user_online()
-    if admin_get(admin_check) is True:
+    if admin_get(admin_check):
         return True
     else:
         return False
+
 
 # Usage for json save_user_online & get_user_online
 # login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values

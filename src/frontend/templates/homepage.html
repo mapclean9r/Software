@@ -15,7 +15,7 @@
     {% endif %}
 
     <div id="colored_body">
-    <h1 id="intro">Hello this is the homepage</h1><br>
+    <h1 id="intro">Homepage</h1><br>
 
         {% if is_admin %}
             <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
@@ -24,12 +24,13 @@
 
         {% endif %}
     <a href="{{ url_for('favorites') }}" class="top_links_styling">Favorites</a>
-    <a href="{{ url_for('who_bought') }}" class="top_links_styling">My created tours</a>
+    <a href="{{ url_for('my_created_tours') }}" class="top_links_styling">My created tours</a>
     <a href="{{ url_for('support_senter') }}" class="top_links_styling">Supportsenter</a>
     <a href="{{ url_for('index') }}" class="top_links_styling">Logout</a>
 
-
     <h2>Here are a list of the available tours. You can create, buy, delete or favorite tours.</h2>
+    <form action="/create_a_tour" , method="POST">
+
     <h2 id="instruction">To sell your tour, you must enter details for your tour first:</h2>
     <form action="/create_a_tour" method="POST" id="form_create_tour_input">
 
@@ -82,7 +83,7 @@
         </ul>
         <h3>Unable to attend a tour? Select the tour you wish to cancel and click the 'Cancel Tour' button:</h3>
         <button type="submit" name="handle_action" value="delete" class="checkbox_button_styling">Cancel tour</button>
-    </form>
+    </form><form>
 
 
     </div>
