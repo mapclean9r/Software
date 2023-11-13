@@ -19,6 +19,7 @@ def Tour_create(title, description, country, location, date):
         print("FEIL I CREATE TOUR ")
         return 0
 
+
 def Tour_get_all():
     try:
         con = sqlite3.connect(pathing)
@@ -28,6 +29,7 @@ def Tour_get_all():
         return tur
     except:
         print("FEIL I TOUR_GET_ALL")
+
 
 def Tour_get(id):
     try:
@@ -40,6 +42,7 @@ def Tour_get(id):
     except:
         print("FEIL I TOUR_GET")
 
+
 def Tour_find_title(Title):
     try:
         con = sqlite3.connect(pathing)
@@ -50,6 +53,7 @@ def Tour_find_title(Title):
         return title
     except:
         print("FEIL I TOUR_FIND_TITLE")
+
 
 def Tour_filter_by_country(Country):
     try:
@@ -62,6 +66,7 @@ def Tour_filter_by_country(Country):
     except:
         print("FEIL I TOUR_FILTER_BY_COUNTRY")
 
+
 def Tour_bought(Tur_id, Bruker_id):
     try:
         con = sqlite3.connect(pathing)
@@ -71,6 +76,7 @@ def Tour_bought(Tur_id, Bruker_id):
         con.commit()
     except:
         print("FEIL I TOUR_BOUGHT")
+
 
 def Tour_who_bought(user):
     try:
@@ -82,17 +88,20 @@ def Tour_who_bought(user):
     except:
         print("FEIL I TOUR_WHO_BOUGHT")
 
+
 def Tour_delete(id):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     cur.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     con.commit()
 
+
 def Tour_remove(user,tur):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     cur.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user, tur,))
     con.commit()
+
 
 def get_booked_tour_from_current_user(global_key):
     db = sqlite3.connect(pathing)
@@ -104,6 +113,7 @@ def get_booked_tour_from_current_user(global_key):
 
     list_of_bought_tours = cursor.fetchall()
     return list_of_bought_tours
+
 
 def get_favorites_sql(id_user):
     db = sqlite3.connect(pathing)
@@ -119,6 +129,7 @@ def get_favorites_sql(id_user):
     list_of_favorited_tours = cursor.fetchall()
     db.close()
     return list_of_favorited_tours
+
 
 def remove_bought_tour_sql(user_id_global, selected, action):
     database = sqlite3.connect(pathing)
@@ -159,13 +170,34 @@ def list_tours():
     list = cursor.fetchall()
     return list
 
+
 def get_user_list():
     db = sqlite3.connect('backend/database/database.db')
     cursor = db.cursor()
-    cursor.execute("SELECT Username FROM User")
+    cursor.execute("SELECT ID, Username FROM User")
     users = cursor.fetchall()
 
-    return [user[0] for user in users]
+    return users
+    #return [user[0] for user in users] #Returns user as string, not tuple
+
+
+'''def remove_user_from_list(user_id):
+    db = sqlite3.connect('backend/database/database.db')
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM User WHERE ID = ?", (user_id,))
+    db.commit()
+    db.close()'''
+
+
+def remove_user_from_list_alt(user_id, selected, action):
+    database = sqlite3.connect(pathing)
+    cursor = database.cursor()
+    if action == 'delete':
+        for username in selected:
+            cursor.execute("DELETE FROM User WHERE ID = ? AND Username = ?", (user_id, username))
+    database.commit()
+    database.close()
+
 
 def Tour_edit(Title, Description, Country, Location, Date, ID):
     con = sqlite3.connect(pathing)
@@ -176,6 +208,7 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
         print("Tur endret")
     except:
         print("FEIL I EDIT TOUR ")
+
 
 def checkbox_outcomes(global_id, selected, action):
     database = sqlite3.connect('backend/database/database.db')

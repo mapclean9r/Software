@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, redirect
 
 from backend.autentication.login import UserLogin, get_user_online_is_admin
 from backend.database.Tour import get_user_list
+from backend.database.user import id_get
 from backend.handler.auth_handler import get_username_checker, get_start_login_process
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.handler.tour_handler import *
@@ -107,6 +108,16 @@ def users():
     list_of_users = get_user_list()
 
     return render_template('/users.html', users=list_of_users)
+
+
+@application.route('/remove_user_route', methods=['POST'])
+def remove_user_route(user_id):
+    #remove_user_from_list(user_id)
+
+    user_id = id_get(user_id)
+    get_remove_user(user_id)
+
+    return redirect(url_for('adminpage', user_id=user_id))
 
 
 @application.route('/support_senter')

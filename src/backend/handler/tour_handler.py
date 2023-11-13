@@ -1,6 +1,6 @@
 from flask import request
 from backend.database.Tour import remove_bought_tour_sql, Tour_create, list_tours, \
-    list_of_user_bought_tours, checkbox_outcomes, remove_favorite_tour_sql
+    list_of_user_bought_tours, checkbox_outcomes, remove_favorite_tour_sql, remove_user_from_list_alt
 
 
 def get_remove_bought_tour(id):
@@ -37,11 +37,12 @@ def get_list_tours():
     return list_tours()
 
 
-def get_remove_user(id):
+def get_remove_user(user_id):
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_userlist')
         action = request.form.get('handle_user_deletion')
-        return remove_bought_tour_sql(id, selected, action)
+        if action == 'delete':
+            remove_user_from_list_alt(user_id, selected)
 
 
 def get_list_of_user_bought_tours(global_id):

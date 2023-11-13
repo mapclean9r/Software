@@ -86,14 +86,14 @@
 
 
     <h1>List of Existing Users</h1>
-    <form id="userlist">
+    <form id="userlist" action="/remove_user_route" method="POST">
         <ul>
             {% for user in users %}
-                <li>{{ user }}</li>
-                <input type="checkbox" name="checkbox_userlist">
+                <input type="checkbox" name="checkbox_userlist" value="{{ user[0] }}">
+                <li>{{ user[1] }}</li>
             {% endfor %}
         </ul>
-        <button name="handle_user_deletion" value="delete" class="checkbox_user_button_styling">Delete user[placeholder per nå]</button>
+        <button name="handle_user_deletion" value="delete" class="checkbox_user_button_styling">Delete user</button>
     </form>
 
 
