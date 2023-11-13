@@ -3,7 +3,7 @@ import sqlite3
 from flask import redirect, url_for
 
 from backend.autentication.login import get_user_online_is_admin
-from backend.database.Tour import pathing, Tour_delete, Tour_bought
+from backend.database.Tour import pathing, Tour_delete, Tour_bought, Tour_get_all_columns
 
 
 def get_booked_tour_from_current_user(global_key):
@@ -63,7 +63,8 @@ def checkbox_outcomes(global_id, selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for ID in selected:
-            Tour_delete(ID)
+            if Tour_get_all_columns(global_id)[6] == global_id:
+                Tour_delete(ID)
     elif action == 'buy':
         for ID in selected:
             Tour_bought(ID, global_id)
