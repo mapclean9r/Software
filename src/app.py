@@ -134,12 +134,13 @@ def users():
     return render_template('/users.html', users=list_of_users, is_admin=is_admin)
 
 
-@application.route('/remove_user_route', methods=['POST'])
+@application.route('/remove_user_route',methods=['POST'])
 def remove_user_route(user_id):
+    #remove_user_from_list(user_id)
     user_id = id_get(user_id)
     get_remove_user(user_id)
 
-    return redirect(url_for('adminpage', user_id=user_id))
+    return redirect(url_for('users', user_id=user_id))
 
 
 @application.route('/support_senter')

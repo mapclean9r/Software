@@ -72,6 +72,7 @@ def get_Tour_who_bought():
 def get_list_of_user_bought_tours(global_id):
     return list_of_user_bought_tours(global_id)
 
+
 def get_list_tours_with_columns_title_and_number_of_people_attending():
     created_by = id_get(get_user_online())
     return list_tours_with_columns_title_and_number_of_people_attending(created_by)

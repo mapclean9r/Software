@@ -196,6 +196,14 @@ def get_user_list():
     #return [user[0] for user in users] #Returns user as string, not tuple
 
 
+'''def remove_user_from_list(user_id):
+    db=sqlite3.connect('backend/database/database.db')
+    cursor=db.cursor()
+    cursor.execute("DELETE FROM User WHERE ID = ?",(user_id,))
+    db.commit()
+    db.close()'''
+
+
 def remove_user_from_list_alt(user_id, selected, action):
     database = sqlite3.connect(pathing)
     cursor = database.cursor()
