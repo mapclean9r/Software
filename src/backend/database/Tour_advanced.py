@@ -28,11 +28,10 @@ def remove_bought_tour_sql(user_id_global, selected, action):
     database.close()
 
 
-def tours_that_i_have_created(user_name):
+def tours_that_i_have_created(ID):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
-
-    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_name,))
+    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(ID,))
     list_tours = cur.fetchall()
     return list_tours
 
@@ -89,6 +88,7 @@ def list_tours_with_columns_title_and_number_of_people_attending(created_by):
             LEFT JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
             WHERE Tour.CreatedBy = ?
             GROUP BY Tour.Title
+            ORDER BY Attending DESC
             ''', (created_by,))
     list_people_attending_tours = cursor.fetchall()
     db.close()
