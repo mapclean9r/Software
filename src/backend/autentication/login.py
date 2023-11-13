@@ -1,7 +1,7 @@
 import json
 from flask import Flask, render_template, url_for, redirect, request
 
-from ..database.user import *
+from backend.database.user import *
 
 # Slik bruker du klassen
 # x = "brukernavn" y = "passord" z = True eller False
