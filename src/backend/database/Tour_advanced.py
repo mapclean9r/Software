@@ -63,8 +63,8 @@ def checkbox_outcomes(global_id, selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for ID in selected:
-            if Tour_get_all_columns(global_id)[6] == global_id:
-                Tour_delete(ID)
+            #if Tour_get_all_columns(global_id)[6] == global_id:
+            Tour_delete(ID)
     elif action == 'buy':
         for ID in selected:
             Tour_bought(ID, global_id)
