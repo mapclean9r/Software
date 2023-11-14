@@ -13,5 +13,11 @@
     <p>Email: postmottak@hiof.no</p>
 
     <a href="{{ url_for('homepage') }}">Back to homepage</a>
+    {% if is_admin %}
+    <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
+
+    {% else %}
+
+    {% endif %}
 </body>
 </html>
