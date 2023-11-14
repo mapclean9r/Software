@@ -19,6 +19,14 @@
     </form>
 
 
+    <h2>Admin Logs</h2>
+    <ul>
+        {% for log_entry in logs %}
+            <li>{{ log_entry }}</li>
+        {% endfor %}
+    </ul>
+
+
     <a href="{{ url_for('homepage') }}">Back to homepage</a>
     {% if is_admin %}
     <a href="{{ url_for('adminpage') }}" class="top_links_styling">Go to admin page</a>
