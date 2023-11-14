@@ -69,6 +69,7 @@ def my_created_tours():
 
     global_user_id = get_id_if_provide_username()
     list_who_bought_my_tours = get_Tour_who_bought()
+    print(list_who_bought_my_tours)
     list_people_attending = get_list_tours_with_columns_title_and_number_of_people_attending()
     is_admin = get_user_online_is_admin
 
