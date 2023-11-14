@@ -6,14 +6,16 @@
 </head>
 <body>
     <h1>List of Existing Users</h1>
-    <form id="userlist" action="/remove_user_route" method="POST">
+    <form id="userlist" action="/remove_user" method="POST">
         <ul>
             {% for user in users %}
+            <li>
                 <input type="checkbox" name="checkbox_userlist" value="{{ user[0] }}">
-                <li>{{ user[1] }}</li>
+                <strong>User: </strong> {{ user[1] }}
+            </li>
             {% endfor %}
         </ul>
-        <button name="handle_user_deletion" value="delete" class="checkbox_user_button_styling">Delete user</button>
+        <button name="handle_action" value="delete" class="checkbox_user_button_styling">Delete user</button>
     </form>
 
 
