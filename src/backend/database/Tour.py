@@ -217,6 +217,8 @@ def remove_user_from_list(selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for id_selected in selected:
+            print(selected)
+            print(id_selected)
             cursor.execute("DELETE FROM User WHERE ID = ?", (id_selected,))
     database.commit()
     database.close()
