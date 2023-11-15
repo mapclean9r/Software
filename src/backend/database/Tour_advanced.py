@@ -52,7 +52,7 @@ def remove_tours_that_i_have_created(selected, action):
 def list_of_user_bought_tours(global_id):
     db = sqlite3.connect(pathing)
     cursor = db.cursor()
-    cursor.execute('''SELECT TourBooked.ID, Tour.Title, Tour.Description, Tour.Country, Tour.Location, Tour.Date
+    cursor.execute('''SELECT TourBooked.ID, Tour.Title, Tour.Description, Tour.Country, Tour.Location, Tour.Date, Tour.Price
         FROM Tour
         INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
         WHERE TourBooked.User_ID = ?
