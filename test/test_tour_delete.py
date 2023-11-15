@@ -5,7 +5,7 @@ from backend.database.user import id_if_provide_username, create_user
 
 def test_a_user_can_delete_a_tour_that_he_has_created():
     create_user("testbruker400", "123", True)
-    user_id = id_if_provide_username("testbruker400")
+    user_id = id_if_provide_username("testbruker400")[0]
 
     #TODO denne testen må ventes med til Vetle har fiksa funksjon for å slette en bruker.
     action = "delete"
@@ -13,6 +13,7 @@ def test_a_user_can_delete_a_tour_that_he_has_created():
                 (501, "title1", "description1", "country1", "location1", "12-03-1991", user_id)]
     tour1 = tour_create_manual(500, "title", "description", "country", "location", "23-08-1990",user_id)
     tour2 = tour_create_manual(501, "title1", "description1", "country1", "location1", "12-03-1991",user_id)
+
     remove_tours_that_i_have_created(selected, action)
 
     remove_user_from_list(user_id, "delete")
