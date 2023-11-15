@@ -1,5 +1,5 @@
 from datetime import datetime
-from .login import get_user_online
+from ..autentication.login import get_user_online
 
 
 def logging(action):
