@@ -18,7 +18,9 @@ def index():
 
 @application.route('/registrer', methods=['GET', 'POST'])
 def registrer_page():
+    global global_user_id
     get_username_checker()
+    global_user_id = get_id_if_provide_username()
     return render_template('/registrer.html')
 
 
@@ -26,7 +28,6 @@ def registrer_page():
 def homepage():
     global global_user_id
 
-    global_user_id = get_id_if_provide_username()
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     is_admin = get_user_online_is_admin
