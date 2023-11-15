@@ -1,4 +1,4 @@
-from backend.autentication.admin import get_logging
+#from backend.autentication.admin import get_logging
 from backend.database.Tour import get_user_list
 from backend.handler.auth_handler import get_id_if_provide_username
 from backend.handler.auth_handler import get_username_checker, get_start_login_process
@@ -127,17 +127,19 @@ def admin_create_a_tour():
 def users():
     list_of_users = get_user_list()
     is_admin = get_user_online_is_admin
-    log_of_users = get_logging()
+    #log_of_users = get_logging()
 
-    return render_template('/users.html', users=list_of_users, is_admin=is_admin, log=log_of_users)
+    return render_template('/users.html', users=list_of_users, is_admin=is_admin)
 
 
 @application.route('/remove_user', methods=['POST'])
 def remove_user():
     global global_user_id
-    get_remove_user(global_user_id)
+    global_user_id = get_id_if_provide_username()
+    user_id = global_user_id
+    get_remove_user()
 
-    return redirect(url_for('users'))
+    return redirect(url_for('users', user_id=user_id))
 
 
 @application.route('/support_senter')

@@ -56,11 +56,11 @@ def get_list_tours():
     return list_tours()
 
 
-def get_remove_user(user_id):
+def get_remove_user():
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_userlist')
         action = request.form.get('handle_action')
-        return remove_user_from_list(user_id, selected, action)
+        return remove_user_from_list(selected, action)
 
 
 def get_Tour_who_bought():

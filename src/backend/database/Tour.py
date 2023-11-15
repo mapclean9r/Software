@@ -195,12 +195,12 @@ def get_user_list():
     return users
 
 
-def remove_user_from_list(user_id, selected, action):
+def remove_user_from_list(selected, action):
     database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete' and selected:
-        for id in selected:
-            cursor.execute("DELETE FROM User WHERE ID = ? AND Username = ?", (id,user_id,))
+        for id_selected in selected:
+            cursor.execute("DELETE FROM User WHERE ID = ?", (id_selected,))
     database.commit()
     database.close()
 
