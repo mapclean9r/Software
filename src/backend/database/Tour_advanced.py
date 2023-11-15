@@ -3,7 +3,7 @@ import sqlite3
 from flask import redirect, url_for
 
 from backend.autentication.login import get_user_online_is_admin
-from backend.database.Tour import pathing, Tour_delete, Tour_bought, Tour_get_all_columns
+from backend.database.Tour import pathing, Tour_delete, Tour_bought
 
 
 def get_booked_tour_from_current_user(global_key):

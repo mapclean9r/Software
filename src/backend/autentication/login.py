@@ -44,7 +44,6 @@ class UserLogin:
 
         cursor.execute("SELECT * from Tour")
         list = cursor.fetchall()
-        # list_of_bought_tours = Tour_who_bought(global_user_id)       
         self.save_user_online()
         user = self.username_check_to_database()
         passw = self.password_check_to_database()

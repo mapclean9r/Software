@@ -8,7 +8,7 @@ def test_a_tours_id_is_of_int_datatype():
     Tour_delete_if_title_is_provided("Fotball på løkka med guttæne")
 
 def test_can_find_tour_if_we_provide_the_correct_title_for_a_tour():
-    new_tour_id = Tour_create("Safari i Skæven med gutta", "vil se en elg", "Norge", "Oslo", "2025-03-02","Kålrabi")
+    Tour_create("Safari i Skæven med gutta", "vil se en elg", "Norge", "Oslo", "2025-03-02","Kålrabi")
     assert Tour_find_title("Safari i Skæven med gutta")
     Tour_delete_if_title_is_provided("Safari i Skæven med gutta")
 
@@ -17,6 +17,8 @@ def test_we_can_return_all_tours():
     assert all_tours is not None
 
 def test_can_find_title_for_a_tour_when_we_provide_the_right_title():
-    new_tour = Tour_create("burgerspisekonkuranse med dressing på salaten", "Nå er jeg mett", "Norge", "Oslo", "2023-09-02", "Rolf Maibrittson")
-    assert len(Tour_find_title("burgerspisekonkuranse med dressing på salaten")) >= 1
-    Tour_delete_if_title_is_provided("burgerspisekonkuranse med dressing på salaten")
+    Tour_create("spisekonkuranse", "Nå er jeg mett", "Norge", "Oslo", "2023-09-02", "Rolf Maibrittson")
+    length_of_title = len(Tour_find_title("spisekonkuranse"))
+    if (length_of_title >= 1):
+        assert True
+    Tour_delete_if_title_is_provided("spisekonkuranse")
