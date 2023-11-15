@@ -34,3 +34,6 @@ def databasecreation():
 databasecreation()
 #cur.execute("ALTER TABLE TourBooked DROP COLUMN ID")
 #cur.execute("ALTER TABLE TourBooked ADD ID INTEGER AUTOINCREMENT")
+#cur.execute("ALTER TABLE TourBooked ADD COLUMN ID INTEGER PRIMARY KEY AUTOINCREMENT")
+
+

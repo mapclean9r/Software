@@ -10,11 +10,11 @@ from backend.database.Tour_advanced import remove_bought_tour_sql, tours_that_i_
 
 
 
-def get_remove_bought_tour(id):
+def get_remove_bought_tour():
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_bought_tour')
         action = request.form.get('handle_action')
-        return remove_bought_tour_sql(id, selected, action)
+        return remove_bought_tour_sql(selected, action)
 
 
 def get_remove_favorite_tour(id):
