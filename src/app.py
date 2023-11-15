@@ -134,11 +134,8 @@ def users():
 @application.route('/remove_user', methods=['POST'])
 def remove_user():
     global global_user_id
-    global_user_id = get_id_if_provide_username()
-    user_id = global_user_id
     get_remove_user()
-
-    return redirect(url_for('users', user_id=user_id))
+    return redirect(url_for('users', user_id=global_user_id))
 
 
 @application.route('/support_senter')
