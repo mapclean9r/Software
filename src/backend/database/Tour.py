@@ -124,8 +124,7 @@ def Tour_bought(Tur_id, Bruker_id):
     try:
         con = sqlite3.connect(pathing)
         cur = con.cursor()
-        cur.execute(
-            "INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)", (Bruker_id, Tur_id,))
+        cur.execute("INSERT INTO TourBooked (User_ID, Tour_ID) VALUES (?, ?)", (Bruker_id, Tur_id,))
         con.commit()
     except:
         print("FEIL I TOUR_BOUGHT")
