@@ -20,4 +20,4 @@ def get_start_login_process():
     return login_proc()
 
 def get_id_if_provide_username():
-    return id_if_provide_username(get_user_online())[0]
+    return id_if_provide_username(get_user_online())

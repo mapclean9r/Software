@@ -3,7 +3,7 @@ import sqlite3
 from flask import redirect, url_for
 
 from backend.autentication.login import get_user_online_is_admin
-from backend.database.Tour import pathing, Tour_delete, Tour_bought, Tour_get_all_columns
+from backend.database.Tour import pathing, Tour_delete, Tour_bought
 
 
 def get_booked_tour_from_current_user(global_key):
@@ -18,14 +18,16 @@ def get_booked_tour_from_current_user(global_key):
     return list_of_bought_tours
 
 
-def remove_bought_tour_sql(user_id_global, selected, action):
+def remove_bought_tour_sql(selected, action):
     database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':
-        for id_user in selected:
-            cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id_user,))
+        for ID in selected:
+            print(ID)
+            cursor.execute('DELETE FROM TourBooked WHERE ID = ?', (ID,))
     database.commit()
     database.close()
+
 
 
 def tours_that_i_have_created(ID):
@@ -41,6 +43,7 @@ def remove_tours_that_i_have_created(selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for id in selected:
+            print(id)
             cursor.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     database.commit()
     database.close()
@@ -49,7 +52,7 @@ def remove_tours_that_i_have_created(selected, action):
 def list_of_user_bought_tours(global_id):
     db = sqlite3.connect(pathing)
     cursor = db.cursor()
-    cursor.execute('''SELECT *
+    cursor.execute('''SELECT TourBooked.ID, Tour.Title, Tour.Description, Tour.Country, Tour.Location, Tour.Date
         FROM Tour
         INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
         WHERE TourBooked.User_ID = ?''', (global_id,))
