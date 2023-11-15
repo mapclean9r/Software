@@ -66,6 +66,7 @@ def checkbox_outcomes(global_id, selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for ID in selected:
+            #if Tour_get_all_columns(global_id)[6] == global_id:
             Tour_delete(ID)
     elif action == 'buy':
         for ID in selected:
@@ -91,6 +92,7 @@ def list_tours_with_columns_title_and_number_of_people_attending(created_by):
             LEFT JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
             WHERE Tour.CreatedBy = ?
             GROUP BY Tour.Title
+            ORDER BY Attending DESC
             ''', (created_by,))
     list_people_attending_tours = cursor.fetchall()
     db.close()

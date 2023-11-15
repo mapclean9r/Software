@@ -1,5 +1,6 @@
 from datetime import datetime
-from login import get_user_online
+from .login import get_user_online
+
 
 def logging(action):
     timestamp = datetime.now()
@@ -9,4 +10,15 @@ def logging(action):
     with open('userlogs.txt', 'a') as file:
         print(namestamp, file=file)
 
-logging("Walked in the park")
+
+def get_logging():
+    log = []
+    with open("userlogs.txt", 'r') as file:
+        for i in file:
+            log.append(i)
+    return log
+
+
+print(get_logging())
+get_logging()
+

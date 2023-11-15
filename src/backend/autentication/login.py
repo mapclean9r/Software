@@ -1,7 +1,7 @@
 import json
 from flask import Flask, render_template, url_for, redirect, request
 
-from ..database.user import *
+from backend.database.user import *
 
 # Slik bruker du klassen
 # x = "brukernavn" y = "passord" z = True eller False
@@ -44,11 +44,12 @@ class UserLogin:
 
         cursor.execute("SELECT * from Tour")
         list = cursor.fetchall()
-        # list_of_bought_tours = Tour_who_bought(global_user_id)       
         self.save_user_online()
         user = self.username_check_to_database()
         passw = self.password_check_to_database()
-        cursor.execute('''SELECT * FROM Tour INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?''', (id_get(get_user_online()),))
+        cursor.execute(
+            '''SELECT * FROM Tour INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?''',
+            (id_get(get_user_online()),))
         list_of_bought_tours = cursor.fetchall()
         db.close()
 
@@ -95,6 +96,30 @@ def get_user_online():
         return r'user_online.json File Not Found'
 
 
+def login_proc_utils_db_list_of_bought_tours():
+    db = sqlite3.connect(pathing)
+    cursor = db.cursor()
+    cursor.execute("SELECT * from Tour")
+    list = cursor.fetchall()
+    cursor.execute('''SELECT *
+    FROM Tour
+    INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
+    WHERE TourBooked.User_ID = ?''', (global_user_id,))
+
+    list_of_bought_tours = cursor.fetchall()
+    db.close()
+    return list_of_bought_tours
+
+
+def login_proc_utils_db_list():
+    db = sqlite3.connect(pathing)
+    cursor = db.cursor()
+    cursor.execute("SELECT * from Tour")
+    list = cursor.fetchall()
+    db.close()
+    return list
+
+
 def login_proc():
     global global_user_id
 
@@ -102,20 +127,10 @@ def login_proc():
         username = request.form['name']
         password = request.form['password']
 
-        db = sqlite3.connect(pathing)
-        cursor = db.cursor()
-        cursor.execute("SELECT * from Tour")
-        list = cursor.fetchall()
-        cursor.execute('''SELECT *
-        FROM Tour
-        INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-        WHERE TourBooked.User_ID = ?''', (global_user_id,))
-
-        list_of_bought_tours = cursor.fetchall()
-        db.close()
+        list_of_bought_tours = login_proc_utils_db_list_of_bought_tours()
+        list = login_proc_utils_db_list()
 
         t = UserLogin(username, password, False)
-
         UserLogin.save_user_online(t)
 
         userr = UserLogin.username_check_to_database(t)
@@ -123,7 +138,7 @@ def login_proc():
         is_admin = UserLogin.admin_check_to_database(t)
         if userr and passw:
             return render_template('/homepage.html', is_admin=is_admin, list_of_tours=list,
-                                       list_of_bought_tours=list_of_bought_tours)
+                                   list_of_bought_tours=list_of_bought_tours)
         else:
             return render_template('/index.html')
     return render_template('index.html')
@@ -131,11 +146,10 @@ def login_proc():
 
 def get_user_online_is_admin():
     admin_check = get_user_online()
-    if admin_get(admin_check) is True:
+    if admin_get(admin_check):
         return True
     else:
         return False
-
 
 # Usage for json save_user_online & get_user_online
 # login_cred1 = UserLogin("Horse", "pwHorse", True) // Parameters > String String Bool values
