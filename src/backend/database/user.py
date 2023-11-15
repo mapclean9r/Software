@@ -84,6 +84,7 @@ def id_get(Username):
         cur = con.cursor()
         cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
         user = cur.fetchone()
+        print(sum(user))
         return sum(user)
     except:
         print("FEIL I ID_GET")
