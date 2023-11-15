@@ -1,7 +1,7 @@
-
-from backend.database.Tour import remove_bought_tour_sql, \
-    list_of_user_bought_tours, checkbox_outcomes, remove_favorite_tour_sql, remove_user_from_list_alt
 from flask import request
+from backend.database.Tour import remove_bought_tour_sql, Tour_create, list_tours, \
+    list_of_user_bought_tours, checkbox_outcomes, remove_favorite_tour_sql, remove_user_from_list
+
 
 from backend.autentication.login import get_user_online
 from backend.database.user import id_get
@@ -56,12 +56,11 @@ def get_list_tours():
     return list_tours()
 
 
-def get_remove_user(user_id):
+def get_remove_user():
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_userlist')
-        action = request.form.get('handle_user_deletion')
-        if action == 'delete':
-            remove_user_from_list_alt(user_id, selected)
+        action = request.form.get('handle_action')
+        return remove_user_from_list(selected, action)
 
 
 def get_Tour_who_bought():
@@ -71,6 +70,7 @@ def get_Tour_who_bought():
 
 def get_list_of_user_bought_tours(global_id):
     return list_of_user_bought_tours(global_id)
+
 
 def get_list_tours_with_columns_title_and_number_of_people_attending():
     created_by = id_get(get_user_online())
