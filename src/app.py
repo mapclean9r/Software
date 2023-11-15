@@ -106,7 +106,6 @@ def adminpage():
 
 @application.route('/admin_checkbox_tour', methods=['POST'])
 def admin_checkbox_tour():
-    global global_user_id
     get_checkbox_outcomes(global_user_id)
     return redirect(url_for('adminpage'))
 
