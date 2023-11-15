@@ -55,7 +55,8 @@ def list_of_user_bought_tours(global_id):
     cursor.execute('''SELECT TourBooked.ID, Tour.Title, Tour.Description, Tour.Country, Tour.Location, Tour.Date
         FROM Tour
         INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
-        WHERE TourBooked.User_ID = ?''', (global_id,))
+        WHERE TourBooked.User_ID = ?
+        ORDER BY Tour.Title''', (global_id,))
     list_of_bought_tours = cursor.fetchall()
     db.close()
     return list_of_bought_tours
