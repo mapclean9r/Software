@@ -27,11 +27,11 @@ def get_remove_favorite_tour(id):
         return remove_favorite_tour_sql(id, selected, action)
 
 
-def get_who_bought():
+def get_who_bought(global_user_id):
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_who_bought')
         action = request.form.get('handle_action')
-        return remove_tours_that_i_have_created(selected, action)
+        return remove_tours_that_i_have_created(global_user_id, selected, action)
 
 
 def get_checkbox_outcomes(global_id):

@@ -37,7 +37,7 @@ def tour_create_manual(ID, title, description, country, location, date, created_
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     try:
-        cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,CreatedBy) VALUES(?,?,?,?,?,?)",
+        cur.execute("INSERT INTO Tour(ID,Title,Description,Country,Location,Date,CreatedBy) VALUES(?,?,?,?,?,?,?)",
                     (ID, title, description, country, location, date, created_by))
         con.commit()
         print("Tur laget")
@@ -217,6 +217,8 @@ def remove_user_from_list(selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for id_selected in selected:
+            print(selected)
+            print(id_selected)
             print(selected)
             print(id_selected)
             cursor.execute("DELETE FROM User WHERE ID = ?", (id_selected,))

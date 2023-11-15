@@ -81,7 +81,8 @@ def my_created_tours():
 
 @application.route('/remove_my_created_tours', methods=['POST'])
 def remove_who_bought():
-    get_who_bought()
+    global global_user_id
+    get_who_bought(global_user_id)
     return redirect(url_for('my_created_tours'))
 
 
