@@ -52,7 +52,8 @@ def checkbox_tour():
 
 @application.route('/remove_bought_tour', methods=['POST'])
 def remove_bought_tour():
-    get_remove_bought_tour()
+    global global_user_id
+    get_remove_bought_tour(global_user_id)
     return redirect(url_for('homepage'))
 
 
