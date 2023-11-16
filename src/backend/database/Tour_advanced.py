@@ -43,9 +43,6 @@ def remove_tours_that_i_have_created(global_user_id, selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for id in selected:
-            print(action)
-            print(selected)
-            print(id)
             #if global_user_id == cursor.execute("SELECT CreatedBy FROM Tour WHERE CreatedBy = ?",(global_user_id,)):
             cursor.execute("DELETE FROM Tour WHERE ID = ?",(id,))
     database.commit()
