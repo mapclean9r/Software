@@ -35,7 +35,6 @@ def tours_that_i_have_created(user_ID):
     cur = con.cursor()
     cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_ID,))
     list_tours = cur.fetchall()
-    print(list_tours)
     return list_tours
 
 

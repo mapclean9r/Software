@@ -60,6 +60,7 @@ def remove_bought_tour():
 @application.route('/favorites')
 def favorites():
     global global_user_id
+
     list_of_favorited_tours = get_favorite_tours_from_user(global_user_id)
     is_admin = get_user_online_is_admin()
 
@@ -69,10 +70,11 @@ def favorites():
 @application.route('/my_created_tours')
 def my_created_tours():
     global global_user_id
-
     global_user_id = get_id_if_provide_username()
-    list_who_bought_my_tours = get_Tour_who_bought()
+
+    list_who_bought_my_tours = get_Tour_who_bought(global_user_id)
     list_people_attending = get_list_tours_with_columns_title_and_number_of_people_attending()
+
     is_admin = get_user_online_is_admin()
 
     return render_template('/my_created_tours.html',

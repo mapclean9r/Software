@@ -16,9 +16,7 @@ def remove_favorite_tour_sql(user_id_global, selected, action):
 def get_favorites_sql(id_user):
     db = sqlite3.connect(pathing)
     cursor = db.cursor()
-
     cursor.execute("SELECT * from Tour")
-
     cursor.execute('''SELECT *
             FROM Tour
             INNER JOIN TourFavorites on Tour.ID = TourFavorites.Tour_ID
