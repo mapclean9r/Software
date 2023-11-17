@@ -40,7 +40,7 @@ def id_if_provide_username(Username):
     cur = con.cursor()
     cur.execute("SELECT ID FROM User WHERE Username = ?", (Username,))
     id = cur.fetchone()
-    return id
+    return id[0]
 
 
 def check_if_username_and_password_is_correct(username, password):

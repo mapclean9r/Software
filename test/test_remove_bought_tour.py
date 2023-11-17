@@ -6,7 +6,7 @@ from backend.database.Tour import checkbox_outcomes, remove_bought_tour_sql
 
 def test_number_of_bought_tours_is_updated_when_removing_a_bought_tour():
     create_user('testUser', '123', 'True')
-    user_id = id_if_provide_username("testUser")[0]
+    user_id = id_if_provide_username("testUser")
 
     tour_create_manual(800, "my title test1", "description1010", "country1010", "location1010", "23-08-1990", user_id)
     checkbox_outcomes(user_id, (800,), "buy")

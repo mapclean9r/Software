@@ -7,7 +7,7 @@ from backend.database.Tour import checkbox_outcomes, remove_bought_tour_sql
 
 def test_number_of_bought_tours_is_updated_when_buying_a_tour():
     create_user('testUser', '123', 'True')
-    user_id = id_if_provide_username("testUser")[0]
+    user_id = id_if_provide_username("testUser")
 
     number_of_tours_before_buying_tours = len(list_of_user_bought_tours(user_id))
 

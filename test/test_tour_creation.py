@@ -42,14 +42,19 @@ def test_not_possible_to_create_tour_with_legal_input(Title, Description, Countr
 
 def test_number_of_my_created_tours_is_increased_when_creating_a_new_tour():
 
-    create_user("testUser_helloen", "123", "True")
-    user_id = id_if_provide_username("testUser_helloen")[0]
+    create_user("wassup12", "123", "True")
+    user_id_int = id_if_provide_username("wassup12")
 
-    len_list = len(tours_that_i_have_created(user_id))
-    Tour_create("test_title", "description", "Country", "Location", "2020-01-01", 100, user_id)
-    len_list_with_new_tour = len(tours_that_i_have_created(user_id))
+    len_list = len(tours_that_i_have_created(user_id_int))
+    print(len_list)
+    Tour_create("test_title very fun", "description", "Country", "Location", "2020-01-01", 100, user_id_int)
+    len_list_with_new_tour = len(tours_that_i_have_created(user_id_int))
+    print(len_list_with_new_tour)
+
 
     assert len_list + 1 == len_list_with_new_tour
     assert len_list + 2 != len_list_with_new_tour
     assert len_list + 0 != len_list_with_new_tour
     assert len_list + 45 != len_list_with_new_tour
+    Tour_delete_if_title_is_provided("test_title very fun")
+
