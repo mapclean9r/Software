@@ -30,11 +30,12 @@ def remove_bought_tour_sql(selected, action):
 
 
 
-def tours_that_i_have_created(ID):
+def tours_that_i_have_created(user_ID):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
-    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(ID,))
+    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_ID,))
     list_tours = cur.fetchall()
+    print(list_tours)
     return list_tours
 
 
@@ -44,7 +45,7 @@ def remove_tours_that_i_have_created(global_user_id, selected, action):
     if action == 'delete':
         for id in selected:
             #if global_user_id == cursor.execute("SELECT CreatedBy FROM Tour WHERE CreatedBy = ?",(global_user_id,)):
-            cursor.execute("DELETE FROM Tour WHERE ID = ?",(id,))
+            cursor.execute("DELETE FROM Tour WHERE ID = ? AND CreatedBy = ?",(id, global_user_id))
     database.commit()
     database.close()
 
