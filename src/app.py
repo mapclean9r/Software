@@ -20,7 +20,7 @@ def index():
 def registrer_page():
     global global_user_id
     get_username_checker()
-    global_user_id = get_id_if_provide_username()[0]
+    global_user_id = get_id_if_provide_username()
 
     return render_template('/registrer.html')
 
