@@ -114,7 +114,7 @@ def admin_checkbox_tour():
 @application.route('/admin_remove_bought_tour', methods=['POST'])
 def admin_remove_bought_tour():
     global global_user_id
-    get_remove_bought_tour(id)
+    get_remove_bought_tour()
     return redirect(url_for('adminpage'))
 
 
