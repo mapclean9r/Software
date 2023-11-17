@@ -6,7 +6,7 @@ from backend.database.user import id_if_provide_username, create_user
 def test_a_user_can_delete_a_tour_that_he_has_created():
 
     create_user('testbruker40457', '123', 'True')
-    user_id = id_if_provide_username("testbruker40457")
+    user_id = id_if_provide_username("testbruker40457")[0]
 
     Tour_create("title1010", "description1010", "country1010", "location1010", "23-08-1990", 200, user_id)
     n_of_created_tours = len(tours_that_i_have_created(user_id))

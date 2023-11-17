@@ -43,7 +43,7 @@ def test_not_possible_to_create_tour_with_legal_input(Title, Description, Countr
 def test_number_of_my_created_tours_is_increased_when_creating_a_new_tour():
 
     create_user("wassup12", "123", "True")
-    user_id_int = id_if_provide_username("wassup12")
+    user_id_int = id_if_provide_username("wassup12")[0]
 
     len_list = len(tours_that_i_have_created(user_id_int))
 

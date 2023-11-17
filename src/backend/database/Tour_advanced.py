@@ -33,7 +33,7 @@ def remove_bought_tour_sql(selected, action):
 def tours_that_i_have_created(user_ID):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
-    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_ID,))
+    cur.execute("SELECT Title,Description,Country,Location,Date,Price FROM Tour WHERE CreatedBy = ?",(user_ID,))
     list_tours = cur.fetchall()
     return list_tours
 
