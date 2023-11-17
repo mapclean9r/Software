@@ -20,7 +20,7 @@ def index():
 def registrer_page():
     global global_user_id
     get_username_checker()
-    global_user_id = get_id_if_provide_username()
+    global_user_id = get_id_if_provide_username()[0]
 
     return render_template('/registrer.html')
 
@@ -28,7 +28,9 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-
+    global_user_id = get_id_if_provide_username()[0]
+    print("yoyoyo")
+    print(global_user_id)
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     is_admin = get_user_online_is_admin()
@@ -69,9 +71,8 @@ def favorites():
 @application.route('/my_created_tours')
 def my_created_tours():
     global global_user_id
-
-    global_user_id = get_id_if_provide_username()
-    list_who_bought_my_tours = get_Tour_who_bought()
+    global_user_id = get_id_if_provide_username()[0]
+    list_who_bought_my_tours = get_Tour_who_bought(global_user_id)
     list_people_attending = get_list_tours_with_columns_title_and_number_of_people_attending()
     is_admin = get_user_online_is_admin()
 

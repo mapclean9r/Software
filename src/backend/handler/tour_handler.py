@@ -64,9 +64,8 @@ def get_remove_user():
         return remove_user_from_list(selected, action)
 
 
-def get_Tour_who_bought():
-    created_by = get_user_online()
-    return tours_that_i_have_created(id_get(created_by))
+def get_Tour_who_bought(global_user_id):
+    return tours_that_i_have_created(global_user_id)
 
 
 def get_list_of_user_bought_tours(global_id):
