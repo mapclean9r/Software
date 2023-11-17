@@ -13,7 +13,7 @@ from backend.database.Tour_advanced import remove_bought_tour_sql, tours_that_i_
 
 
 
-def get_remove_bought_tour():
+def get_remove_bought_tour(glob_id):
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_bought_tour')
         action = request.form.get('handle_action')
