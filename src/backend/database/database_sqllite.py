@@ -18,7 +18,7 @@ def databasecreation():
                 Country TEXT,
                 Location TEXT,
                 Date DATETIME,
-                Price INTEGER,
+                Price DECIMAL(10, 2),
                 CreatedBy 
     );''')
     cur.execute('''CREATE TABLE IF NOT EXISTS TourBooked(
