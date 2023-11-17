@@ -171,12 +171,12 @@ def get_favorites_sql(id_user):
     return list_of_favorited_tours
 
 
-def remove_bought_tour_sql(user_id_global, selected, action):
+def remove_bought_tour_sql(id, selected, action):
     database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':
         for id_user in selected:
-            cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id_user,))
+            cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (id, id_user,))
     database.commit()
     database.close()
 
