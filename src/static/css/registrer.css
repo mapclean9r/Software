@@ -1,0 +1,71 @@
+* {
+    font-size: 18px;
+    font-family: "Gill Sans", sans-serif;
+}
+
+
+.register_grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+
+.form_placement{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    padding: 40px;
+    border: solid;
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: #66d47f;
+}
+
+
+.input_styling{
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+.submit_user{
+  background-color: #66d47f;
+  border: none;
+  color: black;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+.checkbox{
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+}
+
+
+.register_margin{
+    margin: 30px;
+}
+
+
+.login{
+  background-color: #262626;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 4px;
+  cursor: pointer;
+}

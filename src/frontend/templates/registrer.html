@@ -9,21 +9,27 @@
 </head>
 
 <body>
-    <form method="POST">
+
+    <div class="register_grid">
+    <form method="POST" class="form_placement">
         <div class="form-group">
             <label for="name">Username</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter username" />
+            <input type="text" class="input_styling" id="name" name="name" placeholder="Enter username" />
         </div>
         <div class="form-group">
-            <label for="username">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" />
+            <label for="name">Password</label>
+            <input type="password" class="input_styling" id="password" name="password" placeholder="Enter password" />
         </div>
-        <input type="checkbox" id="admin_login" name="admin_login" value="True" style="margin-top: 15px;">
-        <label for="admin_login"> Registrer account as an Admin account?</label><br>
-        <br />
-        <button type="submit" class="">Submit</button>
+        <div class="register_margin">
+        <input type="checkbox" class="checkbox" id="admin_login" name="admin_login" value="True">
+        <label for="admin_login"> Registrer account as an Admin account?</label>
+        </div>
+        <button type="submit" class="submit_user">Submit</button>
+        <a href="{{ url_for('index') }}" class="login">Go back to login page</a> <br>
     </form>
-    <a href="{{ url_for('index') }}">Go back to loginpage</a> <br>
+
+
+    </div>
 </body>
 
 </html>

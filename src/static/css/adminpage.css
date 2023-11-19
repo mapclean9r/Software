@@ -86,7 +86,6 @@
 }
 
 
-
 .checkbox_buy_button_styling{
   background-color: #66d47f;
   border: none;
@@ -109,6 +108,21 @@
   width: 100px;
   text-align: center;
   text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 1px 1px;
+  cursor: pointer;
+}
+
+
+.unique_userpage_link_styling{
+  background-color: #262626;
+  border: none;
+  color: white;
+  padding: 5px 16px;
+  width: 100px;
+  text-align: center;
+  text-decoration: underline #fcf403;
   display: inline-block;
   font-size: 12px;
   margin: 1px 1px;
