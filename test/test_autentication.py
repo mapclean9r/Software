@@ -103,15 +103,43 @@ def test_register_validator_input_is_valid():
     assert validator_input_is_valid(username, password) is True
 
 
-def test_register_validator_input_has_14_plus_letters():
+def test_register_validator_both_input_has_14_plus_letters():
     username = "horsefreuifjerufjerujf"
     password = "passwkjjjnnjnkjnkjnkjnkjnkjnkjn"
     # False return if statement does not pass the test
     assert validator_input_is_valid(username, password) is False
 
 
-def test_register_validator_input_empty_field():
+def test_register_validator_username_input_has_14_plus_letters():
+    username = "horsefreuifjerufjerujf"
+    password = "passme"
+    # False return if statement does not pass the test
+    assert validator_input_is_valid(username, password) is False
+
+
+def test_register_validator_password_input_has_14_plus_letters():
+    username = "horser"
+    password = "passwkjjjnnjnkjnkjnkjnkjnkjnkjn"
+    # False return if statement does not pass the test
+    assert validator_input_is_valid(username, password) is False
+
+
+def test_register_validator_username_input_empty_field():
     username = ""
     password = "paweey"
+    # False return if statement does not pass the test
+    assert validator_input_is_valid(username, password) is False
+
+
+def test_register_validator_password_input_empty_field():
+    username = "ytgfhfgh"
+    password = ""
+    # False return if statement does not pass the test
+    assert validator_input_is_valid(username, password) is False
+
+
+def test_register_validator_both_input_empty_field():
+    username = ""
+    password = ""
     # False return if statement does not pass the test
     assert validator_input_is_valid(username, password) is False
