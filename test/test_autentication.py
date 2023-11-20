@@ -77,6 +77,22 @@ def test_save_user_online_to_json_and_returns_your_login_name():
     assert get_user_online() == name
 
 
+def test_proc_utils_db_list_of_bought_tours():
+    pass
+
+
+def test_login_proc_utils_db_list():
+    pass
+
+
+def login_proc_credential_checks_renders_new_template_if_is_correct():
+    pass
+
+
+def login_proc_credential_checks_renders_the_same_template_if_is_incorrect():
+    pass
+
+
 # Register
 
 
