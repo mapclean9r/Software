@@ -3,7 +3,7 @@ import sqlite3
 
 pathing = os.path.dirname(__file__) + "/database.db"
 
-def Tour_create(title, description, country, location, date, created_by, price):
+def Tour_create(title, description, country, location, date, price, created_by):
     if len(title) <5 or len(title) >25:
         print("title needs to be between 5 and 25 characters")
         return 0
@@ -23,7 +23,7 @@ def Tour_create(title, description, country, location, date, created_by, price):
         con = sqlite3.connect(pathing)
         cur = con.cursor()
         try:
-            cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,CreatedBy,Price) VALUES(?,?,?,?,?,?,?)",
+            cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,Price,CreatedBy) VALUES(?,?,?,?,?,?,?)",
                         (title, description, country, location, date, created_by, price))
             con.commit()
             print("Tur laget")
@@ -33,12 +33,12 @@ def Tour_create(title, description, country, location, date, created_by, price):
             return 0
 
 
-def tour_create_manual(ID, title, description, country, location, date, price, created_by):
+def tour_create_manual(ID, title, description, country, location, date, created_by, price):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     try:
-        cur.execute("INSERT INTO Tour(ID,Title,Description,Country,Location,Date,CreatedBy,Price) VALUES(?,?,?,?,?,?,?,?)",
-                    (ID, title, description, country, location, date, price, created_by))
+        cur.execute("INSERT INTO Tour(ID,Title,Description,Country,Location,Date,Price,CreatedBy) VALUES(?,?,?,?,?,?,?,?)",
+                    (ID, title, description, country, location, date, created_by, price))
         con.commit()
         print("Tur laget")
         return 1

@@ -47,7 +47,7 @@ def test_number_of_my_created_tours_is_increased_when_creating_a_new_tour():
 
     len_list = len(tours_that_i_have_created(user_id_int))
 
-    Tour_create("test_title very fun", "description", "Country", "Location", "2020-01-01", 100, user_id_int)
+    Tour_create("test_title very fun", "description", "Country", "Location", "2020-01-01", user_id_int, 100)
     id_from_tour = Tour_get_id_from_title("test_title very fun")
 
     len_list_with_new_tour = len(tours_that_i_have_created(user_id_int))
@@ -57,4 +57,3 @@ def test_number_of_my_created_tours_is_increased_when_creating_a_new_tour():
     assert len_list + 0 != len_list_with_new_tour
     assert len_list + 45 != len_list_with_new_tour
     remove_tours_that_i_have_created(user_id_int, id_from_tour, 'delete')
-
