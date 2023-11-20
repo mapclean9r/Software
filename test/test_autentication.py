@@ -41,7 +41,7 @@ def test_admin_check_to_database_is_admin():
 # Register
 
 
-def test_validator_input_is_true():
+def test_register_validator_input_is_valid():
     username = "horse"
     password = "passw"
     assert validator_input_is_valid(username, password) is True
