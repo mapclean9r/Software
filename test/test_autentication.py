@@ -69,6 +69,14 @@ def test_admin_tuple_to_str_where_tuple_is_int():
     assert UserLogin.admin_tuple_to_str(name_password) is True
 
 
+def test_save_user_online_to_json_and_returns_your_login_name():
+    # Saves the current logged-in user to a json file and returns the name
+    name = "ElgElg"
+    login = UserLogin(name, "ElgElg", True)
+    UserLogin.save_user_online(login)
+    assert get_user_online() == name
+
+
 # Register
 
 
