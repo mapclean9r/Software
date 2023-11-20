@@ -2,31 +2,40 @@ from backend.autentication.register import validator_input_is_valid
 from src.backend.autentication.login import *
 
 
-def test_username_check_to_database():
+def test_username_check_to_database_is_valid():
     create_user("Horse", "Horse", False)
-    x = "Horse"
-    y = "Horse"
-    z = False
-    name_password = UserLogin(x, y, z)
+    name_password = UserLogin("Horse", "Horse", False)
     assert UserLogin.username_check_to_database(name_password) is True
 
 
-def test_password_check_to_database():
+def test_username_check_to_database_is_invalid():
     create_user("Horse", "Horse", False)
-    x = "Horse"
-    y = "Horse"
-    z = False
-    name_password = UserLogin(x, y, z)
+    name_password = UserLogin("Moose", "Horse", False)
+    assert UserLogin.username_check_to_database(name_password) is False
+
+
+def test_password_check_to_database_is_valid():
+    create_user("Horse", "Horse", False)
+    name_password = UserLogin("Horse", "Horse", False)
     assert UserLogin.password_check_to_database(name_password) is True
 
 
-def test_admin_check_to_database():
+def test_password_check_to_database_is_invalid():
     create_user("Horse", "Horse", False)
-    x = "Horse"
-    y = "Horse"
-    z = False
-    name_password = UserLogin(x, y, z)
+    name_password = UserLogin("Horse", "Moose", False)
+    assert UserLogin.password_check_to_database(name_password) is False
+
+
+def test_admin_check_to_database_is_not_admin():
+    create_user("Horse", "Horse", False)
+    name_password = UserLogin("Horse", "Horse", False)
     assert UserLogin.admin_check_to_database(name_password) is False
+
+
+def test_admin_check_to_database_is_admin():
+    create_user("ElgElg", "ElgElg", True)
+    name_password = UserLogin("ElgElg", "ElgElg", True)
+    assert UserLogin.admin_check_to_database(name_password) is True
 
 
 # Register
@@ -35,10 +44,10 @@ def test_admin_check_to_database():
 def test_validator_input_is_true():
     username = "horse"
     password = "passw"
-    assert validator_input_is_valid(username,password) is True
+    assert validator_input_is_valid(username, password) is True
 
 
 def test_validator_input_is_false():
     username = "horsefreuifjerufjerujf"
     password = "passwkjjjnnjnkjnkjnkjnkjnkjnkjn"
-    assert validator_input_is_valid(username,password) is False
+    assert validator_input_is_valid(username, password) is False

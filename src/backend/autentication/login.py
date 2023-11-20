@@ -37,27 +37,6 @@ class UserLogin:
         else:
             return False
 
-    def login_process(self):
-
-        db = sqlite3.connect('src/backend/database/database.db')
-        cursor = db.cursor()
-
-        cursor.execute("SELECT * from Tour")
-        list = cursor.fetchall()
-        self.save_user_online()
-        user = self.username_check_to_database()
-        passw = self.password_check_to_database()
-        cursor.execute(
-            '''SELECT * FROM Tour INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID WHERE TourBooked.User_ID = ?''',
-            (id_get(get_user_online()),))
-        list_of_bought_tours = cursor.fetchall()
-        db.close()
-
-        if user is True and passw is True:
-            return render_template('/homepage.html', list_of_tours=list, list_of_bought_tours=list_of_bought_tours)
-        else:
-            return render_template('/index.html')
-
     # Saves the users username to a .json file & overwrites on reuse
     def save_user_online(self):
         pathing = os.path.dirname(__file__) + "/user_online.json"
@@ -79,10 +58,17 @@ class UserLogin:
 
     def admin_tuple_to_str(self):
         tuple = admin_get(self.name)
-        if tuple:
-            if tuple is not None:
-                for x in tuple:
-                    return bool(x)
+        print(tuple)
+        if isinstance(tuple, int):
+            if tuple == 1:
+                return True
+            else:
+                return False
+        else:
+            if tuple:
+                if tuple is not None:
+                    for x in tuple:
+                        return bool(x)
 
 
 # Gets the current username in the .json file
