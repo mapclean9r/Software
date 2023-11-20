@@ -58,12 +58,8 @@ class UserLogin:
 
     def admin_tuple_to_str(self):
         tuple = admin_get(self.name)
-        print(tuple)
         if isinstance(tuple, int):
-            if tuple == 1:
-                return True
-            else:
-                return False
+            return bool(tuple)
         else:
             if tuple:
                 if tuple is not None:
