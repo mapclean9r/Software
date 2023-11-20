@@ -12,7 +12,7 @@ def test_number_of_bought_tours_is_updated_when_buying_a_tour():
 
     number_of_tours_before_buying_tours = len(list_of_user_bought_tours(user_id))
 
-    Tour_create("my title test1", "description1010", "country1010", "location1010", "23-08-1990", 233, user_id)
+    Tour_create("my title test1", "description1010", "country1010", "location1010", "23-08-1990", user_id, 233)
     id_from_tour = Tour_get_id_from_title("my title test1")
     checkbox_outcomes(user_id, id_from_tour, "buy")
 
@@ -20,11 +20,8 @@ def test_number_of_bought_tours_is_updated_when_buying_a_tour():
     number_of_tours_after_buying = len(list_of_user_bought_tours(user_id))
     remove_bought_tour_sql(user_id, id_from_tour, "delete")
 
-
-    remove_tours_that_i_have_created(user_id, id_from_tour, 'delete')
-
     assert number_of_tours_after_buying != number_of_tours_before_buying_tours
     assert number_of_tours_after_buying == number_of_tours_before_buying_tours +1
     assert number_of_tours_after_buying != number_of_tours_before_buying_tours + 2
 
-
+    remove_tours_that_i_have_created(user_id, id_from_tour, 'delete')

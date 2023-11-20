@@ -25,10 +25,11 @@ def test_a_user_can_delete_a_tour_that_he_has_created():
     print(n_of_created_tours)
     print(n_of_created_tours2)
 
-    #assert n_of_created_tours != n_of_created_tours2
-    assert n_of_created_tours - 1 == n_of_created_tours2
-
+    assert n_of_created_tours != n_of_created_tours2
+    assert n_of_created_tours2 + 1 == n_of_created_tours
     assert n_of_created_tours - 2 != n_of_created_tours2
     assert n_of_created_tours + 5 != n_of_created_tours2
+
+    assert Tour_get_id_from_title("title1010") != True
 
     #remove_user_from_list(user_id, "delete")
