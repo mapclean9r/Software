@@ -47,7 +47,13 @@ def test_validator_input_is_true():
     assert validator_input_is_valid(username, password) is True
 
 
-def test_validator_input_is_false():
+def test_register_validator_input_14_plus_letters():
     username = "horsefreuifjerufjerujf"
     password = "passwkjjjnnjnkjnkjnkjnkjnkjnkjn"
+    assert validator_input_is_valid(username, password) is False
+
+
+def test_register_validator_input_empty_field():
+    username = ""
+    password = "paweey"
     assert validator_input_is_valid(username, password) is False
