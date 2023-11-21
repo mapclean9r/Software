@@ -1,6 +1,7 @@
 from backend.database.user import id_if_provide_username, create_user
 from backend.handler.favorite_handler import get_favorite_tours_from_user
-from backend.database.Tour import checkbox_outcomes, Tour_create, Tour_get_id_from_title
+from backend.database.Tour import checkbox_outcomes, Tour_create, Tour_get_id_from_title, remove_user_from_list, \
+    Tour_delete_if_title_is_provided
 
 
 def test_when_a_tour_is_favorited_then_number_of_favorites_for_the_user_is_increased():
@@ -19,3 +20,10 @@ def test_when_a_tour_is_favorited_then_number_of_favorites_for_the_user_is_incre
     assert fav_list2 - 2 != fav_list1
     assert fav_list2 + 1 != fav_list1
     assert fav_list2 + 2 != fav_list1
+
+    Tour_delete_if_title_is_provided("Find the onepiece")
+
+    user_id = id_if_provide_username("Luffy D Monkey")[0]
+    user_to_remove = (user_id,)
+    remove_user_from_list(user_to_remove, "delete")
+
