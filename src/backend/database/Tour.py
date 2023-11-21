@@ -180,6 +180,14 @@ def get_favorites_sql(id_user):
     db.close()
     return list_of_favorited_tours
 
+def get_one_specified_favorite(id_user, tour_id):
+    db = sqlite3.connect(pathing)
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM TourFavorites WHERE User_ID = ? AND Tour_ID = ?', (id_user, tour_id,))
+    fav_tour = cursor.fetchall()
+    db.close()
+    return fav_tour
+
 
 def remove_bought_tour_sql(user_id, selected, action):
     database = sqlite3.connect(pathing)
