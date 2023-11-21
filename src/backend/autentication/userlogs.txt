@@ -11,3 +11,17 @@ Date: 21.11.23 Time: 11:17 User: ElgElg Has tested the logging button
 Date: 21.11.23 Time: 11:18 User: ElgElg Has tested the logging button 
 Date: 21.11.23 Time: 11:18 User: ElgElg Has tested the logging button 
 Date: 21.11.23 Time: 11:26 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 13:39 User: admin logged in 
+Date: 21.11.23 Time: 13:39 User: admin logged in 
+Date: 21.11.23 Time: 13:39 User: admin went to admin page 
+Date: 21.11.23 Time: 13:39 User: admin went to homepage 
+Date: 21.11.23 Time: 13:39 User: admin went to admin page 
+Date: 21.11.23 Time: 13:39 User: admin went to user page 
+Date: 21.11.23 Time: 13:39 User: admin went to admin page 
+Date: 21.11.23 Time: 13:39 User: admin went to user page 
+Date: 21.11.23 Time: 13:39 User: admin went to admin page 
+Date: 21.11.23 Time: 13:39 User: admin created tour 
+Date: 21.11.23 Time: 13:39 User: admin went to admin page 
+Date: 21.11.23 Time: 13:40 User: admin went to admin page 
+Date: 21.11.23 Time: 13:41 User: admin created tour 
+Date: 21.11.23 Time: 13:41 User: admin went to admin page 
