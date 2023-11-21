@@ -1,4 +1,4 @@
-from backend.autentication.admin import get_logging
+from backend.autentication.admin import get_logging, logging
 from backend.database.Tour import get_user_list
 from backend.handler.auth_handler import get_id_if_provide_username
 from backend.handler.auth_handler import get_username_checker, get_start_login_process
@@ -125,10 +125,11 @@ def admin_create_a_tour():
     return redirect(url_for('adminpage'))
 
 
-@application.route('/users')
-def users():
+@application.route('/users/<action>', methods=['GET', 'POST'])
+def users(action):
     list_of_users = get_user_list()
     is_admin = get_user_online_is_admin()
+    logging(action)
     log_of_users = get_logging()
 
     return render_template('/users.html', users=list_of_users, is_admin=is_admin, log_of_users=log_of_users)
