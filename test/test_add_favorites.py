@@ -27,7 +27,7 @@ def test_when_a_tour_is_favorited_then_number_of_favorites_for_the_user_is_incre
     user_to_remove = (user_id,)
     remove_user_from_list(user_to_remove, "delete")
 
-def test_fav():
+def test_a_number_of_favorites_is_decreased_when_removing_a_favorie():
     create_user("Luffy D Monkey", "123", "True")
     user_id_int = id_if_provide_username("Luffy D Monkey")[0]
 
@@ -36,7 +36,10 @@ def test_fav():
 
     checkbox_outcomes(user_id_int, id_from_tour1, "favorite")
 
+    the_tour1 = get_one_specified_favorite(user_id_int, id_from_tour1[0])
+
+    remove_favorite_tour_sql(the_tour1[0][0], Tour_get_id_from_title("SuperTour"), "delete")
     the_tour2 = get_one_specified_favorite(user_id_int, id_from_tour1[0])
-    print(the_tour2)
-    remove_favorite_tour_sql(the_tour2[0], the_tour2[1], "delete")
-    assert the_tour2 != the_tour2
+    assert the_tour1 != the_tour2
+    del the_tour1[0]
+    assert the_tour1 == the_tour2
