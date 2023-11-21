@@ -1,7 +1,7 @@
 from backend.database.user import id_if_provide_username, create_user
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.database.Tour import checkbox_outcomes, Tour_create, Tour_get_id_from_title, remove_user_from_list, \
-    Tour_delete_if_title_is_provided
+    Tour_delete_if_title_is_provided, get_one_specified_favorite, remove_favorite_tour_sql
 
 
 def test_when_a_tour_is_favorited_then_number_of_favorites_for_the_user_is_increased():
@@ -27,3 +27,19 @@ def test_when_a_tour_is_favorited_then_number_of_favorites_for_the_user_is_incre
     user_to_remove = (user_id,)
     remove_user_from_list(user_to_remove, "delete")
 
+def test_a_number_of_favorites_is_decreased_when_removing_a_favorie():
+    create_user("Luffy D Monkey", "123", "True")
+    user_id_int = id_if_provide_username("Luffy D Monkey")[0]
+
+    Tour_create("SuperTour", "description1010", "country1010", "location1010", "23-08-1990", 230, user_id_int)
+    id_from_tour1 = Tour_get_id_from_title("SuperTour")
+
+    checkbox_outcomes(user_id_int, id_from_tour1, "favorite")
+
+    the_tour1 = get_one_specified_favorite(user_id_int, id_from_tour1[0])
+
+    remove_favorite_tour_sql(the_tour1[0][0], Tour_get_id_from_title("SuperTour"), "delete")
+    the_tour2 = get_one_specified_favorite(user_id_int, id_from_tour1[0])
+    assert the_tour1 != the_tour2
+    del the_tour1[0]
+    assert the_tour1 == the_tour2
