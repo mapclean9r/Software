@@ -59,6 +59,8 @@ def test_number_of_my_created_tours_is_increased_when_creating_a_new_tour():
     assert len_list + 45 != len_list_with_new_tour
 
     remove_tours_that_i_have_created(user_id_int, id_from_tour, 'delete')
-
     user_to_remove = (user_id_int,)
     remove_user_from_list(user_to_remove, "delete")
+
+
+

@@ -14,7 +14,7 @@ class UserRegister:
         print(self.name, self.password, self.admin)
 
 
-def username_create(username, password, is_admin):
+def user_create(username, password, is_admin):
     if username == user.username_get(username):
         error_register = "Username exists."
         return render_template('/registrer.html', error_register=error_register)

@@ -1,3 +1,4 @@
+from backend.autentication.admin import logging, get_logging
 from backend.autentication.register import validator_input_is_valid
 from backend.database.Tour import remove_user_from_list
 from src.backend.autentication.login import *
@@ -188,3 +189,14 @@ def test_register_validator_both_input_empty_field():
     password = ""
     # False return if statement does not pass the test
     assert validator_input_is_valid(username, password) is False
+
+
+# Admin
+
+def test_save_log_and_get_log():
+    create_user("ElgElg", "ElgElg", True)
+    name = "ElgElg"
+    login = UserLogin(name, "ElgElg", True)
+    UserLogin.save_user_online(login)
+    logging("Has tested the logging button")
+    assert get_logging()[-1].__contains__("ElgElg Has tested")

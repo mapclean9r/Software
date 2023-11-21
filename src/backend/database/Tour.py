@@ -186,9 +186,6 @@ def remove_bought_tour_sql(user_id, selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for id_user in selected:
-            print(selected)
-            print(id_user)
-            print(user_id)
             cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (id_user, user_id,))
     database.commit()
     database.close()
@@ -230,10 +227,6 @@ def remove_user_from_list(selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for id_selected in selected:
-            print(selected)
-            print(id_selected)
-            print(selected)
-            print(id_selected)
             cursor.execute("DELETE FROM User WHERE ID = ?", (id_selected,))
     database.commit()
     database.close()
