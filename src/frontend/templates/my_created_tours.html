@@ -14,12 +14,12 @@
             {% for tour in list_my_bought_tours %}
             <li>
                 <input type="checkbox" name="checkbox_who_bought" value="{{ tour[0] }}">
-                <strong>Title:</strong> {{ tour[0] }}
-                <strong>Description:</strong> {{ tour[1] }}
-                <strong>Country:</strong> {{ tour[2] }}
-                <strong>Location:</strong> {{ tour[3] }}
-                <strong>Date:</strong> {{ tour[4] }}
-                <strong>Price:</strong> {{ tour[5] }} <strong>Kr</strong>
+                <strong>Title:</strong> {{ tour[1] }}
+                <strong>Description:</strong> {{ tour[2] }}
+                <strong>Country:</strong> {{ tour[3] }}
+                <strong>Location:</strong> {{ tour[4] }}
+                <strong>Date:</strong> {{ tour[5] }}
+                <strong>Price:</strong> {{ tour[6] }} <strong>Kr</strong>
             </li>
             {% endfor %}
         </ul>
