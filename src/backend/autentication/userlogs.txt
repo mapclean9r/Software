@@ -7,3 +7,35 @@ Date: 25.10.23 Time: 23:22 User: Hestelaster42 Walked in the park
 Date: 13.11.23 Time: 14:25 User: admin Walked in the park 
 Date: 13.11.23 Time: 14:28 User: admin Walked in the park 
 Date: 13.11.23 Time: 14:28 User: admin Walked in the park 
+Date: 21.11.23 Time: 12:27 User: admin None 
+Date: 21.11.23 Time: 12:28 User: snus None 
+Date: 21.11.23 Time: 12:28 User: snus None 
+Date: 21.11.23 Time: 12:29 User: admin None 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:30 User: admin Delete 
+Date: 21.11.23 Time: 12:32 User: admin Go to user page 
+Date: 21.11.23 Time: 12:32 User: admin Go to user page 
+Date: 21.11.23 Time: 12:32 User: admin went to user page 
+Date: 21.11.23 Time: 12:32 User: admin went to user page 
+Date: 21.11.23 Time: 12:32 User: admin went to user page 
+Date: 21.11.23 Time: 12:32 User: admin went to user page 

@@ -125,13 +125,16 @@ def admin_create_a_tour():
     return redirect(url_for('adminpage'))
 
 
-@application.route('/users/<action>', methods=['GET', 'POST'])
-def users(action):
+@application.route('/users', methods=['GET', 'POST'])
+def users(action="went to user page"):
     list_of_users = get_user_list()
     is_admin = get_user_online_is_admin()
-    logging(action)
-    log_of_users = get_logging()
 
+    action = action
+    logging(action)
+
+
+    log_of_users = get_logging()
     return render_template('/users.html', users=list_of_users, is_admin=is_admin, log_of_users=log_of_users)
 
 
