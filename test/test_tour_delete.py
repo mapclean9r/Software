@@ -14,8 +14,6 @@ def test_a_user_can_delete_a_tour_that_he_has_created():
 
     remove_tours_that_i_have_created(user_id, id_from_tour, 'delete')
     n_of_created_tours2 = len(tours_that_i_have_created(user_id))
-    print(n_of_created_tours)
-    print(n_of_created_tours2)
 
     assert n_of_created_tours != n_of_created_tours2
     assert n_of_created_tours2 + 1 == n_of_created_tours
@@ -25,4 +23,19 @@ def test_a_user_can_delete_a_tour_that_he_has_created():
     assert Tour_get_id_from_title("title1010") != True
 
     user_to_remove = (user_id,)
+    remove_user_from_list(user_to_remove, "delete")
+
+def test_can_not_find_title_of_a_deleted_tour():
+
+    create_user("GregerHansenOlav", "123", "True")
+    user_id_int = id_if_provide_username("GregerHansenOlav")[0]
+
+    Tour_create("test_title very cool", "description", "Country", "Location", "2020-01-01", user_id_int, 100)
+    id_from_tour = Tour_get_id_from_title("test_title very cool")
+
+    remove_tours_that_i_have_created(user_id_int, id_from_tour, 'delete')
+    id_from_tour2 = Tour_get_id_from_title("test_title very cool")
+
+    assert id_from_tour2 == None
+    user_to_remove = (user_id_int,)
     remove_user_from_list(user_to_remove, "delete")

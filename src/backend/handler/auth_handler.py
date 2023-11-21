@@ -1,6 +1,6 @@
 from flask import request
 from backend.autentication.login import login_proc, get_user_online
-from backend.autentication.register import username_create
+from backend.autentication.register import user_create
 from backend.database.user import username_get, id_get, id_if_provide_username
 
 
@@ -15,7 +15,7 @@ def get_username_checker():
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
         print(is_admin)
-        return username_create(username, password, is_admin)
+        return user_create(username, password, is_admin)
 
 def get_start_login_process():
     return login_proc()
