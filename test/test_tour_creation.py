@@ -1,7 +1,7 @@
 import pytest
 
 from backend.database.Tour import Tour_create, Tour_delete_if_title_is_provided, Tour_get_id_from_title, \
-    remove_user_from_list, Tour_get
+    remove_user_from_list
 from backend.database.Tour_advanced import tours_that_i_have_created, remove_tours_that_i_have_created
 from backend.database.user import id_if_provide_username, create_user
 
