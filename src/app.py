@@ -13,6 +13,7 @@ global_user_id = 0
 
 @application.route('/', methods=['GET', 'POST'])
 def index():
+    logging("logged in")
     return get_start_login_process()
 
 
@@ -20,6 +21,7 @@ def index():
 def registrer_page():
     global global_user_id
     get_username_checker()
+    logging("registered user")
 
     return render_template('/registrer.html')
 
@@ -31,6 +33,7 @@ def homepage():
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     is_admin = get_user_online_is_admin()
+    logging("went to homepage")
 
     return render_template('/homepage.html', is_admin=is_admin,  list_of_tours=list_tours,
                            list_of_bought_tours=list_of_bought_tours)
@@ -39,6 +42,7 @@ def homepage():
 @application.route('/create_a_tour', methods=['POST'])
 def create_a_tour():
     get_tour_create()
+    logging("created a tour")
     return redirect(url_for('homepage'))
 
 
@@ -53,6 +57,7 @@ def checkbox_tour():
 def remove_bought_tour():
     global global_user_id
     get_remove_bought_tour(global_user_id)
+    logging("removed bought tour")
     return redirect(url_for('homepage'))
 
 
@@ -62,6 +67,7 @@ def favorites():
 
     list_of_favorited_tours = get_favorite_tours_from_user(global_user_id)
     is_admin = get_user_online_is_admin()
+    logging("went to favorites page")
 
     return render_template('/favorites.html', list_of_favorited_tours=list_of_favorited_tours, is_admin=is_admin)
 
@@ -72,8 +78,8 @@ def my_created_tours():
     global_user_id = get_id_if_provide_username()[0]
     list_who_bought_my_tours = get_Tour_who_bought(global_user_id)
     list_people_attending = get_list_tours_with_columns_title_and_number_of_people_attending()
-
     is_admin = get_user_online_is_admin()
+    logging("went to my created tours")
 
     return render_template('/my_created_tours.html',
                            list_my_bought_tours=list_who_bought_my_tours,
@@ -84,6 +90,7 @@ def my_created_tours():
 def remove_who_bought():
     global global_user_id
     get_who_bought(global_user_id)
+    logging("removed created tour")
     return redirect(url_for('my_created_tours'))
 
 
@@ -91,6 +98,7 @@ def remove_who_bought():
 def remove_favorite_tour():
     global global_user_id
     get_remove_favorite_tour(global_user_id)
+    logging("removed tour from favorite")
     return redirect(url_for('favorites'))
 
 
@@ -101,6 +109,7 @@ def adminpage():
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     list_of_users = get_user_list()
     is_admin = get_user_online_is_admin()
+    logging("went to admin page")
 
     return render_template('/adminpage.html', is_admin=is_admin, list_of_tours=list_tours, list_of_bought_tours=list_of_bought_tours, users=list_of_users)
 
@@ -116,24 +125,22 @@ def admin_checkbox_tour():
 def admin_remove_bought_tour():
     global global_user_id
     get_remove_bought_tour(global_user_id)
+    logging("removed tour")
     return redirect(url_for('adminpage'))
 
 
 @application.route('/admin_create_a_tour', methods=['POST'])
 def admin_create_a_tour():
     get_tour_create()
+    logging("created tour")
     return redirect(url_for('adminpage'))
 
 
 @application.route('/users', methods=['GET', 'POST'])
-def users(action="went to user page"):
+def users():
     list_of_users = get_user_list()
     is_admin = get_user_online_is_admin()
-
-    action = action
-    logging(action)
-
-
+    logging("went to user page")
     log_of_users = get_logging()
     return render_template('/users.html', users=list_of_users, is_admin=is_admin, log_of_users=log_of_users)
 
@@ -142,12 +149,14 @@ def users(action="went to user page"):
 def remove_user():
     global global_user_id
     get_remove_user()
+    logging("removed user")
     return redirect(url_for('users', user_id=global_user_id))
 
 
 @application.route('/support_senter')
 def support_senter():
     is_admin = get_user_online_is_admin()
+    logging("went to support senter")
     return render_template('/support_senter.html', is_admin=is_admin)
 
 
