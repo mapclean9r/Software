@@ -7,3 +7,6 @@ Date: 25.10.23 Time: 23:22 User: Hestelaster42 Walked in the park
 Date: 13.11.23 Time: 14:25 User: admin Walked in the park 
 Date: 13.11.23 Time: 14:28 User: admin Walked in the park 
 Date: 13.11.23 Time: 14:28 User: admin Walked in the park 
+Date: 21.11.23 Time: 11:17 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 11:18 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 11:18 User: ElgElg Has tested the logging button 
