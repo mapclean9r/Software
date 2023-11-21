@@ -1,7 +1,7 @@
 from backend.database.user import id_if_provide_username, create_user
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.database.Tour import checkbox_outcomes, Tour_create, Tour_get_id_from_title, remove_user_from_list, \
-    Tour_delete_if_title_is_provided, get_one_specified_favorite
+    Tour_delete_if_title_is_provided, get_one_specified_favorite, remove_favorite_tour_sql
 
 
 def test_when_a_tour_is_favorited_then_number_of_favorites_for_the_user_is_increased():
@@ -34,9 +34,9 @@ def test_fav():
     Tour_create("SuperTour", "description1010", "country1010", "location1010", "23-08-1990", 230, user_id_int)
     id_from_tour1 = Tour_get_id_from_title("SuperTour")
 
-    the_tour1 = get_one_specified_favorite(user_id_int, id_from_tour1[0])
-
     checkbox_outcomes(user_id_int, id_from_tour1, "favorite")
 
     the_tour2 = get_one_specified_favorite(user_id_int, id_from_tour1[0])
-    assert the_tour1 != the_tour2
+    print(the_tour2)
+    remove_favorite_tour_sql(the_tour2[0], the_tour2[1], "delete")
+    assert the_tour2 != the_tour2
