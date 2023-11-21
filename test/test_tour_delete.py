@@ -1,14 +1,6 @@
-from backend.database.Tour import tour_create_manual, Tour_create, Tour_get_id_from_title
+from backend.database.Tour import tour_create_manual, Tour_create, Tour_get_id_from_title, remove_user_from_list
 from backend.database.Tour_advanced import remove_tours_that_i_have_created, tours_that_i_have_created
 from backend.database.user import id_if_provide_username, create_user
-
-
-
-
-
-
-
-
 
 def test_a_user_can_delete_a_tour_that_he_has_created():
 
@@ -32,4 +24,5 @@ def test_a_user_can_delete_a_tour_that_he_has_created():
 
     assert Tour_get_id_from_title("title1010") != True
 
-    #remove_user_from_list(user_id, "delete")
+    user_to_remove = (user_id,)
+    remove_user_from_list(user_to_remove, "delete")

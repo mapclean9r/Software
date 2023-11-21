@@ -1,6 +1,7 @@
 import pytest
 
-from backend.database.Tour import Tour_create, Tour_delete_if_title_is_provided, Tour_get_id_from_title
+from backend.database.Tour import Tour_create, Tour_delete_if_title_is_provided, Tour_get_id_from_title, \
+    remove_user_from_list
 from backend.database.Tour_advanced import tours_that_i_have_created, remove_tours_that_i_have_created
 from backend.database.user import id_if_provide_username, create_user
 
@@ -56,4 +57,8 @@ def test_number_of_my_created_tours_is_increased_when_creating_a_new_tour():
     assert len_list + 2 != len_list_with_new_tour
     assert len_list + 0 != len_list_with_new_tour
     assert len_list + 45 != len_list_with_new_tour
+
     remove_tours_that_i_have_created(user_id_int, id_from_tour, 'delete')
+
+    user_to_remove = (user_id_int,)
+    remove_user_from_list(user_to_remove, "delete")
