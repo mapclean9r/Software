@@ -194,6 +194,7 @@ def test_register_validator_both_input_empty_field():
 # Admin
 
 def test_save_log_and_get_log():
+    create_user("ElgElg", "ElgElg", True)
     name = "ElgElg"
     login = UserLogin(name, "ElgElg", True)
     UserLogin.save_user_online(login)
