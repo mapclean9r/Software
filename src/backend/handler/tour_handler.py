@@ -49,8 +49,7 @@ def get_tour_create():
         date = request.form['Date']
         price = request.form['Price']
         created_by = id_get(get_user_online())
-        print(created_by)
-        return Tour_create(title, description, country, location, date, created_by,price)
+        return Tour_create(title, description, country, location, date, price, created_by)
 
 
 def get_list_tours():
