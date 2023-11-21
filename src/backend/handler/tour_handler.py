@@ -13,7 +13,7 @@ from backend.database.Tour_advanced import remove_bought_tour_sql, tours_that_i_
 
 
 
-def get_remove_bought_tour():
+def get_remove_bought_tour(glob_id):
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_bought_tour')
         action = request.form.get('handle_action')
@@ -27,11 +27,11 @@ def get_remove_favorite_tour(id):
         return remove_favorite_tour_sql(id, selected, action)
 
 
-def get_who_bought():
+def get_who_bought(global_user_id):
     if request.method == 'POST':
         selected = request.form.getlist('checkbox_who_bought')
         action = request.form.get('handle_action')
-        return remove_tours_that_i_have_created(selected, action)
+        return remove_tours_that_i_have_created(global_user_id, selected, action)
 
 
 def get_checkbox_outcomes(global_id):
@@ -47,9 +47,10 @@ def get_tour_create():
         country = request.form['Country']
         location = request.form['Location']
         date = request.form['Date']
+        price = request.form['Price']
         created_by = id_get(get_user_online())
         print(created_by)
-        return Tour_create(title, description, country, location, date, created_by)
+        return Tour_create(title, description, country, location, date, created_by,price)
 
 
 def get_list_tours():
@@ -63,9 +64,8 @@ def get_remove_user():
         return remove_user_from_list(selected, action)
 
 
-def get_Tour_who_bought():
-    created_by = get_user_online()
-    return tours_that_i_have_created(id_get(created_by))
+def get_Tour_who_bought(global_user_id):
+    return tours_that_i_have_created(global_user_id)
 
 
 def get_list_of_user_bought_tours(global_id):

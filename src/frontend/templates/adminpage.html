@@ -36,6 +36,7 @@
         <input type="text" name="Description" placeholder="Description" class="input_styling">
         <input type="text" name="Country" placeholder="Country" class="input_styling">
         <input type="text" name="Location" placeholder="Location" class="input_styling">
+        <input type="price" name="Price" placeholder="Price" class="input_styling">
         <input type="date" name="Date" class="input_styling">
         <button type="submit" class="tour_button_styling">Create a tour</button>
     </form>
@@ -50,6 +51,7 @@
                 <strong>Country:</strong> {{ tour[3] }}
                 <strong>Location:</strong> {{ tour[4] }}
                 <strong>Date:</strong> {{ tour[5] }}
+                <strong>Price:</strong> {{ tour[6] }} <strong>Kr</strong>
             </li>
             {% endfor %}
         </ul>
@@ -76,6 +78,7 @@
                 <strong>Country:</strong> {{ tour[3] }}
                 <strong>Location:</strong> {{ tour[4] }}
                 <strong>Date:</strong> {{ tour[5] }}
+                <strong>Price:</strong> {{ tour[6] }} <strong>Kr</strong>
             </li>
             {% endfor %}
         </ul>

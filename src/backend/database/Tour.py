@@ -3,7 +3,7 @@ import sqlite3
 
 pathing = os.path.dirname(__file__) + "/database.db"
 
-def Tour_create(title, description, country, location, date, created_by):
+def Tour_create(title, description, country, location, date, price, created_by):
     if len(title) <5 or len(title) >25:
         print("title needs to be between 5 and 25 characters")
         return 0
@@ -23,8 +23,8 @@ def Tour_create(title, description, country, location, date, created_by):
         con = sqlite3.connect(pathing)
         cur = con.cursor()
         try:
-            cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,CreatedBy) VALUES(?,?,?,?,?,?)",
-                        (title, description, country, location, date, created_by))
+            cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,Price,CreatedBy) VALUES(?,?,?,?,?,?,?)",
+                        (title, description, country, location, date, created_by, price))
             con.commit()
             print("Tur laget")
             return 1
@@ -33,12 +33,12 @@ def Tour_create(title, description, country, location, date, created_by):
             return 0
 
 
-def tour_create_manual(ID, title, description, country, location, date, created_by):
+def tour_create_manual(ID, title, description, country, location, date, created_by, price):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
     try:
-        cur.execute("INSERT INTO Tour(Title,Description,Country,Location,Date,CreatedBy) VALUES(?,?,?,?,?,?)",
-                    (ID, title, description, country, location, date, created_by))
+        cur.execute("INSERT INTO Tour(ID,Title,Description,Country,Location,Date,Price,CreatedBy) VALUES(?,?,?,?,?,?,?,?)",
+                    (ID, title, description, country, location, date, created_by, price))
         con.commit()
         print("Tur laget")
         return 1
@@ -69,6 +69,16 @@ def Tour_get(id):
     except:
         print("FEIL I TOUR_GET")
 
+def Tour_get_id_from_title(title):
+    try:
+        con = sqlite3.connect(pathing)
+        cur = con.cursor()
+        cur.execute(
+            "SELECT ID FROM Tour WHERE Title = ?", (title,))
+        tour = cur.fetchone()
+        return tour
+    except:
+        print("FEIL I TOUR_GET")
 
 def Tour_get_all_columns(id):
     try:
@@ -171,18 +181,21 @@ def get_favorites_sql(id_user):
     return list_of_favorited_tours
 
 
-def remove_bought_tour_sql(user_id_global, selected, action):
+def remove_bought_tour_sql(user_id, selected, action):
     database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':
         for id_user in selected:
-            cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (user_id_global, id_user,))
+            print(selected)
+            print(id_user)
+            print(user_id)
+            cursor.execute('DELETE FROM TourBooked WHERE User_ID = ? AND Tour_ID = ?', (id_user, user_id,))
     database.commit()
     database.close()
 
 
 def remove_favorite_tour_sql(user_id_global, selected, action):
-    database = sqlite3.connect('backend/database/database.db')
+    database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':
         for id in selected:
@@ -192,7 +205,7 @@ def remove_favorite_tour_sql(user_id_global, selected, action):
 
 
 def list_of_user_bought_tours(global_id):
-    db = sqlite3.connect('backend/database/database.db')
+    db = sqlite3.connect(pathing)
     cursor = db.cursor()
     cursor.execute('''SELECT *
         FROM Tour
@@ -219,6 +232,8 @@ def remove_user_from_list(selected, action):
         for id_selected in selected:
             print(selected)
             print(id_selected)
+            print(selected)
+            print(id_selected)
             cursor.execute("DELETE FROM User WHERE ID = ?", (id_selected,))
     database.commit()
     database.close()
@@ -236,7 +251,7 @@ def Tour_edit(Title, Description, Country, Location, Date, ID):
 
 
 def checkbox_outcomes(global_id, selected, action):
-    database = sqlite3.connect('backend/database/database.db')
+    database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':
         for ID in selected:

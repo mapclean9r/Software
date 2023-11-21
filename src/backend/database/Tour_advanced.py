@@ -30,21 +30,21 @@ def remove_bought_tour_sql(selected, action):
 
 
 
-def tours_that_i_have_created(ID):
+def tours_that_i_have_created(user_ID):
     con = sqlite3.connect(pathing)
     cur = con.cursor()
-    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(ID,))
+    cur.execute("SELECT * FROM Tour WHERE CreatedBy = ?",(user_ID,))
     list_tours = cur.fetchall()
     return list_tours
 
 
-def remove_tours_that_i_have_created(selected, action):
+def remove_tours_that_i_have_created(global_user_id, selected, action):
     database = sqlite3.connect(pathing)
     cursor = database.cursor()
     if action == 'delete':
         for id in selected:
-            print(id)
-            cursor.execute("DELETE FROM Tour WHERE ID = ?",(id,))
+            #if global_user_id == cursor.execute("SELECT CreatedBy FROM Tour WHERE CreatedBy = ?",(global_user_id,)):
+            cursor.execute("DELETE FROM Tour WHERE ID = ? AND CreatedBy = ?",(id, global_user_id))
     database.commit()
     database.close()
 
@@ -52,7 +52,7 @@ def remove_tours_that_i_have_created(selected, action):
 def list_of_user_bought_tours(global_id):
     db = sqlite3.connect(pathing)
     cursor = db.cursor()
-    cursor.execute('''SELECT TourBooked.ID, Tour.Title, Tour.Description, Tour.Country, Tour.Location, Tour.Date
+    cursor.execute('''SELECT TourBooked.ID, Tour.Title, Tour.Description, Tour.Country, Tour.Location, Tour.Date, Tour.Price
         FROM Tour
         INNER JOIN TourBooked on Tour.ID = TourBooked.Tour_ID
         WHERE TourBooked.User_ID = ?

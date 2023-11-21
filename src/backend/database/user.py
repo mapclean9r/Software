@@ -19,7 +19,8 @@ def create_user(Username, Password, Admin):
                     (Username, Password, Admin))
         for i in user:
             if i == user2:
-                print("Brukernavn allerede i bruk")
+                username_is_in_use ="Brukernavn allerede i bruk"
+                return username_is_in_use
         con.commit()
         return print("Bruker opprettet")
     except:

@@ -20,7 +20,6 @@ def index():
 def registrer_page():
     global global_user_id
     get_username_checker()
-    global_user_id = get_id_if_provide_username()[0]
 
     return render_template('/registrer.html')
 
@@ -28,7 +27,7 @@ def registrer_page():
 @application.route('/homepage')
 def homepage():
     global global_user_id
-
+    global_user_id = get_id_if_provide_username()[0]
     list_tours = get_list_tours()
     list_of_bought_tours = get_list_of_user_bought_tours(global_user_id)
     is_admin = get_user_online_is_admin()
@@ -52,13 +51,15 @@ def checkbox_tour():
 
 @application.route('/remove_bought_tour', methods=['POST'])
 def remove_bought_tour():
-    get_remove_bought_tour()
+    global global_user_id
+    get_remove_bought_tour(global_user_id)
     return redirect(url_for('homepage'))
 
 
 @application.route('/favorites')
 def favorites():
     global global_user_id
+
     list_of_favorited_tours = get_favorite_tours_from_user(global_user_id)
     is_admin = get_user_online_is_admin()
 
@@ -68,10 +69,10 @@ def favorites():
 @application.route('/my_created_tours')
 def my_created_tours():
     global global_user_id
-
     global_user_id = get_id_if_provide_username()[0]
-    list_who_bought_my_tours = get_Tour_who_bought()
+    list_who_bought_my_tours = get_Tour_who_bought(global_user_id)
     list_people_attending = get_list_tours_with_columns_title_and_number_of_people_attending()
+
     is_admin = get_user_online_is_admin()
 
     return render_template('/my_created_tours.html',
@@ -81,7 +82,8 @@ def my_created_tours():
 
 @application.route('/remove_my_created_tours', methods=['POST'])
 def remove_who_bought():
-    get_who_bought()
+    global global_user_id
+    get_who_bought(global_user_id)
     return redirect(url_for('my_created_tours'))
 
 
@@ -112,7 +114,8 @@ def admin_checkbox_tour():
 
 @application.route('/admin_remove_bought_tour', methods=['POST'])
 def admin_remove_bought_tour():
-    get_remove_bought_tour()
+    global global_user_id
+    get_remove_bought_tour(global_user_id)
     return redirect(url_for('adminpage'))
 
 

@@ -1,9 +1,6 @@
-
-
 from ..database.user import *
-from flask import render_template,request
+from flask import render_template, request
 from ..database import user
-
 
 
 class UserRegister:
