@@ -25,3 +25,64 @@ Date: 21.11.23 Time: 13:39 User: admin went to admin page
 Date: 21.11.23 Time: 13:40 User: admin went to admin page 
 Date: 21.11.23 Time: 13:41 User: admin created tour 
 Date: 21.11.23 Time: 13:41 User: admin went to admin page 
+Date: 21.11.23 Time: 17:53 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 17:54 User: ElgElg logged in 
+Date: 21.11.23 Time: 17:54 User: ElgElg logged in 
+Date: 21.11.23 Time: 17:54 User: admin registered user 
+Date: 21.11.23 Time: 17:54 User: admin registered user 
+Date: 21.11.23 Time: 17:54 User: admin logged in 
+Date: 21.11.23 Time: 17:54 User: admin logged in 
+Date: 21.11.23 Time: 17:55 User: admin went to admin page 
+Date: 21.11.23 Time: 17:55 User: admin went to admin page 
+Date: 21.11.23 Time: 17:55 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 17:55 User: ElgElg went to admin page 
+Date: 21.11.23 Time: 17:56 User: ElgElg went to admin page 
+Date: 21.11.23 Time: 17:56 User: ElgElg went to admin page 
+Date: 21.11.23 Time: 17:57 User: ElgElg went to admin page 
+Date: 21.11.23 Time: 17:57 User: ElgElg went to admin page 
+Date: 21.11.23 Time: 17:57 User: ElgElg went to homepage 
+Date: 21.11.23 Time: 17:57 User: ElgElg went to favorites page 
+Date: 21.11.23 Time: 17:57 User: ElgElg went to homepage 
+Date: 21.11.23 Time: 17:57 User: ElgElg went to admin page 
+Date: 21.11.23 Time: 17:57 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 17:57 User: ElgElg went to admin page 
+Date: 21.11.23 Time: 17:57 User: ElgElg went to user page 
+Date: 21.11.23 Time: 17:58 User: ElgElg went to user page 
+Date: 21.11.23 Time: 17:58 User: ElgElg went to user page 
+Date: 21.11.23 Time: 17:59 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 17:59 User: ElgElg went to user page 
+Date: 21.11.23 Time: 18:00 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 18:00 User: ElgElg logged in 
+Date: 21.11.23 Time: 18:00 User: ElgElg logged in 
+Date: 21.11.23 Time: 18:00 User: admin created a tour 
+Date: 21.11.23 Time: 18:00 User: admin went to homepage 
+Date: 21.11.23 Time: 18:00 User: admin went to homepage 
+Date: 21.11.23 Time: 18:00 User: admin went to homepage 
+Date: 21.11.23 Time: 18:00 User: admin went to homepage 
+Date: 21.11.23 Time: 18:00 User: admin went to favorites page 
+Date: 21.11.23 Time: 18:00 User: admin removed tour from favorite 
+Date: 21.11.23 Time: 18:00 User: admin went to favorites page 
+Date: 21.11.23 Time: 18:00 User: admin went to homepage 
+Date: 21.11.23 Time: 18:00 User: admin went to my created tours 
+Date: 21.11.23 Time: 18:00 User: admin went to homepage 
+Date: 21.11.23 Time: 18:01 User: admin went to support senter 
+Date: 21.11.23 Time: 18:01 User: admin went to homepage 
+Date: 21.11.23 Time: 18:01 User: admin went to admin page 
+Date: 21.11.23 Time: 18:01 User: admin created tour 
+Date: 21.11.23 Time: 18:01 User: admin went to admin page 
+Date: 21.11.23 Time: 18:01 User: admin went to admin page 
+Date: 21.11.23 Time: 18:01 User: admin created tour 
+Date: 21.11.23 Time: 18:01 User: admin went to admin page 
+Date: 21.11.23 Time: 18:01 User: admin removed tour 
+Date: 21.11.23 Time: 18:01 User: admin went to admin page 
+Date: 21.11.23 Time: 18:01 User: admin went to my created tours 
+Date: 21.11.23 Time: 18:01 User: admin went to homepage 
+Date: 21.11.23 Time: 18:01 User: admin went to admin page 
+Date: 21.11.23 Time: 18:01 User: admin went to my created tours 
+Date: 21.11.23 Time: 18:01 User: admin went to admin page 
+Date: 21.11.23 Time: 18:01 User: admin went to user page 
+Date: 21.11.23 Time: 18:01 User: admin went to admin page 
+Date: 21.11.23 Time: 18:01 User: admin went to homepage 
+Date: 21.11.23 Time: 18:14 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 18:16 User: ElgElg Has tested the logging button 
+Date: 21.11.23 Time: 18:17 User: ElgElg Has tested the logging button 
