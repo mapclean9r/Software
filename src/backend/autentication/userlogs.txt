@@ -87,3 +87,9 @@ Date: 21.11.23 Time: 18:14 User: ElgElg Has tested the logging button
 Date: 21.11.23 Time: 18:16 User: ElgElg Has tested the logging button 
 Date: 21.11.23 Time: 18:17 User: ElgElg Has tested the logging button 
 Date: 22.11.23 Time: 12:32 User: ElgElg Has tested the logging button 
+Date: 22.11.23 Time: 13:12 User: ElgElg logged in 
+Date: 22.11.23 Time: 13:12 User: ElgElg logged in 
+Date: 22.11.23 Time: 13:13 User: admin created a tour 
+Date: 22.11.23 Time: 13:13 User: admin went to homepage 
+Date: 22.11.23 Time: 13:13 User: admin went to my created tours 
+Date: 22.11.23 Time: 13:13 User: admin went to homepage 
