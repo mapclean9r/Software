@@ -4,7 +4,7 @@
 Install the IDE and interpreter under the "Installs" header.
 
 To install dependencies, you can either choose to use pip or the 
-requirements.txt file.
+already existing requirements.txt file.
 ~~~
 
 ### **Installs**
