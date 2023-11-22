@@ -7,7 +7,12 @@ To install dependencies, you can either choose to use pip or the
 requirements.txt file.
 ~~~
 
-### **Install dependencies using**
+### **Installs**
+> * Pycharm [Pycharm Download](https://www.jetbrains.com/pycharm/)
+> * Python 3.10.X [Python Download](https://www.python.org/downloads/)
+
+
+### **Install dependencies using requirements.txt**
 > Upon opening the project, simply click the "Install requirements" button.
 >
 > ![picture alt](https://www.jetbrains.com/help/img/idea/2019.1/py_req_notification.png)
@@ -18,10 +23,6 @@ requirements.txt file.
 > $ pip install flask==3.0.0
 
 [Pip installation guide](https://pip.pypa.io/en/stable/installation/).
-
-### **Installs**
-> * Pycharm [Pycharm Download](https://www.jetbrains.com/pycharm/)
-> * Python 3.10.X [Python Download](https://www.python.org/downloads/)
 
 ### **Dependencies**
 
