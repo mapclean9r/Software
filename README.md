@@ -8,8 +8,9 @@ requirements.txt file.
 ~~~
 
 ### **Install dependencies using**
+> Upon opening the project, simply click the "Install requirements" button.
 >
-> ![picture alt](http://via.placeholder.com/200x150)
+> ![picture alt](https://www.jetbrains.com/help/img/idea/2019.1/py_req_notification.png)
 
 ### **Install dependencies using pip**
 > $ pip install pytest==7.4.2
