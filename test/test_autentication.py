@@ -12,10 +12,6 @@ def test_username_check_to_database_is_valid():
     name_password = UserLogin("Horse", "Horse", False)
     assert UserLogin.username_check_to_database(name_password) is True
 
-    # Tobias, når du ser disse tre linjene jeg har lagt til, så er den eneste funksjonaliteten til de tre linjene at
-    # Brukeren du lager i testen blir sletta etter at testen er gjort. Slik slipper vi at testene våres lager mange
-    # dummybrukere som vi ikke vil ha inni applikasjonen. Se for det at Sensor kjører alle testene våres før han kjører
-    # applikasjonen. Da vil han se mange rare brukere som er registrert.
     user_id = id_if_provide_username("Horse")[0]
     user_to_remove = (user_id,)
     remove_user_from_list(user_to_remove, "delete")
@@ -200,3 +196,7 @@ def test_save_log_and_get_log():
     UserLogin.save_user_online(login)
     logging("Has tested the logging button")
     assert get_logging()[-1].__contains__("ElgElg Has tested")
+
+    user_id = id_if_provide_username("ElgElg")[0]
+    user_to_remove = (user_id,)
+    remove_user_from_list(user_to_remove, "delete")
