@@ -89,3 +89,10 @@ def id_get(Username):
         return sum(user)
     except:
         print("FEIL I ID_GET")
+
+def user_delete(username):
+    con = sqlite3.connect(pathing)
+    cur = con.cursor()
+    cur.execute("DELETE FROM User WHERE Username = ?", (username,))
+    con.commit()
+

@@ -66,3 +66,15 @@ Date: 22.11.23 Time: 11:48 User: admin went to favorites page
 Date: 22.11.23 Time: 11:48 User: admin went to admin page 
 Date: 22.11.23 Time: 11:48 User: admin went to support senter 
 Date: 22.11.23 Time: 11:48 User: admin went to admin page 
+Date: 22.11.23 Time: 16:44 User: admin logged in 
+Date: 22.11.23 Time: 16:44 User: admin registered user 
+Date: 22.11.23 Time: 16:44 User: admin registered user 
+Date: 22.11.23 Time: 16:45 User: admin logged in 
+Date: 22.11.23 Time: 16:45 User: admin logged in 
+Date: 22.11.23 Time: 16:45 User: John Murphy went to admin page 
+Date: 22.11.23 Time: 16:45 User: John Murphy went to homepage 
+Date: 22.11.23 Time: 16:45 User: John Murphy went to admin page 
+Date: 22.11.23 Time: 16:45 User: John Murphy went to homepage 
+Date: 22.11.23 Time: 16:45 User: John Murphy went to admin page 
+Date: 22.11.23 Time: 16:45 User: John Murphy went to user page 
+Date: 22.11.23 Time: 16:45 User: John Murphy went to homepage 
