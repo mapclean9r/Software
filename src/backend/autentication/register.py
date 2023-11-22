@@ -3,17 +3,6 @@ from flask import render_template, request
 from ..database import user
 
 
-class UserRegister:
-    def __init__(self, username, password, admin):
-        self.name = username
-        self.password = password
-        self.admin = admin
-
-    def register_user_in_database(self):
-        create_user(self.name, self.password, self.admin)
-        print(self.name, self.password, self.admin)
-
-
 def user_create(username, password, is_admin):
     if username == user.username_get(username):
         error_register = "Username exists."

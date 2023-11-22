@@ -25,3 +25,44 @@ Date: 21.11.23 Time: 13:39 User: admin went to admin page
 Date: 21.11.23 Time: 13:40 User: admin went to admin page 
 Date: 21.11.23 Time: 13:41 User: admin created tour 
 Date: 21.11.23 Time: 13:41 User: admin went to admin page 
+Date: 22.11.23 Time: 11:36 User: ElgElg logged in 
+Date: 22.11.23 Time: 11:37 User: ElgElg logged in 
+Date: 22.11.23 Time: 11:37 User: x logged in 
+Date: 22.11.23 Time: 11:37 User: admin registered user 
+Date: 22.11.23 Time: 11:38 User: admin registered user 
+Date: 22.11.23 Time: 11:38 User: admin logged in 
+Date: 22.11.23 Time: 11:38 User: admin logged in 
+Date: 22.11.23 Time: 11:38 User: admin went to admin page 
+Date: 22.11.23 Time: 11:38 User: admin went to homepage 
+Date: 22.11.23 Time: 11:38 User: admin went to favorites page 
+Date: 22.11.23 Time: 11:38 User: admin went to homepage 
+Date: 22.11.23 Time: 11:38 User: admin went to admin page 
+Date: 22.11.23 Time: 11:39 User: admin went to admin page 
+Date: 22.11.23 Time: 11:39 User: admin went to my created tours 
+Date: 22.11.23 Time: 11:39 User: admin went to homepage 
+Date: 22.11.23 Time: 11:39 User: admin went to support senter 
+Date: 22.11.23 Time: 11:39 User: admin went to homepage 
+Date: 22.11.23 Time: 11:39 User: admin went to support senter 
+Date: 22.11.23 Time: 11:39 User: admin went to homepage 
+Date: 22.11.23 Time: 11:39 User: admin logged in 
+Date: 22.11.23 Time: 11:45 User: admin went to admin page 
+Date: 22.11.23 Time: 11:46 User: admin went to homepage 
+Date: 22.11.23 Time: 11:46 User: admin went to admin page 
+Date: 22.11.23 Time: 11:47 User: admin logged in 
+Date: 22.11.23 Time: 11:47 User: admin logged in 
+Date: 22.11.23 Time: 11:47 User: admin went to admin page 
+Date: 22.11.23 Time: 11:47 User: admin went to favorites page 
+Date: 22.11.23 Time: 11:47 User: admin went to homepage 
+Date: 22.11.23 Time: 11:47 User: admin went to support senter 
+Date: 22.11.23 Time: 11:47 User: admin went to homepage 
+Date: 22.11.23 Time: 11:47 User: admin went to admin page 
+Date: 22.11.23 Time: 11:47 User: admin went to user page 
+Date: 22.11.23 Time: 11:47 User: admin went to admin page 
+Date: 22.11.23 Time: 11:47 User: admin went to my created tours 
+Date: 22.11.23 Time: 11:47 User: admin went to homepage 
+Date: 22.11.23 Time: 11:47 User: admin went to my created tours 
+Date: 22.11.23 Time: 11:48 User: admin went to admin page 
+Date: 22.11.23 Time: 11:48 User: admin went to favorites page 
+Date: 22.11.23 Time: 11:48 User: admin went to admin page 
+Date: 22.11.23 Time: 11:48 User: admin went to support senter 
+Date: 22.11.23 Time: 11:48 User: admin went to admin page 
