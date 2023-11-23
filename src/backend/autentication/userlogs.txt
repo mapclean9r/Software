@@ -67,3 +67,9 @@ Date: 22.11.23 Time: 11:48 User: admin went to admin page
 Date: 22.11.23 Time: 11:48 User: admin went to support senter 
 Date: 22.11.23 Time: 11:48 User: admin went to admin page 
 Date: 22.11.23 Time: 22:52 User: ElgElg Has tested the logging button 
+Date: 23.11.23 Time: 11:19 User: ElgElg Has tested the logging button 
+Date: 23.11.23 Time: 11:19 User: ElgElg Has tested the logging button 
+Date: 23.11.23 Time: 11:20 User: ElgElg Has tested the logging button 
+Date: 23.11.23 Time: 11:25 User: ElgElg Has tested the logging button 
+Date: 23.11.23 Time: 11:32 User: ElgElg Has tested the logging button 
+Date: 23.11.23 Time: 11:33 User: ElgElg Has tested the logging button 
