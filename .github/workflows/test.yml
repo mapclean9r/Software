@@ -29,4 +29,4 @@ jobs:
         run: source venv/bin/activate
 
       - name: Run tests
-        run: pytest test
+        run: pytest src/test/
