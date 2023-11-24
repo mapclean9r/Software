@@ -14,7 +14,6 @@ def get_username_checker():
         username = request.form['name']
         password = request.form['password']
         is_admin = request.form.get('admin_login', False)
-        print(is_admin)
         return user_create(username, password, is_admin)
 
 def get_start_login_process():

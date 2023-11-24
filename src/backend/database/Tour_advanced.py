@@ -23,7 +23,6 @@ def remove_bought_tour_sql(selected, action):
     cursor = database.cursor()
     if action == 'delete':
         for ID in selected:
-            print(ID)
             cursor.execute('DELETE FROM TourBooked WHERE ID = ?', (ID,))
     database.commit()
     database.close()
