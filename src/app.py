@@ -25,7 +25,7 @@ def registrer_page():
     return render_template('/registrer.html')
 
 
-@application.route('/homepage')
+@application.route('/homepage') 
 def homepage():
     global global_user_id
     global_user_id = get_id_if_provide_username()[0]
