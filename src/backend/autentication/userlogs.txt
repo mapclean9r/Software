@@ -175,3 +175,53 @@ Date: 24.11.23 Time: 10:10 User: admin went to admin page
 Date: 24.11.23 Time: 10:10 User: admin went to admin page 
 Date: 24.11.23 Time: 10:10 User: admin logged in 
 Date: 24.11.23 Time: 10:10 User: admin logged in 
+Date: 24.11.23 Time: 10:13 User: ElgElg Has tested the logging button 
+Date: 24.11.23 Time: 10:13 User: ElgElg logged in 
+Date: 24.11.23 Time: 10:13 User: ElgElg logged in 
+Date: 24.11.23 Time: 10:13 User: bruker went to favorites page 
+Date: 24.11.23 Time: 10:13 User: bruker went to homepage 
+Date: 24.11.23 Time: 10:14 User: bruker removed bought tour 
+Date: 24.11.23 Time: 10:14 User: bruker went to homepage 
+Date: 24.11.23 Time: 10:14 User: bruker went to my created tours 
+Date: 24.11.23 Time: 10:14 User: bruker went to homepage 
+Date: 24.11.23 Time: 10:14 User: bruker went to support senter 
+Date: 24.11.23 Time: 10:14 User: bruker went to homepage 
+Date: 24.11.23 Time: 10:15 User: bruker logged in 
+Date: 24.11.23 Time: 10:15 User: bruker logged in 
+Date: 24.11.23 Time: 10:15 User: admin went to my created tours 
+Date: 24.11.23 Time: 10:15 User: admin went to homepage 
+Date: 24.11.23 Time: 10:15 User: admin logged in 
+Date: 24.11.23 Time: 10:15 User: admin registered user 
+Date: 24.11.23 Time: 10:16 User: admin registered user 
+Date: 24.11.23 Time: 10:16 User: admin logged in 
+Date: 24.11.23 Time: 10:16 User: admin logged in 
+Date: 24.11.23 Time: 10:16 User: planteSpesialist logged in 
+Date: 24.11.23 Time: 10:16 User: planteSpesialist logged in 
+Date: 24.11.23 Time: 10:16 User: admin logged in 
+Date: 24.11.23 Time: 10:16 User: admin registered user 
+Date: 24.11.23 Time: 10:16 User: admin registered user 
+Date: 24.11.23 Time: 10:16 User: admin logged in 
+Date: 24.11.23 Time: 10:16 User: admin logged in 
+Date: 24.11.23 Time: 10:17 User: superPer went to homepage 
+Date: 24.11.23 Time: 10:17 User: superPer logged in 
+Date: 24.11.23 Time: 10:17 User: superPer logged in 
+Date: 24.11.23 Time: 10:17 User: admin went to my created tours 
+Date: 24.11.23 Time: 10:17 User: admin went to homepage 
+Date: 24.11.23 Time: 10:17 User: admin logged in 
+Date: 24.11.23 Time: 10:17 User: admin logged in 
+Date: 24.11.23 Time: 10:17 User: superPer went to homepage 
+Date: 24.11.23 Time: 10:17 User: superPer went to homepage 
+Date: 24.11.23 Time: 10:17 User: superPer went to homepage 
+Date: 24.11.23 Time: 10:17 User: superPer went to homepage 
+Date: 24.11.23 Time: 10:17 User: superPer went to homepage 
+Date: 24.11.23 Time: 10:17 User: superPer logged in 
+Date: 24.11.23 Time: 10:18 User: superPer logged in 
+Date: 24.11.23 Time: 10:18 User: admin went to my created tours 
+Date: 24.11.23 Time: 10:18 User: admin went to homepage 
+Date: 24.11.23 Time: 10:18 User: admin logged in 
+Date: 24.11.23 Time: 10:18 User: admin logged in 
+Date: 24.11.23 Time: 10:18 User: bruker went to support senter 
+Date: 24.11.23 Time: 10:18 User: bruker went to homepage 
+Date: 24.11.23 Time: 10:18 User: bruker went to my created tours 
+Date: 24.11.23 Time: 10:18 User: bruker went to homepage 
+Date: 24.11.23 Time: 10:19 User: bruker logged in 
