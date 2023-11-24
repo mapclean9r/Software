@@ -17,11 +17,11 @@ list_tours_illegal_input = [
     ("12", "description", "Country", "Location", "2023-1-1",  "CreatedBy", 159),
     ("123", "description", "Country", "Location", "2023-12",  "CreatedBy", 159),
     ("1234", "description", "Country", "Location", "2023-10-12", "CreatedBy", 225),
-    ("Tittel er over 25 bokstaver eller mer", "description", "Country", "Location", "2023-10-12", "CreatedBy", 222),
-    ("Denne er akkurat 25 lang 3", "description", "Country", "Location", "2023-10-12", 300,  "CreatedBy"),
+    ("Tittel er over 75 bokstaver eller merTittel er over 75 bokstaver eller merTittel er over 75 bokstaver eller mer", "description", "Country", "Location", "2023-10-12", "CreatedBy", 222),
+    ("Denne er akkurat 75 lang44Denne er akkurat 75 lang44Denne er akkurat 75 lang44", "description", "Country", "Location", "2023-10-12", 300,  "CreatedBy"),
     ("", "Empty title", "Norge", "Finmark", "2023-10-12",  "krøsstvællæ", 10000),
     ("", "", "", "", "", "", 0),
-    ("A long title in a tour can not be made because we as developers has desided it", "description", "Country", "Location", "1999-12-22", "CreatedBy", 100)
+    ("A long title in a tour can not be made because we as developers has desided itA long title in a tour can not be made because we as developers has desided itA long title in a tour can not be made because we as developers has desided it", "description", "Country", "Location", "1999-12-22", "CreatedBy", 100)
 ]
 @pytest.mark.parametrize("Title_not_legal, Description_not_legal, Country_not_legal, Location_not_legal, Date_not_legal, created_by_not_legal, price_not_legal",list_tours_illegal_input)
 def test_not_possible_to_create_tour_with_illegal_input(Title_not_legal, Description_not_legal, Country_not_legal, Location_not_legal, Date_not_legal, created_by_not_legal, price_not_legal):

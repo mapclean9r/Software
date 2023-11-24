@@ -160,3 +160,5 @@ Date: 24.11.23 Time: 09:37 User: leifHerman logged in
 Date: 24.11.23 Time: 09:37 User: leifHerman logged in 
 Date: 24.11.23 Time: 09:37 User: bruker went to my created tours 
 Date: 24.11.23 Time: 09:38 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:39 User: ElgElg Has tested the logging button 
+Date: 24.11.23 Time: 09:41 User: ElgElg Has tested the logging button 
