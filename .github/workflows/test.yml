@@ -20,10 +20,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10.11'
+          python-version: '3.10.6'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Activate venv
+        run: source venv/bin/activate
 
       - name: Run tests
         run: python3 -m pytest src/test
