@@ -5,7 +5,6 @@ from backend.handler.auth_handler import get_username_checker, get_start_login_p
 from backend.handler.favorite_handler import get_favorite_tours_from_user
 from backend.handler.tour_handler import *
 from backend.autentication.login import *
-
 application = Flask(__name__, template_folder='frontend/templates')
 
 global_user_id = 0

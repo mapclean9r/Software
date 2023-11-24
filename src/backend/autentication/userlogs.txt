@@ -73,3 +73,90 @@ Date: 23.11.23 Time: 11:20 User: ElgElg Has tested the logging button
 Date: 23.11.23 Time: 11:25 User: ElgElg Has tested the logging button 
 Date: 23.11.23 Time: 11:32 User: ElgElg Has tested the logging button 
 Date: 23.11.23 Time: 11:33 User: ElgElg Has tested the logging button 
+Date: 24.11.23 Time: 09:14 User: ElgElg logged in 
+Date: 24.11.23 Time: 09:14 User: ElgElg logged in 
+Date: 24.11.23 Time: 09:16 User: admin created a tour 
+Date: 24.11.23 Time: 09:16 User: admin went to homepage 
+Date: 24.11.23 Time: 09:17 User: admin went to homepage 
+Date: 24.11.23 Time: 09:18 User: admin created a tour 
+Date: 24.11.23 Time: 09:18 User: admin went to homepage 
+Date: 24.11.23 Time: 09:18 User: admin logged in 
+Date: 24.11.23 Time: 09:18 User: admin registered user 
+Date: 24.11.23 Time: 09:18 User: admin registered user 
+Date: 24.11.23 Time: 09:18 User: admin logged in 
+Date: 24.11.23 Time: 09:18 User: admin logged in 
+Date: 24.11.23 Time: 09:19 User: bruker created a tour 
+Date: 24.11.23 Time: 09:19 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:20 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:20 User: bruker went to my created tours 
+Date: 24.11.23 Time: 09:20 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:20 User: bruker logged in 
+Date: 24.11.23 Time: 09:20 User: bruker registered user 
+Date: 24.11.23 Time: 09:20 User: bruker registered user 
+Date: 24.11.23 Time: 09:20 User: bruker logged in 
+Date: 24.11.23 Time: 09:20 User: bruker logged in 
+Date: 24.11.23 Time: 09:20 User: ChristianEngen logged in 
+Date: 24.11.23 Time: 09:21 User: ChristianEngen registered user 
+Date: 24.11.23 Time: 09:21 User: ChristianEngen registered user 
+Date: 24.11.23 Time: 09:21 User: ChristianEngen logged in 
+Date: 24.11.23 Time: 09:21 User: ChristianEngen logged in 
+Date: 24.11.23 Time: 09:22 User: leifHerman created a tour 
+Date: 24.11.23 Time: 09:22 User: leifHerman went to homepage 
+Date: 24.11.23 Time: 09:22 User: leifHerman went to homepage 
+Date: 24.11.23 Time: 09:22 User: leifHerman went to homepage 
+Date: 24.11.23 Time: 09:22 User: leifHerman logged in 
+Date: 24.11.23 Time: 09:22 User: leifHerman registered user 
+Date: 24.11.23 Time: 09:23 User: leifHerman registered user 
+Date: 24.11.23 Time: 09:23 User: leifHerman logged in 
+Date: 24.11.23 Time: 09:23 User: leifHerman logged in 
+Date: 24.11.23 Time: 09:24 User: beate123 created a tour 
+Date: 24.11.23 Time: 09:24 User: beate123 went to homepage 
+Date: 24.11.23 Time: 09:24 User: beate123 went to homepage 
+Date: 24.11.23 Time: 09:24 User: beate123 went to homepage 
+Date: 24.11.23 Time: 09:24 User: beate123 logged in 
+Date: 24.11.23 Time: 09:24 User: beate123 registered user 
+Date: 24.11.23 Time: 09:24 User: beate123 registered user 
+Date: 24.11.23 Time: 09:24 User: beate123 logged in 
+Date: 24.11.23 Time: 09:24 User: beate123 logged in 
+Date: 24.11.23 Time: 09:24 User: turEksperten logged in 
+Date: 24.11.23 Time: 09:25 User: turEksperten logged in 
+Date: 24.11.23 Time: 09:26 User: turExperten created a tour 
+Date: 24.11.23 Time: 09:26 User: turExperten went to homepage 
+Date: 24.11.23 Time: 09:26 User: turExperten went to homepage 
+Date: 24.11.23 Time: 09:26 User: turExperten logged in 
+Date: 24.11.23 Time: 09:26 User: turExperten registered user 
+Date: 24.11.23 Time: 09:27 User: turExperten registered user 
+Date: 24.11.23 Time: 09:27 User: turExperten logged in 
+Date: 24.11.23 Time: 09:27 User: turExperten logged in 
+Date: 24.11.23 Time: 09:28 User: supervandrer created a tour 
+Date: 24.11.23 Time: 09:28 User: supervandrer went to homepage 
+Date: 24.11.23 Time: 09:28 User: supervandrer went to homepage 
+Date: 24.11.23 Time: 09:31 User: supervandrer created a tour 
+Date: 24.11.23 Time: 09:31 User: supervandrer went to homepage 
+Date: 24.11.23 Time: 09:31 User: supervandrer went to homepage 
+Date: 24.11.23 Time: 09:31 User: supervandrer logged in 
+Date: 24.11.23 Time: 09:31 User: supervandrer logged in 
+Date: 24.11.23 Time: 09:31 User: bruker went to my created tours 
+Date: 24.11.23 Time: 09:31 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:32 User: bruker created a tour 
+Date: 24.11.23 Time: 09:32 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:33 User: bruker created a tour 
+Date: 24.11.23 Time: 09:33 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:34 User: bruker created a tour 
+Date: 24.11.23 Time: 09:34 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:35 User: bruker created a tour 
+Date: 24.11.23 Time: 09:35 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:36 User: bruker created a tour 
+Date: 24.11.23 Time: 09:36 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:37 User: bruker went to my created tours 
+Date: 24.11.23 Time: 09:37 User: bruker went to homepage 
+Date: 24.11.23 Time: 09:37 User: bruker logged in 
+Date: 24.11.23 Time: 09:37 User: bruker logged in 
+Date: 24.11.23 Time: 09:37 User: beate123 went to homepage 
+Date: 24.11.23 Time: 09:37 User: beate123 logged in 
+Date: 24.11.23 Time: 09:37 User: beate123 logged in 
+Date: 24.11.23 Time: 09:37 User: leifHerman went to homepage 
+Date: 24.11.23 Time: 09:37 User: leifHerman logged in 
+Date: 24.11.23 Time: 09:37 User: leifHerman logged in 
+Date: 24.11.23 Time: 09:37 User: bruker went to my created tours 
+Date: 24.11.23 Time: 09:38 User: bruker went to homepage 

@@ -4,10 +4,10 @@ import sqlite3
 pathing = os.path.dirname(__file__) + "/database.db"
 
 def Tour_create(title, description, country, location, date, price, created_by):
-    if len(title) <5 or len(title) >25:
+    if len(title) <5 or len(title) >75:
         print("title needs to be between 5 and 25 characters")
         return 0
-    elif len(description) <5 or len(description) > 200:
+    elif len(description) <5 or len(description) > 300:
         print("description needs to be between 5 and 45 characters")
         return 0
     elif len(country) <1:
